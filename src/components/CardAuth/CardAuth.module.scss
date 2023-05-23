@@ -1,0 +1,84 @@
+.card {
+    display: flex;
+    border-radius: 15px;
+    box-shadow: 9px 8px 20px 0px rgba(0, 0, 0, 0.36);
+    position: relative;
+    z-index: 1;
+}
+
+.card .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    font-size: 50px;
+    color: #ffffff;
+    background: linear-gradient(10deg, #335237, #2C7333);
+    padding: 5rem;
+    width: 100%;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.card .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 0;
+}
+
+.card .icon .circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    background: #ffffff;
+    height: 3.5rem;
+    width: 3.5rem;
+    border-radius: 50%;
+}
+
+.card .icon .circle:hover {
+    background: linear-gradient(10deg, #335237, #2C7333);
+    transition: 10s;
+
+    svg:not(:root) {
+        display: flex;
+        color: #fff;
+        align-items: center;
+        justify-content: center;
+        font-size: 32px;
+    }
+}
+
+svg:not(:root) {
+    display: flex;
+    color: #2C7333;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+}
+
+.card .form form {
+    flex-direction: column;
+    align-items: flex-start;
+    color: #2C7333;
+    background: #232623;
+    padding: 3.5rem;
+    width: 28rem;
+    height: auto;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    display: flex;
+    gap: 20px;
+}
+
+.card .form label {
+    font-weight: 700;
+    color: #3E6943;
+}
+
+.card .form input {
+    color: #ffffff;
+    padding: 5px;
+}

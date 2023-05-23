@@ -1,0 +1,29 @@
+.formAuth {
+    background-color: none;
+    width: 440px;
+
+    .inputAuth {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .button {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    svg:not(:root) {
+        color: #3C413C;
+        font-size: 25px;
+    }
+
+    svg:not(:root):hover {
+        color: #3E6943;
+        font-size: 25px;
+    }
+
+    input:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0 30px #232623 inset;
+        -webkit-text-fill-color: #fff !important;
+    }
+}
