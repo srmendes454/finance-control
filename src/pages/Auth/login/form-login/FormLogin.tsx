@@ -1,9 +1,10 @@
-import { IconButton, InputAdornment, TextField, Theme, ThemeProvider, createTheme, useTheme } from "@mui/material";
+import { Alert, IconButton, InputAdornment, TextField, Theme, ThemeProvider, createTheme, useTheme } from "@mui/material";
 import style from './FormLogin.module.scss';
 import { VisibilityOffOutlined, VisibilityOutlined } from "@mui/icons-material";
 import { useState } from "react";
 import ButtonAuth from "../../../../components/ButtonAuth";
 import React from "react";
+import AuthService from "../../../../services/Auth.service";
 
 export const FormLogin = () => {
 
@@ -49,6 +50,22 @@ export const FormLogin = () => {
     const handleClickShowPassword = () => setShowPassword((show) => !show);
     const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => { event.preventDefault() };
 
+    async function Login(email: string, password: string) {
+        const result = await AuthService.Login(email, password);  
+        if (result.success === true){   
+            return(
+                <Alert variant="filled" severity="success">
+                  Login realizado com sucesso
+                </Alert>
+            )
+        }
+        else {
+            return(
+                <Alert severity="success">This is a success alert — check it out!</Alert>
+            )
+        }
+    }
+
     return (
         <form className={style.formAuth}>
             <ThemeProvider theme={customTheme(outerTheme)}>
@@ -85,8 +102,8 @@ export const FormLogin = () => {
             </ThemeProvider>
             <div className={style.button}>
                 <ButtonAuth
-                    onClick={() => {}}
-                    type="submit"
+                    onClick={() => Login(email, password)}
+                    type="button"
                     name="Entrar"
                     route="/reset-password"
                     title="Esqueci minha senha"
