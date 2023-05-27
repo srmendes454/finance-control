@@ -1,0 +1,135 @@
+.container {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 100%;
+   height: 100vh;
+   position: absolute;
+   top: 0;
+   left: 0;
+   z-index: 9999;
+   backdrop-filter: blur(5px);
+}
+
+.border {
+   width: 46px;
+   height: 106px;
+   border-radius: 30px;
+   background: none;
+   border: 3px solid #2C7333;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   animation: progress-border 2s infinite backwards;
+}
+
+.progress {
+   width: 40px;
+   height: 100px;
+   border-radius: 30px;
+   background: linear-gradient(0deg, #2C7333, #2C7333 50%, transparent 50%, transparent);
+   animation: progress-pill 2s infinite linear;
+   background-size: 100% 200%;
+   background-repeat: no-repeat;
+}
+
+.progressIcon {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100vh;
+   width: 100%;
+   position: absolute;
+   top: 0;
+   left: 0;
+   z-index: 9999;
+   animation: flip-vertical-right 215ms infinite linear;
+
+   svg:not(:root) {
+      color: #fff;
+      font-size: 40px;
+   }
+}
+
+@keyframes progress-border {
+   0% {
+      background-position: 0 0;
+      transform: rotate(0deg);
+   }
+
+   25% {
+      background-position: 0 100%;
+      transform: rotate(0deg);
+   }
+
+   50% {
+      background-position: 0 100%;
+      transform: rotate(180deg);
+   }
+
+   75% {
+      background-position: 0 200%;
+      transform: rotate(180deg);
+   }
+
+   100% {
+      background-position: 0 200%;
+      transform: rotate(360deg);
+   }
+}
+
+@keyframes progress-pill {
+   0% {
+      background-position: 0 0;
+   }
+
+   25% {
+      background-position: 0 100%;
+   }
+
+   50% {
+      background-position: 0 100%;
+   }
+
+   75% {
+      background-position: 0 200%;
+   }
+
+   100% {
+      background-position: 0 200%;
+   }
+}
+
+@keyframes loadicons {
+   0% {
+      transform: scale(0.5) translate3d(0, 0, 0);
+   }
+
+   25% {
+      transform: scale(1) translate3d(0, 0, 0);
+   }
+
+   50% {
+      transform: scale(1.5) translate3d(0, 0, 0);
+   }
+
+   75% {
+      transform: scale(1) translate3d(0, 0, 0);
+   }
+
+   100% {
+      transform: scale(0.5) translate3d(0, 0, 0);
+   }
+}
+
+@keyframes flip-vertical-right {
+   0% {
+      -webkit-transform: rotateY(0);
+      transform: rotateY(0);
+   }
+
+   100% {
+      -webkit-transform: rotateY(180deg);
+      transform: rotateY(180deg);
+   }
+}

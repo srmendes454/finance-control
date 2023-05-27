@@ -3,14 +3,16 @@ export default interface IFormLogin {
     password: string,
 }
 export interface Response<Data> {
-    data?: Data,
-    success: boolean,
-    message: string,
-    time: Date,
-    environment: string,
-    router: string,
-    tokenValidTotalMinutesTo: number,
-    errorMessage: [string]
+    data: {
+        data: Data,
+        success: boolean,
+        message: string,
+        time: Date,
+        environment: string,
+        router: string,
+        tokenValidTotalMinutesTo: number,
+        errorMessage: [string]
+    }
 }
 
 export interface User {

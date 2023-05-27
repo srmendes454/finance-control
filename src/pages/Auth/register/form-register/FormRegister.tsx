@@ -4,6 +4,10 @@ import style from './FormRegister.module.scss';
 import ButtonAuth from "../../../../components/ButtonAuth";
 import { VisibilityOffOutlined, VisibilityOutlined } from "@mui/icons-material";
 import React from "react";
+import { useMain } from "../../../../store/MainProvider";
+import AuthService from "../../../../services/Auth.service";
+import { toast } from "react-toastify";
+import IFormRegister from "../../../../models/RegisterModel";
 
 export default function FormRegister() {
     const [name, setName] = useState("");
@@ -52,6 +56,28 @@ export default function FormRegister() {
     const handleClickShowPassword = () => setShowPassword((show) => !show);
     const handleClickShowConfirmPassword = () => setShowConfirmePassword((show) => !show);
     const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => { event.preventDefault() };
+    const { setIsGlobalLoading } = useMain();
+    
+    async function Register(data: IFormRegister) {
+        setIsGlobalLoading(true);
+        const result = await AuthService.Register(data);
+        if (result.data.success === true) {
+            toast.success(result.data.message, {
+                position: toast.POSITION.BOTTOM_CENTER,
+                autoClose: 3000,
+                theme: "dark",
+                onClose: () => window.location.href = "/login"
+            });
+        }
+        else {
+            toast.warning(result.data.message, { 
+                position: toast.POSITION.BOTTOM_CENTER, 
+                autoClose: 5000, 
+                theme: "dark" 
+            });
+        }
+        setIsGlobalLoading(false);
+    }
 
     return (
         <form className={style.formAuth}>
@@ -63,6 +89,7 @@ export default function FormRegister() {
                     id="name"
                     label="Nome"
                     variant='standard'
+                    required
                 />
             </ThemeProvider>
             <ThemeProvider theme={customTheme(outerTheme)}>
@@ -73,6 +100,7 @@ export default function FormRegister() {
                     id="email"
                     label="Email"
                     variant='standard'
+                    required
                 />
             </ThemeProvider>
             <ThemeProvider theme={customTheme(outerTheme)}>
@@ -83,6 +111,7 @@ export default function FormRegister() {
                     id="password"
                     label="Senha"
                     variant='standard'
+                    required
                     InputProps={{
                         endAdornment: (
                             <InputAdornment
@@ -105,6 +134,7 @@ export default function FormRegister() {
                     id="confirmPassword"
                     label="Confirme a senha"
                     variant='standard'
+                    required
                     InputProps={{
                         endAdornment: (
                             <InputAdornment
@@ -122,7 +152,7 @@ export default function FormRegister() {
             <div className={style.button}>
                 <ButtonAuth
                     onClick={() => {}}
-                    type="submit"
+                    type="button"
                     name="Salvar"
                     route="/login"
                     title="Cancelar"

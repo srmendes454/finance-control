@@ -1,13 +1,10 @@
-body {  
+.container {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: auto;
-}
-
-div {
-  margin: 1rem;
-  text-align: center;
+  width: 100%;
+  height: 100vh;
+  position: fixed;
 }
 
 .loader .icons {
@@ -70,8 +67,8 @@ div {
 
 .loader {
   position: relative;
-  width: 96px;
-  height: 96px;
+  width: 200px;
+  height: 200px;
   background-color: #6F766F;
   transform: rotate(45deg);
   overflow: hidden;
@@ -88,7 +85,7 @@ div {
   position: absolute;
   inset: -30px;
   margin: auto;
-  background: radial-gradient(circle, #2C7333 0%, rgba(65,60,60,1) 85%);
+  background: radial-gradient(circle, #2C7333 0%, #413c3c 85%);
   animation: diamondLoader 2s alternate infinite;
 }
 @keyframes diamondLoader {
