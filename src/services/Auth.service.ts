@@ -1,6 +1,4 @@
 import { Response } from "../models/LoginModel";
-import IFormRegister from "../models/RegisterModel";
-import IFormResetPassword from "../models/ResetPasswordModel";
 import { Axios } from "./Api"
 
 export default class AuthService {
@@ -17,10 +15,10 @@ export default class AuthService {
         });
     }
 
-    public static async Register(data: IFormRegister): Promise<Response<string>> {
+    public static async Register(name: string, email: string, password: string, confirmPassword: string): Promise<Response<string>> {
         return new Promise((resolve, reject) => {
             Axios.post("https://localhost:5001/v1/user/register", 
-            { data })
+            { name, email, password, confirmPassword })
             .then(response => {
                 resolve(response as unknown as Response<string>);
             })
@@ -43,10 +41,10 @@ export default class AuthService {
         });
     }
     
-    public static async ResetPassword(data: IFormResetPassword): Promise<Response<string>> {
+    public static async ResetPassword(email: string, code: string, newPassword: string, confirmNewPassword: string): Promise<Response<string>> {
         return new Promise((resolve, reject) => {
             Axios.put("https://localhost:5001/v1/user/reset-password", 
-            { data })
+            { email, code, newPassword, confirmNewPassword })
             .then(response => {
                 resolve(response as unknown as Response<string>);
             })

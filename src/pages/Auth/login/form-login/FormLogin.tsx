@@ -60,9 +60,9 @@ export const FormLogin = () => {
         if (result.data.success === true) {
             toast.success("Login efetuado com sucesso. Aguarde, você será redirecionado para a tela Inicial", {
                 position: toast.POSITION.BOTTOM_CENTER,
-                autoClose: 3000,
+                autoClose: 5000,
                 theme: "dark",
-                onClose: () => window.location.href = "/home-welcome"
+                onClose: () => window.location.href = "/welcome"
             });
         }
         else {
@@ -115,7 +115,7 @@ export const FormLogin = () => {
                         onClick={() => Login(email, password)}
                         type="button"
                         name="Entrar"
-                        route="/reset-password"
+                        route="/send-code-email"
                         title="Esqueci minha senha"
                     />
                 </div>

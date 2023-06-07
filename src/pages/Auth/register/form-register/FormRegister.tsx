@@ -7,7 +7,6 @@ import React from "react";
 import { useMain } from "../../../../store/MainProvider";
 import AuthService from "../../../../services/Auth.service";
 import { toast } from "react-toastify";
-import IFormRegister from "../../../../models/RegisterModel";
 
 export default function FormRegister() {
     const [name, setName] = useState("");
@@ -58,13 +57,13 @@ export default function FormRegister() {
     const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => { event.preventDefault() };
     const { setIsGlobalLoading } = useMain();
     
-    async function Register(data: IFormRegister) {
+    async function Register(name: string, email: string, password: string, confirmPassword: string) {
         setIsGlobalLoading(true);
-        const result = await AuthService.Register(data);
+        const result = await AuthService.Register(name, email, password, confirmPassword);
         if (result.data.success === true) {
             toast.success(result.data.message, {
                 position: toast.POSITION.BOTTOM_CENTER,
-                autoClose: 3000,
+                autoClose: 5000,
                 theme: "dark",
                 onClose: () => window.location.href = "/login"
             });
@@ -151,7 +150,7 @@ export default function FormRegister() {
             </ThemeProvider>
             <div className={style.button}>
                 <ButtonAuth
-                    onClick={() => {}}
+                    onClick={() => Register(name, email, password, confirmPassword)}
                     type="button"
                     name="Salvar"
                     route="/login"

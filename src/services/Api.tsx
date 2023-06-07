@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const Axios = axios.create({
-  baseURL: "http://localhost:5001",
+  baseURL: process.env.REACT_APP_BFF_URL,
   timeout: 2000000,
   headers: {
     'X-Custom-Header': 'foobar'
