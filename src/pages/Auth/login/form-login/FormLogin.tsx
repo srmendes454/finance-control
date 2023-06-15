@@ -7,6 +7,7 @@ import React from "react";
 import AuthService from "../../../../services/Auth.service";
 import { toast } from "react-toastify"
 import { useMain } from "../../../../store/MainProvider";
+import IFormLogin from "../../../../models/LoginModel";
 
 export const FormLogin = () => {
 
@@ -54,9 +55,9 @@ export const FormLogin = () => {
 
     const { setIsGlobalLoading } = useMain();
 
-    async function Login(email: string, password: string) {
+    async function Login(data: IFormLogin) {
         setIsGlobalLoading(true);
-        const result = await AuthService.Login(email, password);
+        const result = await AuthService.Login(data);
         if (result.data.success === true) {
             toast.success("Login efetuado com sucesso. Aguarde, você será redirecionado para a tela Inicial", {
                 position: toast.POSITION.BOTTOM_CENTER,
@@ -112,7 +113,7 @@ export const FormLogin = () => {
                 </ThemeProvider>
                 <div className={style.button}>
                     <ButtonAuth
-                        onClick={() => Login(email, password)}
+                        onClick={() => Login({email, password})}
                         type="button"
                         name="Entrar"
                         route="/send-code-email"

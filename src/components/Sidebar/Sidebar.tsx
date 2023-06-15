@@ -1,74 +1,84 @@
-import { Fade, IconButton, Tooltip } from "@mui/material";
+import { Tooltip, TooltipProps, Zoom, styled, tooltipClasses } from "@mui/material";
 import style from "./Sidebar.module.scss";
-import { Menu, House, AccountBalanceWallet, CreditCard, AttachMoney, Pix, Dashboard, DocumentScanner, NotificationsActive } from '@mui/icons-material';
-import img from '../../assets/img/Imagem do WhatsApp de 2023-05-05 à(s) 19.54.54.webp';
-import logo from '../../assets/img/Logo.svg';
+import "bootstrap-icons/font/bootstrap-icons.css";
+import { useHref } from "react-router-dom";
 
 function Sidebar() {
+    const href = useHref("");
+    const HtmlTooltip = styled(({ className, ...props }: TooltipProps) => (
+        <Tooltip {...props} classes={{ popper: className }} />
+    ))(({ theme }) => ({
+        [`& .${tooltipClasses.tooltip}`]: {
+            backgroundColor: '#2D332D',
+            maxWidth: 300,
+            height: "40px",
+            color: '#2C7333',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            textAlign: 'center',
+            fontSize: theme.typography.pxToRem(15),
+            fontWeight: 700,
+            borderTopRightRadius: 0,
+            borderBottomRightRadius: 0,
+            borderTopLeftRadius: '10px',
+            borderBottomLeftRadius: '10px',
+            borderRight: '3px solid #2C7333'
+        },
+    }));
+
     return (
         <>
-            <header className={style.header}>
-                 <div className={style.logo}>
-                     <img src={logo} alt="Logo"/>
-                 </div>
-                 <div className={style.avatar}>
-                     <img src={img} alt="User"/>
-                 </div>
-                 <IconButton className={style.icon}>
-                     <NotificationsActive />
-                 </IconButton>
-            </header>
             <nav className={style.sidebar}>
                 <ul className={style.list}>
                     <li className={style.itemList}>
-                        <a className={style.menu}>
-                            <span className={style.icon}><Tooltip className={style.tooltip} title="Clique para expandir" placement="right"
-                                TransitionComponent={Fade}
-                                TransitionProps={{ timeout: 600 }}><i><Menu /></i></Tooltip></span>
-                            <span className={style.title}>Menu</span>
-                        </a>
+                        <HtmlTooltip TransitionComponent={Zoom} title="Inicio" placement="right">
+                            <a className={href.includes("/welcome") ? style.active : ""} href="/welcome">
+                                <span className={style.icon}><i className="bi bi-house-fill"></i></span>
+                            </a>
+                        </HtmlTooltip>
                     </li>
                     <li className={style.itemList}>
-                        <a href="">
-                            <span className={style.icon}><i><House /></i></span>
-                            <span className={style.title}>Home</span>
-                        </a>
+                        <HtmlTooltip TransitionComponent={Zoom} title="Dashboard" placement="right">
+                            <a className={href.includes("/dashboard") ? style.active : ""} href="/dashboard">
+                                <span className={style.icon}><i className="bi bi-graph-up-arrow"></i></span>
+                            </a>
+                        </HtmlTooltip>
                     </li>
                     <li className={style.itemList}>
-                        <a href="">
-                            <span className={style.icon}><i><Dashboard /></i></span>
-                            <span className={style.title}>Dashboard</span>
-                        </a>
+                        <HtmlTooltip TransitionComponent={Zoom} title="Minhas carteiras" placement="right">
+                            <a className={href.includes("/wallet") ? style.active : ""} href="/wallet">
+                                <span className={style.icon}><i className="bi bi-wallet"></i></span>
+                            </a>
+                        </HtmlTooltip>
                     </li>
                     <li className={style.itemList}>
-                        <a href="">
-                            <span className={style.icon}><i><AccountBalanceWallet /></i></span>
-                            <span className={style.title}>Carteiras</span>
-                        </a>
+                        <HtmlTooltip TransitionComponent={Zoom} title="Meus cartões" placement="right">
+                            <a className={href.includes("/card") ? style.active : ""} href="/card">
+                                <span className={style.icon}><i className="bi bi-credit-card-fill"></i></span>
+                            </a>
+                        </HtmlTooltip>
                     </li>
                     <li className={style.itemList}>
-                        <a href="">
-                            <span className={style.icon}><i><CreditCard /></i></span>
-                            <span className={style.title}>Cartões</span>
-                        </a>
+                        <HtmlTooltip TransitionComponent={Zoom} title="Meus boletos" placement="right">
+                            <a className={href.includes("/bank-slip") ? style.active : ""} href="/bank-slip">
+                                <span className={style.icon}><i className="bi bi-upc-scan"></i></span>
+                            </a>
+                        </HtmlTooltip>
                     </li>
                     <li className={style.itemList}>
-                        <a href="">
-                            <span className={style.icon}><i><DocumentScanner /></i></span>
-                            <span className={style.title}>Boletos</span>
-                        </a>
+                        <HtmlTooltip TransitionComponent={Zoom} title="Dinheiro em espécie" placement="right">
+                            <a className={href.includes("/money") ? style.active : ""} href="/money">
+                                <span className={style.icon}><i className="bi bi-coin"></i></span>
+                            </a>
+                        </HtmlTooltip>
                     </li>
                     <li className={style.itemList}>
-                        <a href="">
-                            <span className={style.icon}><i ><AttachMoney /></i></span>
-                            <span className={style.title}>Dinheiro</span>
-                        </a>
-                    </li>
-                    <li className={style.itemList}>
-                        <a href="">
-                            <span className={style.icon}><i><Pix /></i></span>
-                            <span className={style.title}>Pix</span>
-                        </a>
+                        <HtmlTooltip TransitionComponent={Zoom} title="Movimentações por Pix" placement="right">
+                            <a className={href.includes("/pix") ? style.active : ""} href="/pix">
+                                <span className={style.icon}><i className="bi bi-x-diamond-fill"></i></span>
+                            </a>
+                        </HtmlTooltip>
                     </li>
                 </ul>
             </nav>

@@ -5,7 +5,8 @@ import { ResetPassword, SendEmailResetPassword } from './pages/Auth/reset-passwo
 import { ToastContainer } from 'react-toastify';
 import { useMain } from './store/MainProvider';
 import { PillLoading } from './components/Loading/Pill-Loading/Pill-Loading';
-import {Welcome} from './pages/Home/welcome/Welcome';
+import {Welcome} from './pages/Home/Welcome';
+import { Wallet } from './pages/Wallet/Wallet';
 
 function App() {
   const {isGlobalLoading} = useMain();
@@ -20,6 +21,7 @@ function App() {
           <Route element={<SendEmailResetPassword />} path="/send-code-email" />
           <Route element={<ResetPassword />} path="/reset-password" />
           <Route element={<Welcome />} path="/welcome" />
+          <Route element={<Wallet />} path="/wallet" />
         </Routes>
       </BrowserRouter>
       {isGlobalLoading && <PillLoading/>}

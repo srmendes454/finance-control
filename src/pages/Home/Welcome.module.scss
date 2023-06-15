@@ -1,0 +1,142 @@
+body {
+    background-color: #2D332D;
+}
+
+.cardWelcome {
+    border-radius: 15px;
+    width: 99.5%;
+    height: 99%;
+    background: #232623;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .title {
+        margin: 0;
+        color: #335237;
+        font-size: 160px;
+
+        &::selection {
+            background-color: #335237;
+            color: #232623;
+        }
+
+        .subtitle {
+            margin: 0;
+            color: #335237;
+            font-size: 20px;
+            font-weight: 400;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+    
+            &::selection {
+                background-color: #335237;
+                color: #232623;
+            }
+    
+            .iconButton {
+                margin-left: 10px;
+                background-color: #2C7333;
+                height: 35px;
+                width: 35px;
+                border-radius: 50px;
+    
+                svg:not(:root) {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: #232623;
+                    font-size: 20px;
+                    margin-left: 1px;
+                }
+    
+                &:hover {
+                    margin-left: 10px;
+                    background-color: #2D332D;
+                    height: 35px;
+                    width: 35px;
+                    border-radius: 50px;
+    
+                    svg:not(:root) {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        color: #2C7333;
+                        font-size: 20px;
+                        animation: swing 0.4s 1 alternate-reverse;
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+@media screen and (max-height: 500px){
+    .cardWelcome{
+        overflow-y: scroll;
+        overflow-x: hidden;
+
+        .title {
+            font-size: 80px;
+    
+            .subtitle {
+                font-size: 10px;
+            }
+        }
+    }
+}
+@media screen and (max-width: 600px) {
+    .cardWelcome{
+        overflow-y: scroll;
+        overflow-x: hidden;
+
+        .title {
+            font-size: 100px;
+    
+            .subtitle {
+                font-size: 10px;
+            }
+        }
+    }
+}
+
+@keyframes swing {
+
+    0% {
+        margin-left: 1px;
+    }
+
+    20% {
+        margin-left: 2px;
+    }
+
+    30% {
+        margin-left: 3px;
+    }
+
+    40% {
+        margin-left: 4px;
+    }
+
+    50% {
+        margin-left: 5px;
+    }
+
+    60% {
+        margin-left: 4px;
+    }
+
+    70% {
+        margin-left: 3px;
+    }
+
+    80% {
+        margin-left: 2px;
+    }
+
+    90% {
+        margin-left: 1px;
+    }
+}
