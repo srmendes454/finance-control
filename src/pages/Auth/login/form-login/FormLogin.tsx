@@ -1,4 +1,4 @@
-import { IconButton, InputAdornment, TextField, Theme, ThemeProvider, createTheme, useTheme } from "@mui/material";
+import { IconButton, InputAdornment, TextField, ThemeProvider, useTheme } from "@mui/material";
 import style from './FormLogin.module.scss';
 import { VisibilityOffOutlined, VisibilityOutlined } from "@mui/icons-material";
 import { useState } from "react";
@@ -8,44 +8,9 @@ import AuthService from "../../../../services/Auth.service";
 import { toast } from "react-toastify"
 import { useMain } from "../../../../store/MainProvider";
 import IFormLogin from "../../../../models/LoginModel";
+import { StyleMaterialUi } from "../../../../utils/StyleMaterialUi/StyleMaterialUi";
 
 export const FormLogin = () => {
-
-    const customTheme = (outerTheme: Theme) =>
-        createTheme({
-            palette: {
-                mode: outerTheme.palette.mode
-            },
-            components: {
-                MuiTextField: {
-                    styleOverrides: {
-                        root: {
-                            "--TextField-brandBorderColor": "#3C413C",
-                            "--TextField-brandBorderHoverColor": "#3E6943",
-                            "--TextField-brandBorderFocusedColor": "#3E6943",
-                            "& label.Mui-focused": {
-                                color: "var(--TextField-brandBorderFocusedColor)"
-                            }
-                        }
-                    }
-                },
-                MuiInput: {
-                    styleOverrides: {
-                        root: {
-                            "&:before": {
-                                borderBottom: "2px solid var(--TextField-brandBorderColor)"
-                            },
-                            "&:hover:not(.Mui-disabled, .Mui-error):before": {
-                                borderBottom: "2px solid var(--TextField-brandBorderHoverColor)"
-                            },
-                            "&.Mui-focused:after": {
-                                borderBottom: "2px solid var(--TextField-brandBorderFocusedColor)"
-                            }
-                        }
-                    }
-                }
-            }
-        });
     const outerTheme = useTheme();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -79,7 +44,7 @@ export const FormLogin = () => {
     return (
         <>
             <form className={style.formAuth}>
-                <ThemeProvider theme={customTheme(outerTheme)}>
+                <ThemeProvider theme={StyleMaterialUi(outerTheme)}>
                     <TextField className={style.inputAuth}
                         type="text"
                         value={email}
@@ -88,8 +53,6 @@ export const FormLogin = () => {
                         label="Email"
                         variant='standard'
                     />
-                </ThemeProvider>
-                <ThemeProvider theme={customTheme(outerTheme)}>
                     <TextField className={style.inputAuth}
                         type={showPassword ? 'text' : 'password'}
                         value={password}

@@ -1,50 +1,15 @@
-import { TextField, Theme, ThemeProvider, createTheme, useTheme } from "@mui/material";
+import { TextField, ThemeProvider, useTheme } from "@mui/material";
 import { useState } from "react";
 import style from "./FormSendEmailResetPassword.module.scss";
 import ButtonAuth from "../../../../components/ButtonAuth";
 import { useMain } from "../../../../store/MainProvider";
 import AuthService from "../../../../services/Auth.service";
 import { toast } from "react-toastify";
+import { StyleMaterialUi } from "../../../../utils/StyleMaterialUi/StyleMaterialUi";
 
 
 function FormSendEmailResetPassword() {
     const [email, setEmail] = useState("");
-
-    const customTheme = (outerTheme: Theme) =>
-        createTheme({
-            palette: {
-                mode: outerTheme.palette.mode
-            },
-            components: {
-                MuiTextField: {
-                    styleOverrides: {
-                        root: {
-                            "--TextField-brandBorderColor": "#3C413C",
-                            "--TextField-brandBorderHoverColor": "#3E6943",
-                            "--TextField-brandBorderFocusedColor": "#3E6943",
-                            "& label.Mui-focused": {
-                                color: "var(--TextField-brandBorderFocusedColor)"
-                            }
-                        }
-                    }
-                },
-                MuiInput: {
-                    styleOverrides: {
-                        root: {
-                            "&:before": {
-                                borderBottom: "2px solid var(--TextField-brandBorderColor)"
-                            },
-                            "&:hover:not(.Mui-disabled, .Mui-error):before": {
-                                borderBottom: "2px solid var(--TextField-brandBorderHoverColor)"
-                            },
-                            "&.Mui-focused:after": {
-                                borderBottom: "2px solid var(--TextField-brandBorderFocusedColor)"
-                            }
-                        }
-                    }
-                }
-            }
-        });
     const outerTheme = useTheme();
     const { setIsGlobalLoading } = useMain();
 
@@ -71,7 +36,7 @@ function FormSendEmailResetPassword() {
 
     return (
         <form className={style.formAuth}>
-            <ThemeProvider theme={customTheme(outerTheme)}>
+            <ThemeProvider theme={StyleMaterialUi(outerTheme)}>
                 <TextField className={style.inputAuth}
                     type="text"
                     value={email}

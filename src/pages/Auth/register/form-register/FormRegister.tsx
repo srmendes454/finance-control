@@ -1,4 +1,4 @@
-import { IconButton, InputAdornment, TextField, Theme, ThemeProvider, createTheme, useTheme } from "@mui/material";
+import { IconButton, InputAdornment, TextField, ThemeProvider, useTheme } from "@mui/material";
 import { useState } from "react";
 import style from './FormRegister.module.scss';
 import ButtonAuth from "../../../../components/ButtonAuth";
@@ -7,48 +7,13 @@ import React from "react";
 import { useMain } from "../../../../store/MainProvider";
 import AuthService from "../../../../services/Auth.service";
 import { toast } from "react-toastify";
+import { StyleMaterialUi } from "../../../../utils/StyleMaterialUi/StyleMaterialUi";
 
 export default function FormRegister() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-
-    const customTheme = (outerTheme: Theme) =>
-        createTheme({
-            palette: {
-                mode: outerTheme.palette.mode
-            },
-            components: {
-                MuiTextField: {
-                    styleOverrides: {
-                        root: {
-                            "--TextField-brandBorderColor": "#3C413C",
-                            "--TextField-brandBorderHoverColor": "#3E6943",
-                            "--TextField-brandBorderFocusedColor": "#3E6943",
-                            "& label.Mui-focused": {
-                                color: "var(--TextField-brandBorderFocusedColor)"
-                            }
-                        }
-                    }
-                },
-                MuiInput: {
-                    styleOverrides: {
-                        root: {
-                            "&:before": {
-                                borderBottom: "2px solid var(--TextField-brandBorderColor)"
-                            },
-                            "&:hover:not(.Mui-disabled, .Mui-error):before": {
-                                borderBottom: "2px solid var(--TextField-brandBorderHoverColor)"
-                            },
-                            "&.Mui-focused:after": {
-                                borderBottom: "2px solid var(--TextField-brandBorderFocusedColor)"
-                            }
-                        }
-                    }
-                }
-            }
-        });
     const outerTheme = useTheme();
     const [showPassword, setShowPassword] = React.useState(false);
     const [showConfirmPassword, setShowConfirmePassword] = React.useState(false);
@@ -80,7 +45,7 @@ export default function FormRegister() {
 
     return (
         <form className={style.formAuth}>
-            <ThemeProvider theme={customTheme(outerTheme)}>
+            <ThemeProvider theme={StyleMaterialUi(outerTheme)}>
                 <TextField className={style.inputAuth}
                     type="text"
                     value={name}
@@ -90,8 +55,6 @@ export default function FormRegister() {
                     variant='standard'
                     required
                 />
-            </ThemeProvider>
-            <ThemeProvider theme={customTheme(outerTheme)}>
                 <TextField className={style.inputAuth}
                     type="text"
                     value={email}
@@ -101,8 +64,6 @@ export default function FormRegister() {
                     variant='standard'
                     required
                 />
-            </ThemeProvider>
-            <ThemeProvider theme={customTheme(outerTheme)}>
                 <TextField className={style.inputAuth}
                     type={showConfirmPassword ? 'text' : 'password'}
                     value={password}
@@ -124,8 +85,6 @@ export default function FormRegister() {
                         ),
                     }}
                 />
-            </ThemeProvider>
-            <ThemeProvider theme={customTheme(outerTheme)}>
                 <TextField className={style.inputAuth}
                     type={showPassword ? 'text' : 'password'}
                     value={confirmPassword}

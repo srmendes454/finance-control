@@ -1,4 +1,4 @@
-import { IconButton, InputAdornment, TextField, Theme, ThemeProvider, createTheme, useTheme } from "@mui/material";
+import { IconButton, InputAdornment, TextField, ThemeProvider, useTheme } from "@mui/material";
 import React from "react";
 import { useState } from "react";
 import ButtonAuth from "../../../../components/ButtonAuth";
@@ -7,6 +7,7 @@ import style from './FormResetPassword.module.scss';
 import { useMain } from "../../../../store/MainProvider";
 import AuthService from "../../../../services/Auth.service";
 import { toast } from "react-toastify";
+import { StyleMaterialUi } from "../../../../utils/StyleMaterialUi/StyleMaterialUi";
 
 
 export default function FormResetPassword() {
@@ -14,47 +15,9 @@ export default function FormResetPassword() {
     const [code, setCode] = useState("");
     const [newPassword, setNewPassword] = useState("");
     const [confirmNewPassword, setConfirmNewPassword] = useState("");
-
-    const customTheme = (outerTheme: Theme) =>
-        createTheme({
-            palette: {
-                mode: outerTheme.palette.mode
-            },
-            components: {
-                MuiTextField: {
-                    styleOverrides: {
-                        root: {
-                            "--TextField-brandBorderColor": "#3C413C",
-                            "--TextField-brandBorderHoverColor": "#3E6943",
-                            "--TextField-brandBorderFocusedColor": "#3E6943",
-                            "& label.Mui-focused": {
-                                color: "var(--TextField-brandBorderFocusedColor)"
-                            }
-                        }
-                    }
-                },
-                MuiInput: {
-                    styleOverrides: {
-                        root: {
-                            "&:before": {
-                                borderBottom: "2px solid var(--TextField-brandBorderColor)"
-                            },
-                            "&:hover:not(.Mui-disabled, .Mui-error):before": {
-                                borderBottom: "2px solid var(--TextField-brandBorderHoverColor)"
-                            },
-                            "&.Mui-focused:after": {
-                                borderBottom: "2px solid var(--TextField-brandBorderFocusedColor)"
-                            }
-                        }
-                    }
-                }
-            }
-        });
     const outerTheme = useTheme();
-
     const [showNewPassword, setShowNewPassword] = React.useState(false);
     const [showConfirmNewPassword, setShowConfirmNewPassword] = React.useState(false);
-
     const handleClickShowNewPassword = () => setShowNewPassword((show) => !show);
     const handleClickShowConfirmNewPassword = () => setShowConfirmNewPassword((show) => !show);
     const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => { event.preventDefault() };
@@ -83,7 +46,7 @@ export default function FormResetPassword() {
 
     return (
         <form className={style.formAuth}>
-            <ThemeProvider theme={customTheme(outerTheme)}>
+            <ThemeProvider theme={StyleMaterialUi(outerTheme)}>
                 <TextField className={style.inputAuth}
                     type="text"
                     value={email}
@@ -92,8 +55,6 @@ export default function FormResetPassword() {
                     label="Confirme seu email cadastrado"
                     variant='standard'
                 />
-            </ThemeProvider>
-            <ThemeProvider theme={customTheme(outerTheme)}>
                 <TextField className={style.inputAuth}
                     type="text"
                     value={code}
@@ -102,8 +63,6 @@ export default function FormResetPassword() {
                     label="Código recebido"
                     variant='standard'
                 />
-            </ThemeProvider>
-            <ThemeProvider theme={customTheme(outerTheme)}>
                 <TextField className={style.inputAuth}
                     type={showNewPassword ? 'text' : 'password'}
                     value={newPassword}
@@ -124,8 +83,6 @@ export default function FormResetPassword() {
                         ),
                     }}
                 />
-            </ThemeProvider>
-            <ThemeProvider theme={customTheme(outerTheme)}>
                 <TextField className={style.inputAuth}
                     type={showConfirmNewPassword ? 'text' : 'password'}
                     value={confirmNewPassword}

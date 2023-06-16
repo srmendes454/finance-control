@@ -2,6 +2,7 @@ import { Card } from "../../components/Card/Card";
 import { Header } from "../../components/Header/Header";
 import { Layout } from "../../components/Layout/Layout";
 import { LayoutCardInfo } from "../../components/LayoutCardInfo/LayoutCardInfo";
+import { ModalInsertWallet } from "../../components/Modals/ModalInsertWallet/ModalInsertWallet";
 import { Sidebar } from "../../components/Sidebar/Sidebar";
 
 function Wallet() {
@@ -14,7 +15,8 @@ function Wallet() {
                 title="Carteiras"
                 informations={
                     [
-                        <Card title="Iphone 13 mini" price={479.90} typeCard="Credito" installments="6/10" purchaseDate="25/12/2023"/>
+                        <Card title="Iphone 13 mini" price={479.90} typeCard="Credito" installments="6/10" purchaseDate="25/12/2023"/>,
+                        <ModalInsertWallet/>
                     ]}
             />
             }
