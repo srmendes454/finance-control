@@ -1,4 +1,4 @@
-import { Theme, createTheme } from "@mui/material";
+import { Theme, createTheme, outlinedInputClasses } from "@mui/material";
 
 
 const StyleMaterialUi = (outerTheme: Theme) =>
@@ -37,4 +37,40 @@ createTheme({
     }
 });
 
-export {StyleMaterialUi}
+const StyleInputOutlined = (outerTheme: Theme) =>
+  createTheme({
+    palette: {
+      mode: outerTheme.palette.mode,
+    },
+    components: {
+      MuiTextField: {
+        styleOverrides: {
+          root: {
+            '--TextField-brandBorderColor': '#3C413C',
+            '--TextField-brandBorderHoverColor': '#3E6943',
+            '--TextField-brandBorderFocusedColor': '#3E6943',
+            '& label.Mui-focused': {
+              color: 'var(--TextField-brandBorderFocusedColor)',
+            },
+          },
+        },
+      },
+      MuiOutlinedInput: {
+        styleOverrides: {
+          notchedOutline: {
+            borderColor: 'var(--TextField-brandBorderColor)',
+          },
+          root: {
+            [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
+              borderColor: 'var(--TextField-brandBorderHoverColor)',
+            },
+            [`&.Mui-focused .${outlinedInputClasses.notchedOutline}`]: {
+              borderColor: 'var(--TextField-brandBorderFocusedColor)',
+            },
+          },
+        },
+      },
+    },
+  });
+
+export {StyleMaterialUi, StyleInputOutlined}

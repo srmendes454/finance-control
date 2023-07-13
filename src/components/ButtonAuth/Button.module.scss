@@ -1,62 +1,70 @@
 .buttonBackground {
   display: flex;
   width: 100%;
-  height: auto;    
-  background: #F4F2EC;
-  border-radius: 17px;
+  height: auto;
 
   .resetPassword {
     font-size: 15px;
-    color: #6F766F;  
-    float: left;  
+    color: #4e544e;
+    float: left;
     width: 50%;
-    height: 100%;    
-    font-weight: 400;
+    height: 100%;
+    font-weight: 500;
     line-height: 34px;
-    align-items: center;
-    text-align: center;   
-    margin: 2px; 
-  }
+    text-align: center;
+    text-decoration: none;
+    margin: 2px;
 
-  .resetPassword:hover {
-    font-size: 15px;
-    color: #2C7333;  
-    float: left;  
-    width: 50%;
-    height: 100%;    
-    font-weight: 700;
-    line-height: 34px;
-    align-items: center;
-    text-align: center;   
-    margin: 2px; 
+    &:hover {
+      color: #3E6943;
+      animation: swing ease-in-out 0.5s 1 alternate;
+    }
   }
 
   .buttonAuth {
+    font-family: "Poppins", sans-serif;
     font-size: 20px;
-    font-weight: 700;
-    color: #ffffff;
+    font-weight: 500;
+    color: #fff;
     background: #3E6943;
     border: none;
     height: auto;
     width: 50%;
-    border-radius: 15px; 
+    border-radius: 5px;
     float: right;
     margin: 2.5px;
     cursor: pointer;
+
+    &:hover {
+      background: #2C7333;
+      transition: 1s;
+    }
+  }
+}
+
+@keyframes swing {
+
+  0%,
+  30%,
+  50%,
+  70%,
+  100% {
+    transform: rotate(0deg);
   }
 
-  .buttonAuth:hover {
-    font-size: 20px;
-    font-weight: 700;
-    color: #ffffff;
-    background: #2C7333;
-    border: none;
-    height: auto;
-    width: 50%;
-    border-radius: 15px; 
-    float: right;
-    margin: 2.5px;
-    cursor: pointer;
+  10% {
+    transform: rotate(10deg);
   }
-  
+
+  40% {
+    transform: rotate(-10deg);
+  }
+
+  60% {
+    transform: rotate(5deg);
+  }
+
+  80% {
+    transform: rotate(-5deg);
+  }
 }

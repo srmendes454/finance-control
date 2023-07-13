@@ -1,9 +1,26 @@
 .formAuth {
     width: 500px;
 
+    h3 {
+        margin: 0;
+        text-align: center;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: #4e544e;
+
+        span {
+            color: #fff;
+        }
+    }
+
     .input {
         width: 100%;
         height: 100%;
+        display: flex;
+        gap: 5px;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
     }
 
     .validation {
@@ -13,12 +30,13 @@
     }
 
     .inputAuth {
-        width: 100%;
+        width: 12%;
         margin-top: 10px;
     }
 
     .button {
         width: 100%;
+        height: 100%;
         margin-top: 20px;
 
     }
@@ -41,6 +59,10 @@
         -webkit-text-fill-color: #ffffff;
         transition: background-color 5000s ease-in-out 0s;
         box-shadow: inset 0 0 20px 20px rgba(255, 255, 255, 0);
+    }
+
+    input {
+        text-align: center;
     }
 }
 

@@ -7,7 +7,7 @@ const TootipCancel = styled(({ className, ...props }: TooltipProps) => (
         backgroundColor: '#232623',
         maxWidth: 300,
         height: "12px",
-        color: '#732c2c',
+        color: '#722121',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -17,7 +17,7 @@ const TootipCancel = styled(({ className, ...props }: TooltipProps) => (
         borderRadius: '3px',
         borderBottomRightRadius: 0,
         borderBottomLeftRadius: 0,
-        borderBottom: '1px solid #732c2c'
+        borderBottom: '1px solid #722121'
     },
 }));
 

@@ -7,7 +7,7 @@ const TootipSave = styled(({ className, ...props }: TooltipProps) => (
         backgroundColor: '#232623',
         maxWidth: 300,
         height: "12px",
-        color: '#2C7333',
+        color: '#2158AA',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -17,7 +17,7 @@ const TootipSave = styled(({ className, ...props }: TooltipProps) => (
         borderRadius: '3px',
         borderBottomRightRadius: 0,
         borderBottomLeftRadius: 0,
-        borderBottom: '1px solid #2C7333'
+        borderBottom: '1px solid #2158AA'
     },
 }));
 

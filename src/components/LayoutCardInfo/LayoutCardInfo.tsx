@@ -5,10 +5,11 @@ interface CardInfoProps {
     breadcrumb?: string[]
     title?: string
     informations?: any[]
+    onAddClick?: () => void
 }
 
 function LayoutCardInfo(props: CardInfoProps) {
-    const { breadcrumb, title, informations } = props;
+    const { breadcrumb, title, informations, onAddClick } = props;
     return (
         <div className={style.card}>
             <header className={style.breadcrumb}>
@@ -20,7 +21,7 @@ function LayoutCardInfo(props: CardInfoProps) {
                     <i className="bi bi-search"></i>
                 </div>
                 <div className={style.add}>
-                    <i className="bi bi-plus-lg"></i>
+                    <i onClick={onAddClick} className="bi bi-plus-lg"></i>
                 </div>
                 <span />
             </div>
@@ -30,7 +31,6 @@ function LayoutCardInfo(props: CardInfoProps) {
                 </div>
                 <footer>
                     <div className={style.paginated}>
-                        {}
                     </div>
                     <div className={style.help}>
                         <i className='bi bi-headset'></i>

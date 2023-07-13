@@ -1,84 +1,175 @@
 .card {
-    display: flex;
+    height: auto;
+    width: 900px;
+
+    border: 1px solid #3C413C;
+    background-color: rgba(255, 255, 255, 0);
+    backdrop-filter: blur(5px);
     border-radius: 15px;
     box-shadow: 9px 8px 20px 0px rgba(0, 0, 0, 0.36);
     position: relative;
     z-index: 1;
-}
 
-.card .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    font-size: 50px;
-    color: #ffffff;
-    background: linear-gradient(10deg, #335237, #2C7333);
-    padding: 5rem;
-    width: 100%;
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
-}
+    display: grid;
+    grid-template-columns: 29.9% 0.1% 70% repeat(2, 1fr);
+    grid-template-areas: "title icon form";
 
-.card .icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 0;
-}
+    .title {
+        width: 100%;
+        height: 100%;
+        grid-area: title;
 
-.card .icon .circle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    background: #ffffff;
-    height: 3.5rem;
-    width: 3.5rem;
-    border-radius: 50%;
-
-    svg:not(:root) {
         display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        border-top-left-radius: 15px;
+        border-bottom-left-radius: 15px;
+
+        h6 {
+            display: flex;
+            justify-content: center;
+            text-align: center;    
+            font-size: 2rem;
+            font-weight: 400;
+            color: #fff;
+            margin: 0;
+        }
+    }
+
+    .icon {
+        height: 100%;
+        grid-area: icon;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background-color: #3C413C;
+
+        .circle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            background: linear-gradient(10deg, #3E6943, #2C7333);
+            height: 2rem;
+            width: 2rem;
+            border-radius: 50%;
+
+            svg:not(:root) {
+                display: flex;
+                color: #fff;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.2rem;
+            }
+
+            &:hover {
+                background: #2D332D;
+
+                svg:not(:root) {
+                    color: #2C7333;
+                    animation: arrow 0.4s 1 alternate-reverse;
+                }
+            }
+        }
+    }
+
+    .form {
+        width: 100%;
+        height: 100%;
+        grid-area: form;
+        display: flex;
+        align-items: center;
+        justify-content: center;  
+    }
+
+    .form form {
+        display: flex;
+        flex-direction: column;
+        padding: 2.5rem;
+
         color: #2C7333;
-        align-items: center;
-        justify-content: center;
-        font-size: 32px;
+
+        border-top-right-radius: 15px;
+        border-bottom-right-radius: 15px;
     }
-}
 
-.card .icon .circle:hover {
-    background: linear-gradient(10deg, #335237, #2C7333);
-    transition: 10s;
+    .form label {
+        font-weight: 600;
+        color: #3E6943;
+        font-family: "Poppins", sans-serif;
+    }
 
-    svg:not(:root) {
-        display: flex;
+    .form input {
         color: #fff;
-        align-items: center;
-        justify-content: center;
-        font-size: 32px;
+        font-family: "Poppins", sans-serif;
     }
 }
 
-.card .form form {
-    flex-direction: column;
-    align-items: flex-start;
-    color: #2C7333;
-    background: #232623;
-    padding: 3.5rem;
-    width: 28rem;
-    height: auto;
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
-    display: flex;
-    gap: 20px;
+@keyframes swing {
+
+    0%,
+    30%,
+    50%,
+    70%,
+    100% {
+        transform: rotate(0deg);
+    }
+
+    10% {
+        transform: rotate(10deg);
+    }
+
+    40% {
+        transform: rotate(-10deg);
+    }
+
+    60% {
+        transform: rotate(5deg);
+    }
+
+    80% {
+        transform: rotate(-5deg);
+    }
 }
 
-.card .form label {
-    font-weight: 700;
-    color: #3E6943;
-}
+@keyframes arrow {
 
-.card .form input {
-    color: #ffffff;
-    padding: 5px;
+    0% {
+        margin-left: 1px;
+    }
+
+    20% {
+        margin-left: 2px;
+    }
+
+    30% {
+        margin-left: 3px;
+    }
+
+    40% {
+        margin-left: 4px;
+    }
+
+    50% {
+        margin-left: 5px;
+    }
+
+    60% {
+        margin-left: 4px;
+    }
+
+    70% {
+        margin-left: 3px;
+    }
+
+    80% {
+        margin-left: 2px;
+    }
+
+    90% {
+        margin-left: 1px;
+    }
 }

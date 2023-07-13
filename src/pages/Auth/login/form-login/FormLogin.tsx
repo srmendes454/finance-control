@@ -1,7 +1,6 @@
 import { IconButton, InputAdornment, TextField, ThemeProvider, useTheme } from "@mui/material";
 import style from './FormLogin.module.scss';
 import { VisibilityOffOutlined, VisibilityOutlined } from "@mui/icons-material";
-import { useState } from "react";
 import ButtonAuth from "../../../../components/ButtonAuth";
 import React from "react";
 import AuthService from "../../../../services/Auth.service";
@@ -9,14 +8,26 @@ import { toast } from "react-toastify"
 import { useMain } from "../../../../store/MainProvider";
 import IFormLogin from "../../../../models/LoginModel";
 import { StyleMaterialUi } from "../../../../utils/StyleMaterialUi/StyleMaterialUi";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+const LoginFormSchema = z.object({
+    email: z.string().nonempty('O e-mail é obrigatório').email('Formato inválido'),
+    password: z.string().nonempty('A senha e obrigatória').min(6, 'A senha precisa de ter no minimo 6 caracteres')
+})
+
+type LoginFormData = z.infer<typeof LoginFormSchema>
 
 export const FormLogin = () => {
     const outerTheme = useTheme();
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = React.useState(false);
     const handleClickShowPassword = () => setShowPassword((show) => !show);
     const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => { event.preventDefault() };
+
+    const { register, handleSubmit, formState: { errors } } = useForm<LoginFormData>({
+        resolver: zodResolver(LoginFormSchema)
+    })
 
     const { setIsGlobalLoading } = useMain();
 
@@ -24,6 +35,7 @@ export const FormLogin = () => {
         setIsGlobalLoading(true);
         const result = await AuthService.Login(data);
         if (result.data.success === true) {
+            localStorage.setItem("token", result.data.data || '')
             toast.success("Login efetuado com sucesso. Aguarde, você será redirecionado para a tela Inicial", {
                 position: toast.POSITION.BOTTOM_CENTER,
                 autoClose: 5000,
@@ -32,34 +44,33 @@ export const FormLogin = () => {
             });
         }
         else {
-            toast.warning(result.data.message, { 
-                position: toast.POSITION.BOTTOM_CENTER, 
-                autoClose: 5000, 
-                theme: "dark" 
+            toast.warning(result.data.message, {
+                position: toast.POSITION.BOTTOM_CENTER,
+                autoClose: 5000,
+                theme: "dark"
             });
         }
         setIsGlobalLoading(false);
     }
 
     return (
-        <>
-            <form className={style.formAuth}>
-                <ThemeProvider theme={StyleMaterialUi(outerTheme)}>
+        <form className={style.formAuth} onSubmit={handleSubmit(Login)}>
+            <ThemeProvider theme={StyleMaterialUi(outerTheme)}>
+                <div className={style.input}>
                     <TextField className={style.inputAuth}
                         type="text"
-                        value={email}
-                        onChange={evento => setEmail(evento.target.value)}
-                        id="email"
                         label="Email"
                         variant='standard'
+                        {...register('email')}
                     />
+                    {errors.email && <span className={style.validation}>{errors.email.message}</span>}
+                </div>
+                <div className={style.input}>
                     <TextField className={style.inputAuth}
                         type={showPassword ? 'text' : 'password'}
-                        value={password}
-                        onChange={evento => setPassword(evento.target.value)}
-                        id="password"
                         label="Senha"
                         variant='standard'
+                        {...register('password')}
                         InputProps={{
                             endAdornment: (
                                 <InputAdornment
@@ -73,17 +84,17 @@ export const FormLogin = () => {
                             ),
                         }}
                     />
-                </ThemeProvider>
-                <div className={style.button}>
-                    <ButtonAuth
-                        onClick={() => Login({email, password})}
-                        type="button"
-                        name="Entrar"
-                        route="/send-code-email"
-                        title="Esqueci minha senha"
-                    />
+                    {errors.password && <span className={style.validation}>{errors.password.message}</span>}
                 </div>
-            </form>
-        </>
+            </ThemeProvider>
+            <div className={style.button}>
+                <ButtonAuth
+                    type="submit"
+                    name="Entrar"
+                    route="/send-code-email"
+                    title="Esqueci minha senha"
+                />
+            </div>
+        </form>
     )
 }

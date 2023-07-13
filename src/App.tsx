@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Login } from './pages/Auth/login/Login';
 import { Register } from './pages/Auth/register/Register';
-import { ResetPassword, SendEmailResetPassword } from './pages/Auth/reset-password/Reset-Password';
+import { ResetPassword, SendEmailResetPassword, ValidateCode } from './pages/Auth/reset-password/Reset-Password';
 import { ToastContainer } from 'react-toastify';
 import { useMain } from './store/MainProvider';
 import { PillLoading } from './components/Loading/Pill-Loading/Pill-Loading';
@@ -20,6 +20,7 @@ function App() {
           <Route element={<Register />} path="/register" />
           <Route element={<SendEmailResetPassword />} path="/send-code-email" />
           <Route element={<ResetPassword />} path="/reset-password" />
+          <Route element={<ValidateCode />} path="/validate-code" />
           <Route element={<Welcome />} path="/welcome" />
           <Route element={<Wallet />} path="/wallet" />
         </Routes>

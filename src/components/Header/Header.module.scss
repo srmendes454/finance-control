@@ -1,5 +1,4 @@
 .header {
-    background-color: #2D332D;
     width: 100%;
     height: 60px;
     position: relative;
@@ -30,17 +29,17 @@
             float: right;
             color: #335237;
             margin-right: 10px;
-    
+
             svg:not(:root) {
                 font-size: 30px;
             }
         }
-    
+
         .icon:hover {
             float: right;
             color: #2C7333;
             margin-right: 10px;
-    
+
             svg:not(:root) {
                 font-size: 30px;
                 animation: swing ease-in-out 0.5s 1 alternate;

@@ -21,7 +21,14 @@ function Sidebar() {
                     <li className={style.itemList}>
                         <TooltipSidebar TransitionComponent={Zoom} title="Dashboard" placement="right">
                             <a className={href.includes("/dashboard") ? style.active : ""} href="/dashboard">
-                                <span className={style.icon}><i className="bi bi-graph-up-arrow"></i></span>
+                                <span className={style.icon}><i className="bi bi-bar-chart-fill"></i></span>
+                            </a>
+                        </TooltipSidebar>
+                    </li>
+                    <li className={style.itemList}>
+                        <TooltipSidebar TransitionComponent={Zoom} title="Otimizar salário" placement="right">
+                            <a className={href.includes("/optimize-salary") ? style.active : ""} href="/dashboard">
+                                <span className={style.icon}><i className="bi bi-pie-chart-fill"></i></span>
                             </a>
                         </TooltipSidebar>
                     </li>

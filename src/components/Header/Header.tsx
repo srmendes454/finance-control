@@ -1,7 +1,7 @@
 import { IconButton } from "@mui/material";
 import { NotificationsActive } from '@mui/icons-material';
 import img from '../../assets/img/Imagem do WhatsApp de 2023-05-05 à(s) 19.54.54.webp';
-import logo from '../../assets/img/Logo.svg';
+import logo from '../../assets/img/LogoMinimalistaPrincipal.svg';
 import style from "./Header.module.scss";
 
 function Header() {

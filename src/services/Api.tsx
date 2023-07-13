@@ -4,12 +4,13 @@ const Axios = axios.create({
   baseURL: process.env.REACT_APP_BFF_URL,
   timeout: 2000000,
   headers: {
-    'X-Custom-Header': 'foobar'
+    'X-Custom-Header': 'foobar',
+    Authorization: localStorage.getItem('token' || '')
   },
 });
 
 const send = (type: any, url: any, data: any) => {
-  Axios.defaults.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
+  Axios.defaults.headers.Authorization = localStorage.getItem('token');
 
   return new Promise(function (resolve, reject) {
     if (type === "POST") {
