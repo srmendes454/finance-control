@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Card } from "../../components/Card/Card";
 import { Header } from "../../components/Header/Header";
 import { Layout } from "../../components/Layout/Layout";
@@ -31,7 +31,7 @@ function Wallet() {
         setIsGlobalLoading(false);
     }
 
-    //useEffect(() => { GetAll() }, [])
+    useEffect(() => { GetAll() }, [])
     return (
         <>
             {openAdd && <ModalInsertWallet onClosedClick={() => { setOpenAdd(false) }} />}

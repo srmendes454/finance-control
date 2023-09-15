@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import { Response } from "../models/LoginModel";
 import IWalletInsert from "../models/WalletInsertModel";
 import IWalletResponse from "../models/WalletResponseModel";
@@ -11,7 +12,11 @@ class WalletService {
                     resolve(response as unknown as Response<string>);
                 })
                 .catch((error) => {
-                    reject(error.message);
+                    toast.error(error.message, {
+                        position: toast.POSITION.BOTTOM_CENTER,
+                        autoClose: 5000,
+                        theme: "dark"
+                    });
                 });
         });
     }
@@ -23,7 +28,11 @@ class WalletService {
                     resolve(response);
                 })
                 .catch((error) => {
-                    reject(error.message);
+                    toast.error(error.message, {
+                        position: toast.POSITION.BOTTOM_CENTER,
+                        autoClose: 5000,
+                        theme: "dark"
+                    });
                 });
         });
     }
@@ -35,7 +44,11 @@ class WalletService {
                     resolve(response as unknown as Response<IWalletResponse>);
                 })
                 .catch((error) => {
-                    reject(error.message);
+                    toast.error(error.message, {
+                        position: toast.POSITION.BOTTOM_CENTER,
+                        autoClose: 5000,
+                        theme: "dark"
+                    });
                 });
         });
     }
@@ -47,7 +60,11 @@ class WalletService {
                     resolve(response as unknown as Response<string>);
                 })
                 .catch((error) => {
-                    reject(error.message);
+                    toast.error(error.message, {
+                        position: toast.POSITION.BOTTOM_CENTER,
+                        autoClose: 5000,
+                        theme: "dark"
+                    });
                 });
         });
     }
@@ -59,7 +76,11 @@ class WalletService {
                     resolve(response as unknown as Response<string>);
                 })
                 .catch((error) => {
-                    reject(error.message);
+                    toast.error(error.message, {
+                        position: toast.POSITION.BOTTOM_CENTER,
+                        autoClose: 5000,
+                        theme: "dark"
+                    });
                 });
         });
     }
@@ -71,7 +92,11 @@ class WalletService {
                     resolve(response as unknown as Response<string>);
                 })
                 .catch((error) => {
-                    reject(error.message);
+                    toast.error(error.message, {
+                        position: toast.POSITION.BOTTOM_CENTER,
+                        autoClose: 5000,
+                        theme: "dark"
+                    });
                 });
         });
     }
@@ -83,7 +108,11 @@ class WalletService {
                     resolve(response as unknown as Response<string>);
                 })
                 .catch((error) => {
-                    reject(error.message);
+                    toast.error(error.message, {
+                        position: toast.POSITION.BOTTOM_CENTER,
+                        autoClose: 5000,
+                        theme: "dark"
+                    });
                 });
         });
     }

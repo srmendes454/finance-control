@@ -7,6 +7,7 @@ import { useMain } from './store/MainProvider';
 import { PillLoading } from './components/Loading/Pill-Loading/Pill-Loading';
 import {Welcome} from './pages/Home/Welcome';
 import { Wallet } from './pages/Wallet/Wallet';
+import { OptimizeIncome } from './pages/OptimizeIncome/OptimizeIncome';
 
 function App() {
   const {isGlobalLoading} = useMain();
@@ -23,6 +24,7 @@ function App() {
           <Route element={<ValidateCode />} path="/validate-code" />
           <Route element={<Welcome />} path="/welcome" />
           <Route element={<Wallet />} path="/wallet" />
+          <Route element={<OptimizeIncome />} path="/optimize-income" />
         </Routes>
       </BrowserRouter>
       {isGlobalLoading && <PillLoading/>}

@@ -27,7 +27,7 @@ function Sidebar() {
                     </li>
                     <li className={style.itemList}>
                         <TooltipSidebar TransitionComponent={Zoom} title="Otimizar salário" placement="right">
-                            <a className={href.includes("/optimize-salary") ? style.active : ""} href="/dashboard">
+                            <a className={href.includes("/optimize-income") ? style.active : ""} href="/optimize-income">
                                 <span className={style.icon}><i className="bi bi-pie-chart-fill"></i></span>
                             </a>
                         </TooltipSidebar>

@@ -1,0 +1,27 @@
+.select {
+    appearance: none;
+    border: 1px solid #3c413c48;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    width: 50%;
+    height: 80%;
+    padding: 0 4em 0 1em;
+
+    background: url(https://upload.wikimedia.org/wikipedia/commons/9/9d/Caret_down_font_awesome_whitevariation.svg) no-repeat right 0.8em center / 1.4em,
+        linear-gradient(to left, rgba(255, 255, 255, 0) 3em, rgba(255, 255, 255, 0) 3em);
+    color: #3E6943;
+    border-radius: 0.25em;
+    box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+
+    option {
+        background-color: #232623;
+        font-weight: 500;
+        font-size: 20px;
+    }
+
+    &:focus {
+        outline: none;
+    }
+}

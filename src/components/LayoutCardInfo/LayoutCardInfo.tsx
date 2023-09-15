@@ -3,20 +3,22 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 
 interface CardInfoProps {
     breadcrumb?: string[]
+    isSelect?: boolean
     title?: string
-    informations?: any[]
+    select?: any
+    informations?: any
     onAddClick?: () => void
 }
 
 function LayoutCardInfo(props: CardInfoProps) {
-    const { breadcrumb, title, informations, onAddClick } = props;
+    const { breadcrumb, isSelect, title, select, informations, onAddClick } = props;
     return (
         <div className={style.card}>
             <header className={style.breadcrumb}>
                 <p>{breadcrumb}</p>
             </header>
             <div className={style.title}>
-                <h1>{title}</h1>
+                <h1>{isSelect ? select : title}</h1>
                 <div className={style.search}>
                     <i className="bi bi-search"></i>
                 </div>
