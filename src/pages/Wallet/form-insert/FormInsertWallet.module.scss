@@ -1,0 +1,84 @@
+.form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: center;
+    gap: 20px;
+
+    .input {
+        width: 90%;
+        color: #fff;
+    }
+
+    .colors {
+        width: 90%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        column-gap: 10px;
+
+        .colorItens {
+            height: 30px;
+            width: 30px;
+            border-radius: 50%;
+        }
+
+        span.active {
+            height: 30px;
+            width: 30px;
+            border-radius: 50%;
+            border: 2px solid #969696;
+        }
+
+        .colorLabel {
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            height: auto;
+            width: 100%;
+        }
+    }
+
+    input[type="color"] {
+        border: none;
+        background-color: transparent;
+        height: 2.5rem;
+        width: 2.3rem;
+        outline: none;
+        border-radius: 100%;
+        cursor: pointer;
+
+        &::-webkit-color-swatch {
+            border-radius: 100%;
+        }
+    }
+
+    .validation {
+        font-weight: 700;
+        font-size: 10px;
+        color: #722121;
+    }
+
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: #ffffff;
+        transition: background-color 5000s ease-in-out 0s;
+        box-shadow: inset 0 0 20px 20px rgba(255, 255, 255, 0);
+    }
+
+    input:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0 30px #2D332D inset;
+        -webkit-text-fill-color: #fff !important;
+    }
+
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+}

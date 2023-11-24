@@ -62,6 +62,15 @@
     };
 }
 
+.sidebar .list .itemList a .iconMarking {
+    position: relative;
+    font-size: 24px;
+    &:hover{
+        font-size: 24px;
+        animation: swing ease-in-out 0.5s 1 alternate;
+    };
+}
+
 :root {
     --bg-primary: #2D332D;
     --bg-secondary: #2C7333;

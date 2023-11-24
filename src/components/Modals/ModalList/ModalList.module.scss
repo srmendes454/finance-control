@@ -1,0 +1,175 @@
+.container {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(5px);
+
+    .modal {
+        height: 500px;
+        max-height: 800px;
+        width: 960px;
+        background-color: #3C413C;
+        border-radius: 10px;
+        animation: fadeIn 0.3s ease-in-out forwards;
+
+        display: grid;
+        grid-template-columns: 2% 96% 2% repeat(3, 1fr);
+        grid-template-rows: 3% 15% 80% 2%;
+        grid-template-areas:
+            "a close close"
+            "a title b"
+            "a list b"
+            "a d b";
+
+        .close{
+            width: 99%;
+            height: 100%;
+            grid-area: close;
+            color: #fff;
+            opacity: 70%;
+            font-size: 10px;
+            font-weight: 500;
+            display: flex;
+            align-items: end;
+            justify-content: end;
+
+            span {
+                cursor: pointer;
+            }
+        }
+        .function {
+            width: 100%;
+            height: 100%;
+            grid-area: title;
+            display: flex;
+            column-gap: 10px;
+
+            .title {
+                text-align: start;
+                font-size: 2rem;
+                color: #fff;
+                width: 100%;
+                display: flex;
+                align-items: center;
+
+                h3 {
+                    margin: 0;
+                }
+            }
+
+            .iconSearch {
+                color: #2C7333;
+                font-size: 1.5rem;
+                display: flex;
+                align-items: center;
+
+                i:hover{
+                    cursor: pointer;
+                    transform: translateY(-1px);
+                }
+            }
+
+            .iconAdd {
+                color: #2C7333;
+                font-size: 2rem;
+                display: flex;
+                align-items: center;
+
+                i:hover{
+                    cursor: pointer;
+                    transform: translateY(-1px);
+                }
+            }
+        }
+
+        .list {
+            width: 100%;
+            height: 100%;
+            grid-area: list;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-content: flex-start;
+
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-3rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOutUp {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-3rem);
+    }
+}
+
+@keyframes animeDown{
+	0%{
+		transform: translateY(-50px);
+		-webkit-transform: translateY(-50px);
+		opacity: 0;
+	}
+	100%{
+		transform: translateY(0px);
+		-webkit-transform: translateY(0px);
+		opacity: 1;
+	}
+}
+
+@keyframes animeUp{
+	0%{
+		transform: translateY(50px);
+		-webkit-transform: translateY(50px);
+		opacity: 0;
+	}
+	100%{
+		transform: translateY(0px);
+		-webkit-transform: translateY(0px);
+		opacity: 1;
+	}
+	// animation: animeDown .7s ease-in-out .4s backwards;
+	// -webkit-animation: animeDown .7s ease-in-out .4s backwards;    
+    //transform: rotateY(180deg);
+}

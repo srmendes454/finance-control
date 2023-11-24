@@ -34,9 +34,6 @@ function LayoutCardInfo(props: CardInfoProps) {
                 <footer>
                     <div className={style.paginated}>
                     </div>
-                    <div className={style.help}>
-                        <i className='bi bi-headset'></i>
-                    </div>
                 </footer>
             </main>
         </div>

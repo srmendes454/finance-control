@@ -8,6 +8,7 @@ import { PillLoading } from './components/Loading/Pill-Loading/Pill-Loading';
 import {Welcome} from './pages/Home/Welcome';
 import { Wallet } from './pages/Wallet/Wallet';
 import { OptimizeIncome } from './pages/OptimizeIncome/OptimizeIncome';
+import { NotFound } from './pages/NotFound/NotFound';
 
 function App() {
   const {isGlobalLoading} = useMain();
@@ -16,7 +17,7 @@ function App() {
       <ToastContainer className="foo" style={{ width: "auto" }} />
       <BrowserRouter>
         <Routes>
-          <Route path="*" element={<Login />} />
+          <Route path="*" element={<NotFound />} />
           <Route element={<Login />} path="/login" />
           <Route element={<Register />} path="/register" />
           <Route element={<SendEmailResetPassword />} path="/send-code-email" />

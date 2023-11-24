@@ -6,7 +6,7 @@ const TooltipSidebar = styled(({ className, ...props }: TooltipProps) => (
     [`& .${tooltipClasses.tooltip}`]: {
         backgroundColor: '#2D332D',
         maxWidth: 300,
-        height: "40px",
+        height: "2rem",
         color: '#2C7333',
         display: 'flex',
         alignItems: 'center',

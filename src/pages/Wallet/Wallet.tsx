@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Card } from "../../components/Card/Card";
 import { Header } from "../../components/Header/Header";
 import { Layout } from "../../components/Layout/Layout";
@@ -8,9 +8,17 @@ import { WalletService } from "../../services/Wallet.service";
 import { useMain } from "../../store/MainProvider";
 import { toast } from "react-toastify"
 import IWalletResponse from "../../models/WalletResponseModel";
-import { ModalInsertWallet } from "../../components/Modals/ModalInsertWallet/ModalInsertWallet";
+import { ModalInsert } from "../../components/Modals/ModalInsert/ModalInsert";
+import { FormInsertWallet } from "./form-insert/FormInsertWallet";
+import IWalletInsert from '../../models/WalletInsertModel';
+import { Sidebar3d } from "../../components/Sidebar/Sidebar3D/Sidebar3d";
 
-function Wallet() {
+interface WalletProps {
+    onClosedClick?: () => void;
+}
+
+function Wallet(props: WalletProps) {
+    const { onClosedClick} = props;
     const { setIsGlobalLoading } = useMain();
     const [wallets, setWallets] = useState([] as IWalletResponse[]);
     const [openAdd, setOpenAdd] = useState<boolean>(false);
@@ -31,13 +39,32 @@ function Wallet() {
         setIsGlobalLoading(false);
     }
 
-    useEffect(() => { GetAll() }, [])
+    async function InsertWallet(data: IWalletInsert) {
+        setIsGlobalLoading(true);
+        const result = await WalletService.Insert(data);
+        if (result.data.success === true) {     
+            toast.success(result.data.message, {
+                position: toast.POSITION.BOTTOM_CENTER,
+                autoClose: 5000,
+                theme: "dark"
+            });
+        }
+        else {
+            toast.warning(result.data.message, {
+                position: toast.POSITION.BOTTOM_CENTER,
+                autoClose: 5000,
+                theme: "dark"
+            });
+        }
+        setIsGlobalLoading(false);
+        onClosedClick && onClosedClick();   
+    }
+
+    //useEffect(() => { GetAll() }, [])
     return (
         <>
-            {openAdd && <ModalInsertWallet onClosedClick={() => { setOpenAdd(false) }} />}
+            {openAdd && <ModalInsert onClosedClick={() => { setOpenAdd(false) }} title={"Cadastrar Carteira"} icon="bi bi-wallet" form={<FormInsertWallet />} data={InsertWallet} />}
             <Layout
-                header={<Header />}
-                sidebar={<Sidebar />}
                 card={<LayoutCardInfo
                     onAddClick={() => { setOpenAdd(true) }}
                     breadcrumb={["Minhas carteiras"]}

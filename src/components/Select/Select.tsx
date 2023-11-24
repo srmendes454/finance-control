@@ -26,7 +26,7 @@ function Select() {
         setIsGlobalLoading(false);
     }
 
-    useEffect(() => { GetAll() }, [])
+    //useEffect(() => { GetAll() }, [])
     return (
         <select defaultValue="default" className={style.select} >
             <option value="default" disabled>Selecione uma de suas carteiras</option>

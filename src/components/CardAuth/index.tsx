@@ -1,6 +1,7 @@
 import { IconButton } from "@mui/material";
 import style from "./CardAuth.module.scss";
 import { DoubleArrowOutlined } from '@mui/icons-material';
+
 interface CardAuthProps {
   isLogin: boolean;
   form: any;

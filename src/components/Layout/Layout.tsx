@@ -1,18 +1,18 @@
+import { Sidebar3d } from '../Sidebar/Sidebar3D/Sidebar3d';
+import { Header } from '../Header/Header';
 import style from './Layout.module.scss';
 
 interface LayoutProps {
-    header?: any;
-    sidebar?: any;
     card?: any;
 }
 
 function Layout(Props: LayoutProps) {
-    const {header, sidebar, card} = Props
+    const {card} = Props
 
     return(
         <div className={style.container}>
-            <header className={style.header}>{header}</header>
-            <aside className={style.sidebar}>{sidebar}</aside>
+            <header className={style.header}><Header/></header>
+            <aside className={style.sidebar}><Sidebar3d/></aside>
             <div className={style.card}>{card}</div>
         </div>
     )

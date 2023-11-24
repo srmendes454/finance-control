@@ -40,30 +40,9 @@ function Sidebar() {
                         </TooltipSidebar>
                     </li>
                     <li className={style.itemList}>
-                        <TooltipSidebar TransitionComponent={Zoom} title="Meus cartões" placement="right">
-                            <a className={href.includes("/card") ? style.active : ""} href="/card">
-                                <span className={style.icon}><i className="bi bi-credit-card-fill"></i></span>
-                            </a>
-                        </TooltipSidebar>
-                    </li>
-                    <li className={style.itemList}>
-                        <TooltipSidebar TransitionComponent={Zoom} title="Meus boletos" placement="right">
-                            <a className={href.includes("/bank-slip") ? style.active : ""} href="/bank-slip">
-                                <span className={style.icon}><i className="bi bi-upc-scan"></i></span>
-                            </a>
-                        </TooltipSidebar>
-                    </li>
-                    <li className={style.itemList}>
-                        <TooltipSidebar TransitionComponent={Zoom} title="Dinheiro em espécie" placement="right">
-                            <a className={href.includes("/money") ? style.active : ""} href="/money">
-                                <span className={style.icon}><i className="bi bi-coin"></i></span>
-                            </a>
-                        </TooltipSidebar>
-                    </li>
-                    <li className={style.itemList}>
-                        <TooltipSidebar TransitionComponent={Zoom} title="Movimentações por Pix" placement="right">
-                            <a className={href.includes("/pix") ? style.active : ""} href="/pix">
-                                <span className={style.icon}><i className="bi bi-x-diamond-fill"></i></span>
+                        <TooltipSidebar TransitionComponent={Zoom} title="Marcações" placement="right">
+                            <a className={href.includes("/card") ? style.active : ""} href="/marcacoes">
+                                <span className={style.iconMarking}><i className="bi bi-at"></i></span>
                             </a>
                         </TooltipSidebar>
                     </li>

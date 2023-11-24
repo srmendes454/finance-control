@@ -1,12 +1,22 @@
 import { IconButton } from "@mui/material";
 import { NotificationsActive } from '@mui/icons-material';
-import img from '../../assets/img/Imagem do WhatsApp de 2023-05-05 à(s) 19.54.54.webp';
 import logo from '../../assets/img/LogoMinimalistaPrincipal.svg';
 import style from "./Header.module.scss";
+import { useState } from "react";
+import { ModalUser } from "../Modals/ModalUser/ModalUser";
+import classNames from "classnames";
 
 function Header() {
+    const [avatar, setAvatar] = useState("");
+    const [openAdd, setOpenAdd] = useState<boolean>(false);
+
+    const handleSelected = (open: boolean) => {
+        setOpenAdd(!open);
+    }
+
     return (
         <>
+            {openAdd && <ModalUser avatar={avatar === "" ? <span>RM</span> : <img src={avatar} alt="User" />} name="Rafael Mendes" email="faelmendesab12@gmail.com" onClosedClick={() => { setOpenAdd(false) }} />}
             <header className={style.header}>
                 <div className={style.logo}>
                     <img src={logo} alt="Logo" />
@@ -16,9 +26,13 @@ function Header() {
                         <NotificationsActive />
                     </IconButton>
                 </div>
-                <div className={style.avatar}>
-                    <img src={img} alt="User" />
-                </div>
+                <span onClick={() => handleSelected(openAdd)} className={classNames({
+                    [style.active]: openAdd
+                })}>
+                    <div className={style.avatar}>
+                        {avatar === "" ? <span>RM</span> : <img src={avatar} alt="User" />}
+                    </div>
+                </span>
             </header>
         </>
     )

@@ -7,19 +7,21 @@
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     grid-template-rows: 5% 7% auto;
-    grid-template-areas: 
+    grid-template-areas:
         "breadcrumb"
         "title"
-        "info"
+        "info";
+
 }
 
-.breadcrumb{
+.breadcrumb {
     width: 100%;
     height: 100%;
     grid-area: breadcrumb;
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    animation: fadeInDown 0.5s ease-in-out forwards;
 
     p {
         margin: 0;
@@ -34,11 +36,12 @@
     width: 100%;
     height: 100%;
     grid-area: title;
+    animation: fadeInDown 0.5s ease-in-out forwards;
 
     display: grid;
     grid-template-columns: 1% 90% 4% 4% 1% repeat(5, 1fr);
     grid-template-rows: 99% 1%;
-    grid-template-areas: 
+    grid-template-areas:
         "a h1 search add b"
         "a row row row b";
 
@@ -46,7 +49,7 @@
         width: 100%;
         height: 100%;
         grid-area: h1;
-    
+
         margin: 0;
         color: #fff;
         font-size: 2.5rem;
@@ -60,16 +63,16 @@
         width: 100%;
         height: 100%;
         grid-area: search;
-    
+
         font-size: 1.5rem;
         color: #335237;
         display: flex;
         align-items: center;
         justify-content: flex-end;
-        cursor: pointer;
 
-        &:hover{
+        i:hover {
             color: #2C7333;
+            cursor: pointer;
         }
     }
 
@@ -77,16 +80,16 @@
         width: 100%;
         height: 100%;
         grid-area: add;
-    
+
         font-size: 2.5rem;
         color: #335237;
         display: flex;
         align-items: center;
         justify-content: flex-end;
-        cursor: pointer;
 
-        &:hover{
+        i:hover {
             color: #2C7333;
+            cursor: pointer;
         }
     }
 
@@ -94,7 +97,7 @@
         width: 100%;
         height: 100%;
         grid-area: row;
-    
+
         background-color: #3C413C;
     }
 }
@@ -103,6 +106,7 @@ main {
     width: 100%;
     height: 100%;
     grid-area: info;
+    animation: fadeInDown 0.5s ease-in-out forwards;
 
     overflow-y: scroll;
     overflow-x: hidden;
@@ -110,13 +114,13 @@ main {
     display: grid;
     grid-template-columns: 1% 98% 1% repeat(3, 1fr);
     grid-template-rows: 92% 7% 1%;
-    grid-template-areas: 
+    grid-template-areas:
         "a info b"
         "a footer b"
         "a c b";
 
-    .info{
-        width: 100%;    
+    .info {
+        width: 100%;
         height: 100%;
         grid-area: info;
         display: flex;
@@ -134,19 +138,19 @@ main {
 
         display: grid;
         grid-template-columns: 90% 10% repeat(2, 1fr);
-        grid-template-areas: 
+        grid-template-areas:
             "paginated help";
 
-        .paginated{
+        .paginated {
             width: 100%;
             height: 100%;
             grid-area: paginated;
         }
 
-        .help{
+        .help {
             width: 100%;
             height: 100%;
-            grid-area: help; 
+            grid-area: help;
             display: flex;
             align-items: center;
             justify-content: flex-end;
@@ -163,7 +167,7 @@ main {
                 background-color: #335237;
                 cursor: pointer;
 
-                &:hover{
+                &:hover {
                     color: #fff;
                     background-color: #2C7333;
                 }
@@ -172,21 +176,33 @@ main {
     }
 }
 
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateX(-3rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 // @media screen and (max-width: 830px){
 
 //     .title {
-    
+
 //         h1 {
 //             font-size: 2rem;
 //         }
-    
+
 //         .search {
-        
+
 //             font-size: 1rem;
 //         }
-    
+
 //         .add {
-        
+
 //             font-size: 2rem;
 //         }
 //     }
@@ -217,18 +233,18 @@ main {
 // @media screen and (max-width: 700px){
 
 //     .title {
-    
+
 //         h1 {
 //             font-size: 1.5rem;
 //         }
-    
+
 //         .search {
-        
+
 //             font-size: .5rem;
 //         }
-    
+
 //         .add {
-        
+
 //             font-size: 1rem;
 //         }
 //     }
@@ -255,18 +271,18 @@ main {
 // @media screen and (max-width: 450px){
 
 //     .title {
-    
+
 //         h1 {
 //             font-size: 1rem;
 //         }
-    
+
 //         .search {
-        
+
 //             font-size: 4px;
 //         }
-    
+
 //         .add {
-        
+
 //             font-size: .5rem;
 //         }
 //     }
@@ -290,26 +306,26 @@ main {
 //     }
 // }
 
-@media screen and (max-height: 800px){
+@media screen and (max-height: 800px) {
 
     .title {
-    
+
         h1 {
             font-size: 2rem;
         }
-    
+
         .search {
-        
+
             font-size: 1rem;
         }
-    
+
         .add {
-        
+
             font-size: 2rem;
         }
     }
 
-    .breadcrumb{    
+    .breadcrumb {
         p {
             font-size: 12px;
         }
@@ -317,7 +333,7 @@ main {
 
     main {
         footer {
-            .help{        
+            .help {
                 i {
                     width: 40px;
                     height: 40px;
@@ -328,16 +344,16 @@ main {
     }
 }
 
-@media screen and (max-height: 650px){
+@media screen and (max-height: 650px) {
 
     .title {
-    
+
         h1 {
             font-size: 1.5rem;
         }
     }
 
-    .breadcrumb{    
+    .breadcrumb {
         p {
             font-size: 10px;
         }
@@ -345,7 +361,7 @@ main {
 
     main {
         footer {
-            .help{        
+            .help {
                 i {
                     width: 30px;
                     height: 30px;
@@ -356,16 +372,16 @@ main {
     }
 }
 
-@media screen and (max-height: 500px){
+@media screen and (max-height: 500px) {
 
     .title {
-    
+
         h1 {
             font-size: 1rem;
         }
     }
 
-    .breadcrumb{    
+    .breadcrumb {
         p {
             font-size: 8px;
         }
@@ -373,7 +389,7 @@ main {
 
     main {
         footer {
-            .help{        
+            .help {
                 i {
                     width: 20px;
                     height: 20px;
@@ -384,26 +400,26 @@ main {
     }
 }
 
-@media screen and (max-height: 350px){
+@media screen and (max-height: 350px) {
 
     .title {
-    
+
         h1 {
             font-size: 0.5rem;
         }
-    
+
         .search {
-        
+
             font-size: .5rem;
         }
-    
+
         .add {
-        
+
             font-size: 1rem;
         }
     }
 
-    .breadcrumb{    
+    .breadcrumb {
         p {
             font-size: 4px;
         }
@@ -411,7 +427,7 @@ main {
 
     main {
         footer {
-            .help{        
+            .help {
                 i {
                     width: 15px;
                     height: 15px;
@@ -422,26 +438,26 @@ main {
     }
 }
 
-@media screen and (max-height: 300px){
+@media screen and (max-height: 300px) {
 
     .title {
-    
+
         h1 {
             font-size: 0.5rem;
         }
-    
+
         .search {
-        
+
             font-size: .5rem;
         }
-    
+
         .add {
-        
+
             font-size: 1rem;
         }
     }
 
-    .breadcrumb{    
+    .breadcrumb {
         p {
             font-size: 4px;
             margin-left: 1.5%;
@@ -450,7 +466,7 @@ main {
 
     main {
         footer {
-            .help{        
+            .help {
                 i {
                     width: 10px;
                     height: 10px;

@@ -1,9 +1,7 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { ChartIncome } from "../../components/ChartIncome/ChartIncome"
-import { Header } from "../../components/Header/Header"
 import { Layout } from "../../components/Layout/Layout"
 import { LayoutCardInfo } from "../../components/LayoutCardInfo/LayoutCardInfo"
-import { Sidebar } from "../../components/Sidebar/Sidebar"
 import IOptimizeIncomeResponse from "../../models/OptimizeIncomeResponse"
 import { OptimizeIncomeService } from "../../services/OptimizeIncome.service"
 import { useMain } from "../../store/MainProvider"
@@ -32,12 +30,8 @@ function OptimizeIncome() {
 
   }
 
-  //useEffect(() => { GetAll('') }, [])
-
   return (
     <Layout
-      header={<Header />}
-      sidebar={<Sidebar />}
       card={<LayoutCardInfo
         isSelect={true}
         breadcrumb={["Otimizar renda"]}
