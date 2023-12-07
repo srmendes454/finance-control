@@ -19,7 +19,7 @@ function Header() {
             {openAdd && <ModalUser avatar={avatar === "" ? <span>RM</span> : <img src={avatar} alt="User" />} name="Rafael Mendes" email="faelmendesab12@gmail.com" onClosedClick={() => { setOpenAdd(false) }} />}
             <header className={style.header}>
                 <div className={style.logo}>
-                    <img src={logo} alt="Logo" />
+                    <img src={logo} alt="Logo" onClick={() => window.location.href = "/welcome"}/>
                 </div>
                 <div className={style.notification}>
                     <IconButton className={style.icon}>
