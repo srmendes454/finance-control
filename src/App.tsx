@@ -9,6 +9,7 @@ import {Welcome} from './pages/Home/Welcome';
 import { Wallet } from './pages/Wallet/Wallet';
 import { OptimizeIncome } from './pages/OptimizeIncome/OptimizeIncome';
 import { NotFound } from './pages/NotFound/NotFound';
+import { Marked } from './pages/Marked/Marked';
 
 function App() {
   const {isGlobalLoading} = useMain();
@@ -26,6 +27,7 @@ function App() {
           <Route element={<Welcome />} path="/welcome" />
           <Route element={<Wallet />} path="/wallet" />
           <Route element={<OptimizeIncome />} path="/optimize-income" />
+          <Route element={<Marked />} path="/marked" />
         </Routes>
       </BrowserRouter>
       {isGlobalLoading && <PillLoading/>}

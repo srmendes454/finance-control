@@ -1,0 +1,228 @@
+.container {
+    height: 90%;
+    width: 100%;
+    position: fixed;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(5px);
+
+    .modal {
+        width: 500px;
+        height: 300px;
+        background-color: #2D332D;
+        border-radius: 10px;
+        animation: fadeIn 0.3s ease-in-out forwards;
+
+        display: grid;
+        grid-template-columns: 3% 94% 3% repeat(3, 1fr);
+        grid-template-rows: 2% 15% 71% 10% 2%;
+        grid-template-areas:
+            "a c b"
+            "a title b"
+            "a form b"
+            "a button b"
+            "a d b";
+
+        .title {
+            width: 100%;
+            height: 100%;
+            grid-area: title;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+
+            h5 {
+                width: 100%;
+                padding-left: 2px;
+                margin: 0;
+                font-size: 1rem;
+                color: #FFF;
+                font-weight: 500;
+                text-align: center;
+            }
+        }
+
+        .form {
+            width: 100%;
+            height: 100%;
+            grid-area: form;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            flex-wrap: wrap;
+            row-gap: 1rem;
+
+            .select {
+                appearance: none;
+                border: 1px solid #3c413c48;
+                font-family: "Poppins", sans-serif;
+                font-weight: 500;
+                font-size: 1rem;
+                width: 100%;
+                height: 50px;
+                padding: 0 4em 0 1em;
+
+                background: url(https://upload.wikimedia.org/wikipedia/commons/9/9d/Caret_down_font_awesome_whitevariation.svg) no-repeat right 0.8em center / 1.4em,
+                    linear-gradient(to left, rgba(255, 255, 255, 0) 3em, rgba(255, 255, 255, 0) 3em);
+                color: #3E6943;
+                border-radius: 0.25em;
+                box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
+                cursor: pointer;
+
+                option {
+                    font-weight: 500;
+                    font-size: 1rem;
+                }
+
+                &:focus {
+                    outline: none;
+                }
+            }
+
+            .check{
+                display: flex;
+                
+                input[type="checkbox"] {
+                    display: none;
+                }
+    
+                input[type="checkbox"]+label {
+                    display: block;
+                    position: relative;
+                    padding-left: 30px;
+                    margin-bottom: 20px;
+                    color: #FFF;
+                    cursor: pointer;
+                }
+    
+                input[type="checkbox"]+label:last-child {
+                    margin-bottom: 0;
+                }
+    
+                input[type="checkbox"]+label:before {
+                    content: '';
+                    display: block;
+                    width: 1rem;
+                    height: 1rem;
+                    border-radius: 3px;
+                    border: 2px solid #3E6943;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    opacity: .6;
+                    -webkit-transition: all .12s, border-color .08s;
+                    transition: all .12s, border-color .08s;
+                }
+    
+                input[type="checkbox"]:checked+label:before {
+                    width: 10px;
+                    top: -5px;
+                    left: 5px;
+                    border-radius: 1px;
+                    opacity: 1;
+                    border: 2px solid #2C7333;
+                    border-top-color: transparent;
+                    border-left-color: transparent;
+                    -webkit-transform: rotate(45deg);
+                    transform: rotate(45deg);
+                }
+            }
+        }
+
+        .button {
+            width: 100%;
+            height: 100%;
+            grid-area: button;
+
+            display: flex;
+            align-items: center;
+            justify-content: end;
+            gap: 10px;
+
+            .cancel {
+                height: 25px;
+                width: 140px;
+                font-size: 14px;
+                font-weight: 600;
+                background-color: transparent;
+                color: #6F766F;
+                border: 2px solid #6F766F;
+                border-radius: 6px;
+                cursor: pointer;
+
+                i {
+                    font-size: 12px;
+                }
+
+                &:hover {
+                    background-color: #6F766F;
+                    color: #fff;
+                    animation: swing ease-in-out 0.5s 1 alternate;
+                }
+            }
+
+            .save {
+                height: 25px;
+                width: 140px;
+                font-size: 14px;
+                font-weight: 600;
+                background-color: transparent;
+                color: #3E6943;
+                border: 2px solid #3E6943;
+                border-radius: 6px;
+                cursor: pointer;
+
+                i {
+                    font-size: 12px;
+                }
+
+                &:hover {
+                    background-color: #3E6943;
+                    color: #fff;
+                    animation: swing ease-in-out 0.5s 1 alternate;
+                }
+            }
+        }
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes swing {
+
+    0%,
+    30%,
+    50%,
+    70%,
+    100% {
+        transform: rotate(0deg);
+    }
+
+    10% {
+        transform: rotate(10deg);
+    }
+
+    40% {
+        transform: rotate(-10deg);
+    }
+
+    60% {
+        transform: rotate(5deg);
+    }
+
+    80% {
+        transform: rotate(-5deg);
+    }
+}

@@ -5,6 +5,7 @@
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     border-left: 3px solid #2C7333;
+    box-shadow: 5px 5px 20px 0px rgba(0, 0, 0, 0.36);
 
     display: grid;
     grid-template-columns: 1% 98% 1% repeat(3, 1fr);
@@ -18,8 +19,8 @@
         "d d d";
 
     &:hover {
-        transform: translateY(-1px);
-        box-shadow: 9px 8px 20px 0px rgba(0, 0, 0, 0.36);
+        transform: translateY(1px);
+        box-shadow: 0px 0px 0px 0px transparent;
     }
 
     .title {

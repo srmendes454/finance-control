@@ -1,0 +1,206 @@
+.container {
+    height: 200px;
+    width: 400px;
+
+    //background-color: #3C413C;
+    box-shadow: 5px 5px 20px 0px rgba(0, 0, 0, 0.36);
+    border-radius: 10px;
+
+    display: grid;
+    grid-template-columns: 1% 20% 0.1% 77.9% 1% repeat(3, 1fr);
+    grid-template-rows: 1% 98% 1%;
+    grid-template-areas:
+        "a a a a a"
+        "b markedBy icon info c"
+        "d d d d d";
+
+    &:hover {
+        transform: translateY(1px);
+        box-shadow: 0px 0px 0px 0px transparent;
+    }
+
+    .markedBy {
+        width: 100%;
+        height: 100%;
+        grid-area: markedBy;
+
+        display: grid;
+        grid-template-columns: 2% 30% 38% 30% repeat(2, 1fr);
+        grid-template-areas:
+            "a p h5 b";
+
+        background-color: #2D332D;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+
+        p {
+            width: 100%;
+            height: 100%;
+            grid-area: p;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin: 0;
+            color: #c0c0c0;
+            font-size: 12px;
+            font-weight: 300;
+            transform: rotate(-90deg);
+            white-space: nowrap;
+        }
+
+        h5 {
+            width: 100%;
+            height: 100%;
+            grid-area: h5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin: 0;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 600;
+            transform: rotate(-90deg);
+            white-space: nowrap;
+            letter-spacing: .5px;
+        }
+    }
+
+    .icon {
+        width: 100%;
+        height: 100%;
+        grid-area: icon;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background-color: #3C413C;
+
+        .circle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            height: 2.5rem;
+            width: 2.5rem;
+            border-radius: 50%;
+            background-color: #3E6943;
+            border: 5px solid #3C413C;
+
+            i {
+                display: flex;
+                color: #fff;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.7rem;
+            }
+        }
+    }
+
+    .info {
+        width: 100%;
+        height: 100%;
+        grid-area: info;
+
+        background-color: #3C413C;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+
+        display: grid;
+        grid-template-columns: 2.5% 95% 2.5% repeat(3, 1fr);
+        grid-template-rows: 1% 45% 30% 23% 1%;
+        grid-template-areas:
+            "a a a"
+            "b title c"
+            "b price c"
+            "b button c"
+            "d d d";
+
+        h3 {
+            width: 100%;
+            height: 100%;
+            grid-area: title;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+
+            margin: 0;
+            color: #c0c0c0;
+            font-size: 1.5rem;
+            font-weight: 300;
+
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
+
+        h5 {
+            width: 100%;
+            height: 100%;
+            grid-area: price;
+            display: flex;
+            align-items: start;
+            justify-content: center;
+
+            margin: 0;
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .button {
+            width: 100%;
+            height: 100%;
+            grid-area: button;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+
+            .cancel {
+                height: 25px;
+                width: 125px;
+                font-size: 14px;
+                font-weight: 600;
+                background-color: transparent;
+                color: #6F766F;
+                border: 2px solid #6F766F;
+                border-radius: 6px;
+                cursor: pointer;
+
+                i {
+                    font-size: 10px;
+                }
+
+                &:hover {
+                    background-color: #6F766F;
+                    color: #fff;
+                    animation: swing ease-in-out 0.5s 1 alternate;
+                }
+            }
+
+            .save {
+                height: 25px;
+                width: 125px;
+                font-size: 14px;
+                font-weight: 600;
+                background-color: transparent;
+                color: #2C7333;
+                border: 2px solid #2C7333;
+                border-radius: 6px;
+                cursor: pointer;
+
+                i {
+                    font-size: 10px;
+                }
+
+                &:hover {
+                    background-color: #2C7333;
+                    color: #fff;
+                    animation: swing ease-in-out 0.5s 1 alternate;
+                }
+            }
+        }
+    }
+}

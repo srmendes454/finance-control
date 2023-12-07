@@ -70,9 +70,10 @@ function Wallet(props: WalletProps) {
                     breadcrumb={["Minhas carteiras"]}
                     title="Carteiras"
                     informations={
-                        wallets?.map((wallet, key) => {
-                            return <Card key={key} title={wallet?.name} borderColor={wallet?.color} price={wallet?.income} />
-                        })
+                        <Card title={"Teste"} borderColor={"#3E6943"} price={1000} />
+                        // wallets?.map((wallet, key) => {
+                        //     return <Card key={key} title={"Teste"} borderColor={wallet?.color} price={1000} />
+                        // })
                     }
                 />
                 }

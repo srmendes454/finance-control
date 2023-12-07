@@ -45,7 +45,7 @@ function Sidebar3d() {
             id: 5,
             background: '#BD2323',
             icon: "bi bi-at",
-            route: "/mark",
+            route: "/marked",
             iconSize: "2rem",
             titleTootip: "Marcações"
         }

@@ -9,6 +9,7 @@
     box-shadow: 9px 8px 20px 0px rgba(0, 0, 0, 0.36);
     position: relative;
     z-index: 1;
+    animation: fadeInDown 0.5s ease-in-out forwards;
 
     display: grid;
     grid-template-columns: 29.9% 0.1% 70% repeat(2, 1fr);
@@ -105,6 +106,18 @@
     .form input {
         color: #fff;
         font-family: "Poppins", sans-serif;
+    }
+}
+
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateX(-3rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
