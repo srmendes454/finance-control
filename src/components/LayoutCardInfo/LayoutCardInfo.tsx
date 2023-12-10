@@ -7,11 +7,14 @@ interface CardInfoProps {
     title?: string
     select?: any
     informations?: any
+    functionSearch?: boolean
+    functionReload?: boolean
+    functionAdd?: boolean
     onAddClick?: () => void
 }
 
 function LayoutCardInfo(props: CardInfoProps) {
-    const { breadcrumb, isSelect, title, select, informations, onAddClick } = props;
+    const { breadcrumb, isSelect, title, select, informations, functionSearch, functionReload, functionAdd, onAddClick } = props;
     return (
         <div className={style.card}>
             <header className={style.breadcrumb}>
@@ -19,11 +22,10 @@ function LayoutCardInfo(props: CardInfoProps) {
             </header>
             <div className={style.title}>
                 <h1>{isSelect ? select : title}</h1>
-                <div className={style.search}>
-                    <i className="bi bi-search"></i>
-                </div>
-                <div className={style.add}>
-                    <i onClick={onAddClick} className="bi bi-plus-lg"></i>
+                <div className={style.options}>
+                    {functionSearch ? <i className="bi bi-search"></i> : ""}
+                    {functionReload ? <i className="bi bi-arrow-clockwise"></i> : ""}
+                    {functionAdd ? <i onClick={onAddClick} className="bi bi-plus-circle"></i> : ""}
                 </div>
                 <span />
             </div>
@@ -31,10 +33,6 @@ function LayoutCardInfo(props: CardInfoProps) {
                 <div className={style.info}>
                     {informations}
                 </div>
-                <footer>
-                    <div className={style.paginated}>
-                    </div>
-                </footer>
             </main>
         </div>
     )

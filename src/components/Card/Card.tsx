@@ -5,24 +5,28 @@ interface CardProps {
     title?: string;
     typeCard?: string;
     price?: number;
-    installments?: string;
-    purchaseDate?: string;
+    wallet: boolean;
+    purchaseDate?: number;
     borderColor?: string;
+    color?: string;
+    textColor?: string;
 }
 
 function Card(Props: CardProps) {
-    const { title, typeCard, price, installments, purchaseDate, borderColor } = Props;
+    const { title, typeCard, price, wallet, purchaseDate, borderColor, color, textColor } = Props;
     return (
-        <div className={style.card} style={{borderColor: borderColor || '#2C7333'}}>
+        <div className={style.card} style={{ borderColor: borderColor || '#2C7333', backgroundColor: color || '#3C413C' }}>
             <div className={style.title}>
-                <h2>
+                <h2 style={{ color: textColor || '#FFF' }}>
                     {title}
                 </h2>
-                <div className={style.options}><i className="bi bi-three-dots-vertical"></i></div>
+                <div className={style.options}>
+                    <span className={style.trash}><i className="bi bi-trash"></i></span>
+                    <span className={style.edit}><i className="bi bi-pencil-square"></i></span>
+                </div>
             </div>
-            <h4 className={style.date}>{purchaseDate} {installments}</h4>
-            <h1 className={style.price}>R$ {price?.toFixed(2)}</h1>
-            <h3 className={style.typeCard}>{typeCard}</h3>
+            <h4 className={style.date} style={{ color: textColor || '#FFF' }}>{wallet ? 'Recebo dia ' + purchaseDate : 'Vence dia ' + purchaseDate}</h4>
+            <h3 className={style.footer} style={{ color: textColor || '#FFF' }}>{wallet ? 'R$ '+ price?.toFixed(2) : typeCard}</h3>
         </div>
     )
 }

@@ -18,7 +18,7 @@ interface WalletProps {
 }
 
 function Wallet(props: WalletProps) {
-    const { onClosedClick} = props;
+    const { onClosedClick } = props;
     const { setIsGlobalLoading } = useMain();
     const [wallets, setWallets] = useState([] as IWalletResponse[]);
     const [openAdd, setOpenAdd] = useState<boolean>(false);
@@ -42,7 +42,7 @@ function Wallet(props: WalletProps) {
     async function InsertWallet(data: IWalletInsert) {
         setIsGlobalLoading(true);
         const result = await WalletService.Insert(data);
-        if (result.data.success === true) {     
+        if (result.data.success === true) {
             toast.success(result.data.message, {
                 position: toast.POSITION.BOTTOM_CENTER,
                 autoClose: 5000,
@@ -57,8 +57,81 @@ function Wallet(props: WalletProps) {
             });
         }
         setIsGlobalLoading(false);
-        onClosedClick && onClosedClick();   
+        onClosedClick && onClosedClick();
     }
+
+    const test = [
+        {
+            id: 1,
+            name: "Teste",
+            color: "#",
+            PaymentDate: 12,
+            price: 1
+        },
+        {
+            id: 2,
+            name: "Testando",
+            color: "#",
+            PaymentDate: 12,
+            price: 10
+        },
+        {
+            id: 3,
+            name: "Testando 1",
+            color: "#",
+            PaymentDate: 12,
+            price: 100
+        },
+        {
+            id: 4,
+            name: "Testando 2",
+            color: "#",
+            PaymentDate: 12,
+            price: 7000
+        },
+        {
+            id: 5,
+            name: "Testando 3",
+            color: "#",
+            PaymentDate: 12,
+            price: 15000
+        },
+        {
+            id: 6,
+            name: "Meta",
+            color: "#",
+            PaymentDate: 12,
+            price: 120000
+        },
+        {
+            id: 7,
+            name: "Teste 10",
+            color: "#",
+            PaymentDate: 12,
+            price: 8000000
+        },
+        {
+            id: 8,
+            name: "Teste 2",
+            color: "#",
+            PaymentDate: 12,
+            price: 75000000
+        },
+        {
+            id: 9,
+            name: "Teste 1",
+            color: "#",
+            PaymentDate: 12,
+            price: 150000000
+        },
+        {
+            id: 10,
+            name: "God is very good!",
+            color: "#",
+            PaymentDate: 12,
+            price: 1000000000
+        }
+    ]
 
     //useEffect(() => { GetAll() }, [])
     return (
@@ -69,11 +142,14 @@ function Wallet(props: WalletProps) {
                     onAddClick={() => { setOpenAdd(true) }}
                     breadcrumb={["Minhas carteiras"]}
                     title="Carteiras"
+                    functionAdd={true}
+                    functionReload={true}
+                    functionSearch={true}
                     informations={
-                        <Card title={"Teste"} borderColor={"#3E6943"} price={1000} />
-                        // wallets?.map((wallet, key) => {
-                        //     return <Card key={key} title={"Teste"} borderColor={wallet?.color} price={1000} />
-                        // })
+                        //<Card title={"Teste"} borderColor={"#3E6943"} price={1000} />
+                        test?.map((wallet, key) => {
+                            return <Card key={key} wallet={true} title={wallet?.name} borderColor={wallet?.color} purchaseDate={wallet.PaymentDate} price={wallet?.price} />
+                        })
                     }
                 />
                 }
