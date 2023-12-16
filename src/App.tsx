@@ -10,6 +10,7 @@ import { Wallet } from './pages/Wallet/Wallet';
 import { OptimizeIncome } from './pages/OptimizeIncome/OptimizeIncome';
 import { NotFound } from './pages/NotFound/NotFound';
 import { Marked } from './pages/Marked/Marked';
+import { OptionsWallet } from './pages/Wallet/OptionsWallet/OptionsWallet';
 
 function App() {
   const {isGlobalLoading} = useMain();
@@ -26,8 +27,9 @@ function App() {
           <Route element={<ValidateCode />} path="/validate-code" />
           <Route element={<Welcome />} path="/welcome" />
           <Route element={<Wallet />} path="/wallet" />
-          <Route element={<OptimizeIncome />} path="/optimize-income" />
+          <Route element={<OptimizeIncome />} path="/wallet/options/optimize-income" />
           <Route element={<Marked />} path="/marked" />
+          <Route element={<OptionsWallet />} path="/wallet/options" />
         </Routes>
       </BrowserRouter>
       {isGlobalLoading && <PillLoading/>}

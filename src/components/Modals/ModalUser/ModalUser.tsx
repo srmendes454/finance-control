@@ -21,6 +21,7 @@ function ModalUser(Props: ModalUser) {
     const [openAdd, setOpenAdd] = useState<boolean>(false);
     const [openAddFamily, setOpenAddFamily] = useState<boolean>(false);
     const { setIsGlobalLoading } = useMain();
+    const message = "Ao cancelar a edição, você perderá os dados preenchidos! Deseja continuar?";
 
     async function Logoff() {
         setIsGlobalLoading(true);
@@ -46,7 +47,7 @@ function ModalUser(Props: ModalUser) {
 
     return (
         <>
-            {openAdd && <ModalInsert onClosedClick={() => { setOpenAdd(false) }} title='Editar meus dados' icon='bi bi-person-fill-gear' form={<FormUpdateUser/>} />}
+            {openAdd && <ModalInsert onClosedClick={() => { setOpenAdd(false) }} title='Editar meus dados' icon='bi bi-person-fill-gear' form={<FormUpdateUser/>} isDeletedModal={false} titleModal='Cancelar Edição' messageModal={message}/>}
             {openAddFamily && <ModalList onClosedClick={() => { setOpenAddFamily(false) }} title='Membros Familiares'/>}
             <div className={style.container}>
                 <div className={style.modal}>

@@ -16,11 +16,10 @@ function NotFound() {
                     </div>
                     <div className={style.navbarlinks}>
                         <ul className={style.nav}>
-                            <li className={style.itemNav}><a href="/Welcome">Home</a></li>
+                            <li className={style.itemNav}><a href="/welcome">Home</a></li>
                             <li className={style.itemNav}><a href="*">Dashboard</a></li>
-                            <li className={style.itemNav}><a href="/optimize-income">Otimizar Salário</a></li>
                             <li className={style.itemNav}><a href="/wallet">Carteiras</a></li>
-                            <li className={style.itemNav}><a href="*">Marcações</a></li>
+                            <li className={style.itemNav}><a href="/marked">Marcações</a></li>
                         </ul>
                     </div>
                 </div>
@@ -28,7 +27,7 @@ function NotFound() {
                     <img className={style.image404} src={image404} alt="404" width="250px" />
                     <h5 className={style.subTitle}>Parece que está perdido</h5>
                     <h5 className={style.subTitle}>No espaço</h5>
-                    <a href="/Welcome" className={style.btn_go_home}>HOME</a>
+                    <a href="/welcome" className={style.btn_go_home}>HOME</a>
                 </div>
                 <div className={style.objects}>
                     <img className={style.object_rocket} src={foguete} alt="foguete" width="40px" />

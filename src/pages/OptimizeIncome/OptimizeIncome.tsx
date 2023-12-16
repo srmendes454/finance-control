@@ -6,7 +6,6 @@ import IOptimizeIncomeResponse from "../../models/OptimizeIncomeResponse"
 import { OptimizeIncomeService } from "../../services/OptimizeIncome.service"
 import { useMain } from "../../store/MainProvider"
 import { toast } from "react-toastify"
-import { Select } from "../../components/Select/Select"
 
 
 function OptimizeIncome() {
@@ -33,9 +32,10 @@ function OptimizeIncome() {
   return (
     <Layout
       card={<LayoutCardInfo
-        isSelect={true}
-        breadcrumb={["Otimizar renda"]}
-        select={<Select />}
+        functionEdit={true}
+        functionReload={true}
+        breadcrumb={["Carteira ", " | Opções ", "| Otimizar renda "]}
+        title="Otimize seus rendimentos"
         informations={<ChartIncome data={optimizeIncomes} />}
       />
       }

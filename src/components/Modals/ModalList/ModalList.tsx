@@ -14,10 +14,11 @@ function ModalList(props: ModalListProps) {
     const { title, onClosedClick } = props;
     const [openAdd, setOpenAdd] = useState<boolean>(false);
     const [familys, setFamilys] = useState([] as IFamilyResponse[]);
+    const message = "Ao cancelar o cadastro, você perderá os dados preenchidos! Deseja continuar?";
 
     return (
         <>
-            {openAdd && <ModalInsert onClosedClick={() => { setOpenAdd(false) }} title='Cadastrar Membro Familiar' icon='bi bi-people-fill' form={<FormFamilyMember />} />}
+            {openAdd && <ModalInsert onClosedClick={() => { setOpenAdd(false) }} title='Cadastrar Membro Familiar' icon='bi bi-people-fill' form={<FormFamilyMember />} isDeletedModal={false} titleModal='Cancelar Cadastro' messageModal={message}/>}
             <div className={style.container}>
                 <div className={style.modal}>
                     <div className={style.close}><span onClick={onClosedClick}>Fechar</span></div>

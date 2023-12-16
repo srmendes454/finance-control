@@ -19,26 +19,43 @@ function ChartIncome(props: ChartIncomeProps) {
     },
   };
 
+  const dados = [
+    {
+      name: 'Essenciais',
+      percent: 50,
+      color: "#3E6943"
+    },
+    {
+      name: 'Investimentos',
+      percent: 20,
+      color: "#BB832E"
+    },
+    {
+      name: 'Lazer',
+      percent: 30,
+      color: "#2B6DD1"
+    }
+  ]
+
   const result = {
-    labels: data?.map(x => x.name),
+    labels: dados?.map(x => x.name),
     datasets: [
       {
-        data: data?.map(x => x.percent),
-        backgroundColor: data?.map(x => x.color),
+        data: dados?.map(x => x.percent),
+        backgroundColor: dados?.map(x => x.color),
         borderWidth: 5,
-        borderRadius: 10,
+        borderRadius: 7,
         borderColor: "#232623",
-        hoverOffset: 15,
-        cutout: '70%'
+        hoverOffset: 20,
+        cutout: '85%'
       },
     ]
   };
 
   return (
-    <>
-      <h3>R$ 7.000,00</h3>
+    <div className={style.container}>
       <Doughnut data={result} options={options} />
-    </>
+    </div>
   )
 }
 

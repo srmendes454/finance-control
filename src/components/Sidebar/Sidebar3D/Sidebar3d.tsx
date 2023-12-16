@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import style from './Sidebar3d.module.scss';
 import classNames from 'classnames';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -11,7 +11,7 @@ function Sidebar3d() {
     const [itens, setItens] = useState([
         {
             id: 1,
-            background: '#333F50',
+            background: '#2B6DD1',
             icon: "bi bi-house",
             route: "/welcome",
             iconSize: "",
@@ -27,14 +27,6 @@ function Sidebar3d() {
         },
         {
             id: 3,
-            background: '#2B6DD1',
-            icon: "bi bi-percent",
-            route: "/optimize-income",
-            iconSize: "",
-            titleTootip: "Otimizar Salário"
-        },
-        {
-            id: 4,
             background: '#3E6943',
             icon: "bi bi-wallet",
             route: "/wallet",
@@ -42,7 +34,7 @@ function Sidebar3d() {
             titleTootip: "Carteiras"
         },
         {
-            id: 5,
+            id: 4,
             background: '#BD2323',
             icon: "bi bi-at",
             route: "/marked",
@@ -60,10 +52,10 @@ function Sidebar3d() {
             <ul className={style.list}>
                 {itens.map(i =>
                     <li key={i.id} onClick={() => handleNavigate(i)} className={classNames({
-                        [style.active]: i.route === location.pathname
+                        [style.active]: location.pathname.match(i.route)
                     })}>
                         <TooltipSidebar TransitionComponent={Zoom} title={i.titleTootip} placement="right">
-                            <span className={style.icon} style={{ background: i.route === location.pathname ? i.background : 'none' }}>
+                            <span className={style.icon} style={{ background: location.pathname.match(i.route) ? i.background : 'none' }}>
                                 <i className={i.icon} style={{ fontSize: i.iconSize }}></i>
                             </span>
                         </TooltipSidebar>

@@ -5,10 +5,12 @@ import style from "./Header.module.scss";
 import { useState } from "react";
 import { ModalUser } from "../Modals/ModalUser/ModalUser";
 import classNames from "classnames";
+import { useNavigate } from "react-router-dom";
 
 function Header() {
     const [avatar, setAvatar] = useState("");
     const [openAdd, setOpenAdd] = useState<boolean>(false);
+    const navigate = useNavigate();
 
     const handleSelected = (open: boolean) => {
         setOpenAdd(!open);
@@ -19,7 +21,7 @@ function Header() {
             {openAdd && <ModalUser avatar={avatar === "" ? <span>RM</span> : <img src={avatar} alt="User" />} name="Rafael Mendes" email="faelmendesab12@gmail.com" onClosedClick={() => { setOpenAdd(false) }} />}
             <header className={style.header}>
                 <div className={style.logo}>
-                    <img src={logo} alt="Logo" onClick={() => window.location.href = "/welcome"}/>
+                    <img src={logo} alt="Logo" onClick={() => navigate('/welcome')}/>
                 </div>
                 <div className={style.notification}>
                     <IconButton className={style.icon}>
