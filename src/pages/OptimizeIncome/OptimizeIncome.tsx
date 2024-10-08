@@ -1,6 +1,5 @@
 import { useState } from "react"
 import { ChartIncome } from "../../components/ChartIncome/ChartIncome"
-import { Layout } from "../../components/Layout/Layout"
 import { LayoutCardInfo } from "../../components/LayoutCardInfo/LayoutCardInfo"
 import IOptimizeIncomeResponse from "../../models/OptimizeIncomeResponse"
 import { OptimizeIncomeService } from "../../services/OptimizeIncome.service"
@@ -30,18 +29,14 @@ function OptimizeIncome() {
   }
 
   return (
-    <Layout
-      card={<LayoutCardInfo
-        functionEdit={true}
-        functionReload={true}
-        breadcrumb={["Carteira ", " | Opções ", "| Otimizar renda "]}
-        title="Otimize seus rendimentos"
-        informations={<ChartIncome data={optimizeIncomes} />}
-      />
-      }
+    <LayoutCardInfo
+      functionEdit={true}
+      functionReload={true}
+      breadcrumb={["Carteira ", " | Opções ", "| Otimizar renda "]}
+      title="Otimize seus rendimentos"
+      informations={<ChartIncome data={optimizeIncomes} />}
     />
   )
-
 }
 
 export { OptimizeIncome }
