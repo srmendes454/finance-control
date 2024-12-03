@@ -1,0 +1,56 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: .4rem;
+    transition: 0.3s;
+    cursor: pointer;
+
+    &::after {
+        content: "|";
+        color: var(--primary);
+    }
+
+    &:last-child:after {
+        display: none;
+    }
+
+    i {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.8rem;
+        color: var(--secundary-font);
+    }
+
+    p {
+        margin: 0;
+        font-size: .8rem;
+        font-weight: 500;
+        color: var(--secundary-font);
+    }
+
+    &:hover {
+        transform: scale(1.07);
+
+        i,
+        p {
+            color: var(--font);
+        }
+    }
+}
+
+.container.active:last-child {
+    i,
+    p {
+        color: var(--font);
+        opacity: 80%;
+    }
+}
+
+.container.active:last-child:hover {
+    i,
+    p {
+        opacity: 100%;
+    }
+}

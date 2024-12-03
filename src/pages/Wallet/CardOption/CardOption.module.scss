@@ -1,7 +1,7 @@
 .container {
-    width: 500px;
-    height: 250px;
-    perspective: 500px;
+    width: 320px;
+    height: 160px;
+    perspective: 320px;
 
     .card {
         width: 100%;
@@ -27,37 +27,42 @@
         width: 100%;
         backface-visibility: hidden;
 
-        border-left: 3px solid #2C7333;   
-        border-top-right-radius: 5px;
-        border-bottom-right-radius: 5px;
+        border-left: 3px solid var(--primary);   
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
 
         display: flex;
         align-items: center;
         justify-content: center;
-        column-gap: 10px;
+        flex-direction: column;
+
+        span{
+            color: var(--secundary-font);
+        }
 
         h1 {
             margin: 0;
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 600;
-            color: #fff;
+        }
+
+        h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--secundary-font);
         }
 
         p {
             margin: 0;
             font-size: 1rem;
-            font-weight: 400;
-        }
-
-        i {
-            font-size: 1.5rem;
-            color: #fff;
+            font-weight: 500;
+            cursor: default;
         }
     }
 
     .back {
         border-radius: 5px;
         transform: rotateY(180deg);
-        cursor: pointer;
     }
 }

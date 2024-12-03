@@ -1,0 +1,145 @@
+:root {
+    --overlay-color: #4070F4
+}
+
+.logout {
+    position: fixed;
+    bottom: 5px;
+    left: 5px;
+    color: var(--secundary-font);
+    font-size: 2rem;
+    z-index: 1;
+
+    &:hover{
+        cursor: pointer;
+        color: var(--detail-white);
+        transition: 0.5s;
+    }
+}
+
+.container {
+    max-width: 1120px;
+}
+
+.card {
+    width: 300px;
+    min-height: 400px;
+    border-radius: 24px;
+    background-color: var(--background);
+    box-shadow: 5px 5px 20px 0px rgba(0, 0, 0, 0.36);
+    transition: 0.3s;
+
+    &:hover {
+        transform: translateY(-7px);
+        //transform: scale(1.05);
+    }
+}
+
+.image_content,
+.card_content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image_content {
+    position: relative;
+    padding: 25px 0;
+}
+
+.overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    border-radius: 24px 24px 0 24px;
+}
+
+.overlay::before,
+.overlay::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: -40px;
+    height: 40px;
+    width: 40px;
+    background-color: var(--overlay-color);
+}
+
+.overlay::after {
+    border-radius: 0 24px 0 0;
+    background-color: var(--background);
+}
+
+.card_image {
+    position: relative;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    background: var(--detail-white);
+    padding: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card_img {
+    height: 95%;
+    width: 95%;
+    border-radius: 50%;
+    border: 4px solid var(--overlay-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+        height: 6rem;
+        width: 6rem;
+    }
+
+    &:hover{
+        border: 4px solid var(--primary-detail);
+        cursor: pointer;
+    }
+}
+
+.options {
+    width: 100%;
+    min-height: 2rem;
+    display: flex;
+    padding-top: 1rem;
+
+    i {
+        display: flex;
+        align-items: center;
+        color: var(--detail-white);
+        font-size: 1.5rem;
+        z-index: 1;
+    }
+}
+
+.name {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--font);
+    width: 100%;
+    text-align: center;
+    padding-left: 28px;
+    z-index: 1;
+    margin: 0;
+}
+
+.description {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--secundary-font);
+    text-align: center;
+    margin: 0;
+}
+
+.price {
+    font-size: 2rem;
+    text-align: center;
+    font-weight: 800;
+}

@@ -18,6 +18,10 @@ import { ReactNode } from "react";
 import { Layout } from "./components/Layout/Layout";
 import { Login } from "./pages/Auth/login/Login";
 import { ExternalLayout } from "./components/ExternalLayout/ExternalLayout";
+import { MyWallets } from "./pages/MyWallets/MyWallets";
+import { LayoutMyWallets } from "./components/LayoutMyWallets/LayoutMyWallets";
+import { Cards } from "./pages/Cards/Cards";
+import { BankSlip } from "./pages/BankSlip/BankSlip";
 
 function App() {
   const { isGlobalLoading } = useMain();
@@ -38,10 +42,14 @@ function App() {
           {createRouteExternalLayout("/reset-password", <ResetPassword />)}
           {createRouteExternalLayout("/validate-code", <ValidateCode />)}
 
+          {createRouteLayoutMyWallets("/my-wallets", <MyWallets />)}
+          
           {createRouteInternalLayout("/welcome", <Welcome />)}
           {createRouteInternalLayout("/wallet", <Wallet />)}
+          {createRouteInternalLayout("/cards", <Cards />)}
+          {createRouteInternalLayout("/bank-slip", <BankSlip />)}
           {createRouteInternalLayout(
-            "/wallet/options/optimize-income",
+            "limits",
             <OptimizeIncome />
           )}
           {createRouteInternalLayout("/marked", <Marked />)}
@@ -61,6 +69,12 @@ function App() {
   function createRouteExternalLayout(path: string, element: ReactNode) {
     return (
       <Route key={path} path={path} element={<ExternalLayout>{element}</ExternalLayout>} />
+    );
+  }
+
+  function createRouteLayoutMyWallets(path: string, element: ReactNode) {
+    return (
+      <Route key={path} path={path} element={<LayoutMyWallets>{element}</LayoutMyWallets>} />
     );
   }
 }

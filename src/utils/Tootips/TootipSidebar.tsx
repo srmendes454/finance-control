@@ -2,12 +2,12 @@ import { Tooltip, TooltipProps, styled, tooltipClasses } from '@mui/material';
 
 const TooltipSidebar = styled(({ className, ...props }: TooltipProps) => (
     <Tooltip {...props} classes={{ popper: className }} />
-))(({ theme }) => ({
+))(({ theme, ...props }) => ({
     [`& .${tooltipClasses.tooltip}`]: {
         backgroundColor: '#2D332D',
         maxWidth: 300,
         height: "2rem",
-        color: '#2C7333',
+        color: props.color,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -18,7 +18,7 @@ const TooltipSidebar = styled(({ className, ...props }: TooltipProps) => (
         borderBottomRightRadius: 0,
         borderTopLeftRadius: '7px',
         borderBottomLeftRadius: '7px',
-        borderRight: '3px solid #2C7333'
+        borderRight: `3px solid ${props.color}`
     },
 }));
 

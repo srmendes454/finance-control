@@ -2,16 +2,16 @@ import { useState } from "react";
 import { Layout } from "../../../components/Layout/Layout";
 import { LayoutCardInfo } from "../../../components/LayoutCardInfo/LayoutCardInfo";
 import style from "./OptionsWallet.module.scss";
-import { CardOption } from "./CardOption/CardOption";
+import { CardOption } from "../CardOption/CardOption";
 import { useNavigate } from "react-router-dom";
+import IBreadcrumb from "../../../models/BreadcrumbModel";
 
 interface OptionsWalletProps {
   onClosedClick?: () => void;
-  breadcrumb?: string;
 }
 
 function OptionsWallet(props: OptionsWalletProps) {
-  const { onClosedClick, breadcrumb } = props;
+  const { onClosedClick } = props;
   const [openAdd, setOpenAdd] = useState<boolean>(false);
   const navigate = useNavigate();
 
@@ -57,12 +57,20 @@ function OptionsWallet(props: OptionsWalletProps) {
     navigate(item.route);
   };
 
+  const breadcrumb: IBreadcrumb[] = [
+      {
+          name: localStorage.getItem('name') ?? "",
+          icon: "bi bi-wallet",
+          route: "/my-wallets"
+      }
+  ]
+
   return (
       <LayoutCardInfo
         onAddClick={() => {
           setOpenAdd(true);
         }}
-        breadcrumb={["Minhas carteiras | ", breadcrumb ?? ""]}
+        breadcrumb={breadcrumb}
         title="Selecione o lugar que deseja ir."
         informations={options?.map((option, key) => {
           return (
@@ -70,8 +78,8 @@ function OptionsWallet(props: OptionsWalletProps) {
               key={key}
               title={option.name}
               description={option.description}
-              icon={option.icon}
-              route={option.route}
+              value={1000}
+              color="#2C7333"
             />
           );
         })}

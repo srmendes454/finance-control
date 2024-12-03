@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react";
+import { ReactNode, useState, useEffect } from "react";
 import style from "./Modal.module.scss";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import ReactDOM from "react-dom";
@@ -7,23 +7,37 @@ interface ModalProps {
   children: ReactNode;
   onClosedClick?: () => void;
   backgroundColor?: string;
+  open?: boolean;
 }
 
 function Modal(props: ModalProps) {
-  const { backgroundColor, children } = props;
-  const [openConfirmCancel, setOpenConfirmCancel] = useState<boolean>(false);
+  const { backgroundColor, children, onClosedClick, open } = props;
+
+  const [isVisible, setIsVisible] = useState<boolean>(false);
+  const [fadeClass, setFadeClass] = useState<string>("");
 
   const root = document.getElementById("root") as HTMLElement;
+  useEffect(() => {
+    if (open) {
+      setIsVisible(true);
+      setFadeClass(style.fadeIn);
+    } else {
+      setFadeClass(style.fadeOut);
+      setTimeout(() => setIsVisible(false), 300);
+    }
+  }, [open]);
 
   return ReactDOM.createPortal(
-    <div className={style.container}>
-      <div
-        className={style.modal}
-        style={{ backgroundColor: backgroundColor || "#2D332D" }}
-      >
-        {children}
+    isVisible && (
+      <div className={`${style.container} ${fadeClass}`}>
+        <div
+          className={style.modal}
+          onClick={onClosedClick}
+        >
+          {children}
+        </div>
       </div>
-    </div>,
+    ),
     root
   );
 }

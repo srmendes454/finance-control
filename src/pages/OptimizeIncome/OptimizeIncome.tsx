@@ -5,6 +5,7 @@ import IOptimizeIncomeResponse from "../../models/OptimizeIncomeResponse"
 import { OptimizeIncomeService } from "../../services/OptimizeIncome.service"
 import { useMain } from "../../store/MainProvider"
 import { toast } from "react-toastify"
+import IBreadcrumb from "../../models/BreadcrumbModel"
 
 
 function OptimizeIncome() {
@@ -28,11 +29,19 @@ function OptimizeIncome() {
 
   }
 
+  const breadcrumb: IBreadcrumb[] = [
+    {
+      name: localStorage.getItem('name') ?? "",
+      icon: "bi bi-wallet",
+      route: "/wallet"
+    }
+  ]
+
   return (
     <LayoutCardInfo
       functionEdit={true}
       functionReload={true}
-      breadcrumb={["Carteira ", " | Opções ", "| Otimizar renda "]}
+      breadcrumb={breadcrumb}
       title="Otimize seus rendimentos"
       informations={<ChartIncome data={optimizeIncomes} />}
     />

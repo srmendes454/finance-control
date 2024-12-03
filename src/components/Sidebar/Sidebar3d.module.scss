@@ -1,3 +1,7 @@
+:root {
+    --icon-color: #2C7333
+}
+
 * {
     padding: 0;
 }
@@ -5,7 +9,7 @@
 .navigation {
     position: fixed;
     width: 60px;
-    height: 100%;
+    height: 90%;
     transition: 0.5s;
     display: flex;
     justify-content: center;
@@ -47,18 +51,18 @@
     min-width: 55px;
     height: 55px;
     line-height: 60px;
-    color: #D9D9D9;
+    color: var(--detail-white);
     border-radius: 10px;
     font-size: 1.5rem;
     transition: 0.5s;
 
     &:hover{
-        color: #2C7333;
+        color: var(--icon-color);
     }
 }
 
 .navigation ul li.active .icon {
-    color: #fff;
+    color: var(--detail-white);
 }
 
 .navigation ul li .icon:before {
@@ -76,4 +80,19 @@
 
 .navigation ul li.active .icon::before {
     opacity: 0.5;
+}
+
+.logout {
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    height: 98%;
+    color: var(--secundary-font);
+    font-size: 2rem;
+
+    &:hover{
+        cursor: pointer;
+        color: var(--detail-white);
+        transition: 0.5s;
+    }
 }

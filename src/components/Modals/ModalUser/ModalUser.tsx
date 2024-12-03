@@ -23,28 +23,6 @@ function ModalUser(Props: ModalUser) {
     const { setIsGlobalLoading } = useMain();
     const message = "Ao cancelar a edição, você perderá os dados preenchidos! Deseja continuar?";
 
-    async function Logoff() {
-        setIsGlobalLoading(true);
-        const result = localStorage.getItem('token');
-        if (result !== null) {
-            localStorage.removeItem('token');
-            toast.success('Até breve!', {
-                position: toast.POSITION.BOTTOM_CENTER,
-                autoClose: 2500,
-                theme: "dark",
-                onClose: () => window.location.href = "/login"
-            });
-        }
-        else {
-            toast.warning('Erro interno, contate o administrador ou tente novamente em alguns minutos.', {
-                position: toast.POSITION.BOTTOM_CENTER,
-                autoClose: 5000,
-                theme: "dark"
-            });
-        }
-        setIsGlobalLoading(false);
-    }
-
     return (
         <>
             {openAdd && <ModalInsert onClosedClick={() => { setOpenAdd(false) }} title='Editar meus dados' icon='bi bi-person-fill-gear' form={<FormUpdateUser/>} isDeletedModal={false} titleModal='Cancelar Edição' messageModal={message}/>}
@@ -65,9 +43,6 @@ function ModalUser(Props: ModalUser) {
                         </TootipModalUser>
                         <TootipModalUser TransitionComponent={Zoom} title="Gerenciar Membros Familiares" placement="bottom">
                             <i className="bi bi-people-fill" onClick={() => { setOpenAddFamily(true) }}></i>
-                        </TootipModalUser>
-                        <TootipModalUser TransitionComponent={Zoom} title="Sair" placement="bottom">
-                            <i className="bi bi-door-closed-fill" onClick={() => { Logoff() }}></i>
                         </TootipModalUser>
                     </div>
                 </div>

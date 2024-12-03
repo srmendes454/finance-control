@@ -1,13 +1,13 @@
 import { useState } from "react";
-import { Card } from "../../components/Card/Card";
 import { LayoutCardInfo } from "../../components/LayoutCardInfo/LayoutCardInfo";
 import { WalletService } from "../../services/Wallet.service";
 import { useMain } from "../../store/MainProvider";
 import { toast } from "react-toastify";
 import IWalletResponse from "../../models/WalletResponseModel";
-import { ModalInsert } from "../../components/Modals/ModalInsert/ModalInsert";
-import { FormInsertWallet } from "./form-insert/FormInsertWallet";
-import IWalletInsert from "../../models/WalletInsertModel";
+import { FormInsertWallet } from "../MyWallets/form-insert/FormInsertWallet";
+import { CardOption } from "./CardOption/CardOption";
+import style from './Wallet.module.scss';
+import { useNavigate } from "react-router-dom";
 
 interface WalletProps {
   onClosedClick?: () => void;
@@ -18,8 +18,8 @@ function Wallet(props: WalletProps) {
   const { setIsGlobalLoading } = useMain();
   const [wallets, setWallets] = useState([] as IWalletResponse[]);
   const [openAdd, setOpenAdd] = useState<boolean>(false);
-  const message =
-    "Ao cancelar o cadastro, você perderá os dados preenchidos! Deseja continuar?";
+  const walletName = localStorage.getItem('name')
+
 
   async function GetAll() {
     setIsGlobalLoading(true);
@@ -36,140 +36,84 @@ function Wallet(props: WalletProps) {
     setIsGlobalLoading(false);
   }
 
-  async function InsertWallet(data: IWalletInsert) {
-    setIsGlobalLoading(true);
-    const result = await WalletService.Insert(data);
-    if (result.data.success === true) {
-      toast.success(result.data.message, {
-        position: toast.POSITION.BOTTOM_CENTER,
-        autoClose: 5000,
-        theme: "dark",
-      });
-    } else {
-      toast.warning(result.data.message, {
-        position: toast.POSITION.BOTTOM_CENTER,
-        autoClose: 5000,
-        theme: "dark",
-      });
-    }
-    setIsGlobalLoading(false);
-    onClosedClick && onClosedClick();
-  }
 
   const test = [
     {
       id: 1,
-      name: "Teste",
-      color: "#F39200",
-      PaymentDate: 12,
-      price: 1,
+      name: "Receita Mensal",
+      description: "Valores recebidos mensalmente",
+      color: "#2C7333",
+      value: 9240.00,
     },
     {
       id: 2,
-      name: "Testando",
-      color: "#1875FF",
+      name: "Despesa Mensal",
+      description: "Valores a pagar mensalmente",
+      color: "#BD2323",
       PaymentDate: 12,
-      price: 10,
+      value: 7147.89,
     },
     {
       id: 3,
-      name: "Testando 1",
-      color: "#BD2323",
+      name: "Valores Pagos",
+      description: "Valores pagos até o momento",
+      color: "#1875FF",
       PaymentDate: 12,
-      price: 100,
+      value: 6200.11,
     },
     {
       id: 4,
-      name: "Testando 2",
-      color: "#6F766F",
+      name: "Valores à Pagar",
+      description: "Valores que faltam pagar",
+      color: "#DB771A",
       PaymentDate: 12,
-      price: 7000,
-    },
-    {
-      id: 5,
-      name: "Testando 3",
-      color: "#5212A5",
-      PaymentDate: 12,
-      price: 15000,
-    },
-    {
-      id: 6,
-      name: "Meta",
-      color: "#FFF",
-      PaymentDate: 12,
-      price: 120000,
-    },
-    {
-      id: 7,
-      name: "Teste 10",
-      color: "#000",
-      PaymentDate: 12,
-      price: 8000000,
-    },
-    {
-      id: 8,
-      name: "Teste 2",
-      color: "#E31DDB",
-      PaymentDate: 12,
-      price: 75000000,
-    },
-    {
-      id: 9,
-      name: "Teste 1",
-      color: "#E74C3C",
-      PaymentDate: 12,
-      price: 150000000,
-    },
-    {
-      id: 10,
-      name: "God is very good!",
-      color: "#333F50",
-      PaymentDate: 12,
-      price: 1000000000,
+      value: 853.37,
     },
   ];
 
-  //useEffect(() => { GetAll() }, [])
+  const value = Number(localStorage.getItem('value'));
+  const navigate = useNavigate();
+  const handleNavigate = (route: string) => {
+      navigate(route);
+  };
   return (
     <>
-      {openAdd && (
-        <ModalInsert
-          onClosedClick={() => {
-            setOpenAdd(false);
-          }}
-          title={"Cadastrar Carteira"}
-          icon="bi bi-wallet"
-          form={<FormInsertWallet />}
-          data={InsertWallet}
-          isDeletedModal={false}
-          titleModal="Cancelar Cadastro"
-          messageModal={message}
-        />
-      )}
+      <FormInsertWallet open={openAdd} onClose={() => setOpenAdd(false)} />
       <LayoutCardInfo
         onAddClick={() => {
-          setOpenAdd(true);
+          setOpenAdd(!openAdd);
         }}
-        breadcrumb={["Minhas carteiras"]}
-        title="Carteiras"
-        functionAdd={true}
+        title={walletName as string}
         functionReload={true}
-        functionSearch={true}
-        informations={test?.map((wallet, key) => {
-          return (
-            <Card
-              key={key}
-              wallet={true}
-              title={wallet?.name}
-              borderColor={wallet?.color}
-              purchaseDate={wallet.PaymentDate}
-              price={wallet?.price}
-            />
-          );
-        })}
+        informations={
+          <>
+            <div className={style.balanceTotal}>
+              <p>Saldo Total:</p>
+              <h1 style={{ color: value > 0 ? '#2C7333' : '#BD2323' }}><span>R$ </span>{value.toFixed(2)}</h1>
+            </div>
+            {test?.map((option, index) => (
+              <CardOption
+                key={index}
+                title={option.name}
+                description={option.description}
+                value={option.value}
+                color={option.color}
+              />
+            ))}
+            <div className={style.container}>
+              <div className={style.cardWallet} onClick={() => handleNavigate('/my-wallets')}>
+                <h1>Gerenciar minhas Carteiras</h1>
+              </div>
+              <div className={style.cardLimit} onClick={() => handleNavigate('/limits')}>
+                <h1>Gerenciar meus Limites</h1>
+              </div>
+            </div>
+          </>
+        }
       />
     </>
   );
+
 }
 
 export { Wallet };

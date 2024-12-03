@@ -1,0 +1,56 @@
+.balanceTotal {
+    width: 100%;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
+    padding-left: 2rem;
+
+    p {
+        margin: 0;
+        font-weight: 400;
+        color: var(--secundary-font);
+        font-size: 1.5rem;
+    }
+
+    span {
+        color: var(--secundary-font);
+        font-weight: 500;
+        font-size: 3rem;
+    }
+
+    h1{
+        margin: 0;
+        color: var(--secundary-font);
+        font-weight: 500;
+        font-size: 3rem;
+    }
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.cardWallet, .cardLimit {
+    min-width: 656px;
+    height: 4rem;
+    box-shadow: 5px 5px 20px 0px rgba(0, 0, 0, 0.36);   
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border: 1px solid var(--background);   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    h1 {
+        margin: 0;
+        color: var(--secundary-font);
+        font-weight: 400;
+        font-size: 1.2rem;
+    }
+}
