@@ -9,14 +9,12 @@ interface ModalInsertProps {
   open?: boolean;
   title?: string;
   icon?: string;
-  form?: any;
-  data?: any;
   backgroundColor?: string;
   messageModal?: string;
   titleModal?: string;
   isDeletedModal?: boolean;
   onSave?: () => void;
-  children?: React.ReactNode
+  children?: React.ReactNode;
 }
 
 function ModalInsert(props: ModalInsertProps) {
@@ -25,18 +23,14 @@ function ModalInsert(props: ModalInsertProps) {
     onClosedClick,
     title,
     icon,
-    form,
-    data,
     backgroundColor,
     messageModal,
     titleModal,
     isDeletedModal,
     children,
-    onSave
+    onSave,
   } = props;
   const [openConfirmCancel, setOpenConfirmCancel] = useState<boolean>(false);
-
-  const root = document.getElementById("root") as HTMLElement;
 
   return (
     <>
@@ -62,10 +56,9 @@ function ModalInsert(props: ModalInsertProps) {
             >
               <i className="bi-x-circle"></i> Cancelar
             </button>
-            {onSave && <button className={style.save} type="submit" onClick={onSave}>
+            <button className={style.save} type="button" onClick={onSave}>
               <i className="bi bi-check-circle"></i> Salvar
-            </button>}
-
+            </button>
           </div>
         </div>
       </Modal>
@@ -73,7 +66,7 @@ function ModalInsert(props: ModalInsertProps) {
         <ConfirmCancel
           onConfirm={() => {
             setOpenConfirmCancel(false);
-            onClosedClick && onClosedClick()
+            onClosedClick && onClosedClick();
           }}
           onClosedClick={() => {
             setOpenConfirmCancel(false);

@@ -26,7 +26,6 @@ function ModalList(props: ModalListProps) {
           }}
           title="Cadastrar Membro Familiar"
           icon="bi bi-people-fill"
-          form={<FormFamilyMember />}
           isDeletedModal={false}
           titleModal="Cancelar Cadastro"
           messageModal={message}

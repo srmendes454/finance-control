@@ -8,6 +8,7 @@ import { FormInsertWallet } from "../MyWallets/form-insert/FormInsertWallet";
 import { CardOption } from "./CardOption/CardOption";
 import style from './Wallet.module.scss';
 import { useNavigate } from "react-router-dom";
+import { MaskReal } from "../../utils/Masks/MaskReal";
 
 interface WalletProps {
   onClosedClick?: () => void;
@@ -74,11 +75,13 @@ function Wallet(props: WalletProps) {
   const value = Number(localStorage.getItem('value'));
   const navigate = useNavigate();
   const handleNavigate = (route: string) => {
-      navigate(route);
+    localStorage.setItem("nameCardPai", "")
+    navigate(route);
   };
+
   return (
     <>
-      <FormInsertWallet open={openAdd} onClose={() => setOpenAdd(false)} />
+      {/* <FormInsertWallet open={openAdd} onClose={() => setOpenAdd(false)} /> */}
       <LayoutCardInfo
         onAddClick={() => {
           setOpenAdd(!openAdd);
@@ -89,7 +92,7 @@ function Wallet(props: WalletProps) {
           <>
             <div className={style.balanceTotal}>
               <p>Saldo Total:</p>
-              <h1 style={{ color: value > 0 ? '#2C7333' : '#BD2323' }}><span>R$ </span>{value.toFixed(2)}</h1>
+              <h1 style={{ color: value > 0 ? '#2C7333' : '#BD2323' }}><span>R$ </span>{MaskReal(value, 2)}</h1>
             </div>
             {test?.map((option, index) => (
               <CardOption
@@ -101,8 +104,8 @@ function Wallet(props: WalletProps) {
               />
             ))}
             <div className={style.container}>
-              <div className={style.cardWallet} onClick={() => handleNavigate('/my-wallets')}>
-                <h1>Gerenciar minhas Carteiras</h1>
+              <div className={style.cardWallet} onClick={() => handleNavigate('/wallet/transactions')}>
+                <h1>Gerenciar transações desta carteira</h1>
               </div>
               <div className={style.cardLimit} onClick={() => handleNavigate('/limits')}>
                 <h1>Gerenciar meus Limites</h1>

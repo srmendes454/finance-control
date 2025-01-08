@@ -3,6 +3,7 @@ import style from './Card.module.scss';
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { MenuToggle } from '../MenuToggle/MenuToggle';
 import { useState } from 'react';
+import { MaskReal } from '../../utils/Masks/MaskReal';
 
 interface CardProps {
     title?: string;
@@ -23,6 +24,7 @@ function Card(Props: CardProps) {
 
     const colorWallet = localStorage.getItem('borderColor')
     const handleNavigate = (route: string) => {
+        localStorage.setItem("nameCardPai", title ?? "")
         navigate(route);
     }
 
@@ -52,7 +54,7 @@ function Card(Props: CardProps) {
                 </div>
                 <div className={style.value}>
                     <p style={{ color: color === '#fff' ? '#000' : '#fff' }}>{isDebit ? 'Valot total gasto no mes atual' : 'Valor total da Fatura Atual'}</p>
-                    <h1 style={{ color: color === '#fff' ? '#000' : '#fff' }}>R$ {price?.toFixed(2)}</h1>
+                    <h1 style={{ color: color === '#fff' ? '#000' : '#fff' }}>R$ {MaskReal(price ?? 0, 2)}</h1>
                 </div>
                 <div className={style.date} style={{ color: color === '#fff' ? '#000' : '#fff' }}>
                     <h4>{isDebit ? '' : 'Vence dia ' + purchaseDate}</h4>

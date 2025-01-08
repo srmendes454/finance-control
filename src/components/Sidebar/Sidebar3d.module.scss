@@ -51,7 +51,7 @@
     min-width: 55px;
     height: 55px;
     line-height: 60px;
-    color: var(--detail-white);
+    color: var(--icon-sidebar);
     border-radius: 10px;
     font-size: 1.5rem;
     transition: 0.5s;
@@ -62,7 +62,7 @@
 }
 
 .navigation ul li.active .icon {
-    color: var(--detail-white);
+    color: var(--icon-sidebar);
 }
 
 .navigation ul li .icon:before {
@@ -84,7 +84,7 @@
 
 .logout {
     display: flex;
-    align-items: end;
+    align-items: flex-end;
     justify-content: center;
     height: 98%;
     color: var(--secundary-font);
@@ -92,7 +92,7 @@
 
     &:hover{
         cursor: pointer;
-        color: var(--detail-white);
+        color: var(--icon-sidebar);
         transition: 0.5s;
     }
 }

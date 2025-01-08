@@ -25,7 +25,7 @@ function ModalUser(Props: ModalUser) {
 
     return (
         <>
-            {openAdd && <ModalInsert onClosedClick={() => { setOpenAdd(false) }} title='Editar meus dados' icon='bi bi-person-fill-gear' form={<FormUpdateUser/>} isDeletedModal={false} titleModal='Cancelar Edição' messageModal={message}/>}
+            {openAdd && <ModalInsert onClosedClick={() => { setOpenAdd(false) }} title='Editar meus dados' icon='bi bi-person-fill-gear' isDeletedModal={false} titleModal='Cancelar Edição' messageModal={message}/>}
             {openAddFamily && <ModalList onClosedClick={() => { setOpenAddFamily(false) }} title='Membros Familiares'/>}
             <div className={style.container}>
                 <div className={style.modal}>

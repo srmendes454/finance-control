@@ -22,6 +22,7 @@ import { MyWallets } from "./pages/MyWallets/MyWallets";
 import { LayoutMyWallets } from "./components/LayoutMyWallets/LayoutMyWallets";
 import { Cards } from "./pages/Cards/Cards";
 import { BankSlip } from "./pages/BankSlip/BankSlip";
+import { Transactions } from "./pages/Transactions/Transactions";
 
 function App() {
   const { isGlobalLoading } = useMain();
@@ -48,6 +49,7 @@ function App() {
           {createRouteInternalLayout("/wallet", <Wallet />)}
           {createRouteInternalLayout("/cards", <Cards />)}
           {createRouteInternalLayout("/bank-slip", <BankSlip />)}
+          {createRouteInternalLayout("/:dad/transactions", <Transactions />)}
           {createRouteInternalLayout(
             "limits",
             <OptimizeIncome />

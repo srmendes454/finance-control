@@ -16,7 +16,7 @@ function CardList(props: CardListProps) {
     
     return (
         <>
-            {openAdd && <ModalInsert onClosedClick={() => { setOpenAdd(false) }} title='Editar Membro Familiar' icon='bi bi-people-fill' form={<FormFamilyMember />} isDeletedModal={false} titleModal='Cancelar Edição' messageModal={message}/>}
+            {openAdd && <ModalInsert onClosedClick={() => { setOpenAdd(false) }} title='Editar Membro Familiar' icon='bi bi-people-fill' isDeletedModal={false} titleModal='Cancelar Edição' messageModal={message}/>}
             <div className={style.card}>
                 <div className={style.function}>
                     <span className={style.iconEdit}><i className="bi bi-pencil-square" onClick={() => { setOpenAdd(true) }}></i></span>

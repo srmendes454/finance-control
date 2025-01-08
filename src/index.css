@@ -1,4 +1,5 @@
-:root{
+:root,
+:root.dark {
   --background: #3C413C;
   --primary: #3E6943;
   --primary-detail: #2C7333;
@@ -8,8 +9,26 @@
   --secundary-font: #6F766F;
   --detail-black: #1E1E1E;
   --detail-white: #FEFEFE;
+  --icon-sidebar: #FEFEFE;
   --detail-red: #BD2323;
   --detail-blue: #1875FF;
+  --detail-grey: #D9D9D9;
+}
+
+:root.light {
+  --background: #F7F7F7;
+  --primary: #3E6943;
+  --primary-detail: #2C7333;
+  --primary-dark: #F5F5F5;
+  --secundary-dark: #CDD4CE;
+  --font: #1E1E1E;
+  --secundary-font: #757575;
+  --detail-black: #1E1E1E;
+  --detail-white: #FEFEFE;
+  --icon-sidebar: #1E1E1E;
+  --detail-red: #BD2323;
+  --detail-blue: #1875FF;
+  --detail-grey: #9DA49E;
 }
 
 body {

@@ -70,6 +70,7 @@ function BankSlip() {
                             purchaseDate={card.PaymentDate}
                             price={card.value}
                             color='#fff'
+                            route='/bank-slip/transactions'
                         />
                     )
                 })}

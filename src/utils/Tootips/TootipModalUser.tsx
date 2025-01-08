@@ -1,10 +1,11 @@
 import { Tooltip, TooltipProps, styled, tooltipClasses } from '@mui/material';
 
+const currentTheme = localStorage.getItem("currentTheme");
 const TootipModalUser = styled(({ className, ...props }: TooltipProps) => (
     <Tooltip {...props} classes={{ popper: className }} />
 ))(({ theme }) => ({
     [`& .${tooltipClasses.tooltip}`]: {
-        backgroundColor: '#2D332D',
+        backgroundColor: currentTheme === "light" ? '#CDD4CE' : '#2D332D',
         maxWidth: 300,
         height: "12px",
         color: '#2C7333',

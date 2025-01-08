@@ -1,7 +1,7 @@
 import { ThemeProvider } from "@emotion/react"
 import { StyleMaterialUi } from "../../../utils/StyleMaterialUi/StyleMaterialUi"
 import { TextField, useTheme } from "@mui/material"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import style from './FormEditWallet.module.scss'
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -11,30 +11,33 @@ import { WalletService } from "../../../services/Wallet.service";
 import { toast } from "react-toastify";
 import { useMain } from "../../../store/MainProvider";
 import { ModalInsert } from "../../../components/Modals/ModalInsert/ModalInsert";
+import IWalletResponse from "../../../models/WalletResponseModel";
 
 interface IColor {
     id: number, color: string, selected: boolean
 }
 
-const InsertWalletFormSchema = z.object({
-    name: z.string().nonempty('O nome é obrigatório'),
-    income: z.string().nonempty('O campo renda é obrigatório'),
-    color: z.string().nonempty('O campo cor é obrigatório')
+const UpdateWalletFormSchema = z.object({
+    name: z.string().nonempty('O Nome é obrigatório'),
+    color: z.string().nonempty('A Cor é obrigatória')
 })
 
-type InsertWalletFormData = z.infer<typeof InsertWalletFormSchema>
+type UpdateWalletFormData = z.infer<typeof UpdateWalletFormSchema>
 
-interface FormInsertWalletProps {
+interface FormUpdateWalletProps {
+    wallet: IWalletResponse;
     open: boolean;
-    onClose: () => void
+    onClose: () => void;
+    getAll: () => void;
 }
 
-export const FormEditWallet = ({ open, onClose }: FormInsertWalletProps) => {
+export const FormEditWallet = ({ wallet, open, onClose, getAll }: FormUpdateWalletProps) => {
+    const theme = localStorage.getItem("currentTheme");
     const outerTheme = useTheme();
     const { setIsGlobalLoading } = useMain();
 
-    const { register, handleSubmit, formState: { errors }, setValue, getValues } = useForm<InsertWalletFormData>({
-        resolver: zodResolver(InsertWalletFormSchema)
+    const { register, handleSubmit, formState: { errors }, setValue, reset } = useForm<UpdateWalletFormData>({
+        resolver: zodResolver(UpdateWalletFormSchema)
     })
 
     const [colors, setColors] = useState<IColor[]>([
@@ -74,7 +77,7 @@ export const FormEditWallet = ({ open, onClose }: FormInsertWalletProps) => {
             selected: false
         }
     ])
-    const message = "Ao cancelar a ediçãp, você perderá os dados preenchidos! Deseja continuar?";
+    const message = "Ao cancelar a edição, você perderá os dados preenchidos! Deseja continuar?";
 
     const handleSelected = (colorSelected: IColor) => {
         const updatedList = colors.map(i => {
@@ -92,29 +95,29 @@ export const FormEditWallet = ({ open, onClose }: FormInsertWalletProps) => {
         setColors(updatedList);
     }
 
-    async function InsertWallet(data: InsertWalletFormData) {
+    async function UpdateWallet(data: UpdateWalletFormData) {
         setIsGlobalLoading(true);
-        const values = {
-            ...data,
-            income: Number(data?.income)
-        }
-        const result = await WalletService.Insert(values);
+        const result = await WalletService.Update(wallet.walletId, data);
         if (result.data.success === true) {
             toast.success(result.data.message, {
                 position: toast.POSITION.BOTTOM_CENTER,
-                autoClose: 5000,
-                theme: "dark",
+                autoClose: 3000,
+                theme: theme === "dark" ? "dark" : "light"
             });
+            onClose();
+            getAll();
         } else {
             toast.warning(result.data.message, {
                 position: toast.POSITION.BOTTOM_CENTER,
                 autoClose: 5000,
-                theme: "dark",
+                theme: theme === "dark" ? "dark" : "light"
             });
         }
+
         setIsGlobalLoading(false);
     }
-
+    
+    useEffect(() => {reset(wallet)}, [wallet])
     return (
         <ModalInsert
             open={open}
@@ -124,7 +127,7 @@ export const FormEditWallet = ({ open, onClose }: FormInsertWalletProps) => {
             isDeletedModal={false}
             titleModal="Cancelar Edição"
             messageModal={message}
-            onSave={handleSubmit(InsertWallet)}
+            onSave={handleSubmit(UpdateWallet)}
         >
             <form className={style.form} >
                 <ThemeProvider theme={StyleMaterialUi(outerTheme)}>
@@ -136,14 +139,6 @@ export const FormEditWallet = ({ open, onClose }: FormInsertWalletProps) => {
                         {...register('name')}
                     />
                     {errors.name && <span className={style.validation}>{errors.name.message}</span>}
-                    <TextField
-                        className={style.input}
-                        type="number"
-                        label="Renda Mensal"
-                        variant='standard'
-                        {...register('income')}
-                    />
-                    {errors.income && <span className={style.validation}>{errors.income.message}</span>}
                 </ThemeProvider>
                 <div className={style.colors}>
                     <div className={style.colorLabel}>

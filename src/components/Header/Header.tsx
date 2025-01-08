@@ -1,11 +1,12 @@
-import { IconButton } from "@mui/material";
-import { NotificationsActive } from '@mui/icons-material';
 import logo from '../../assets/img/LogoMinimalistaPrincipal.svg';
+import logoLight from '../../assets/img/LogoMinimalistaBranco.svg';
 import style from "./Header.module.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ModalUser } from "../Modals/ModalUser/ModalUser";
 import classNames from "classnames";
 import { useNavigate } from "react-router-dom";
+import sun from '../../assets/img/sol.png';
+import moon from '../../assets/img/lua.png';
 
 function Header() {
     const [avatar, setAvatar] = useState("");
@@ -28,17 +29,26 @@ function Header() {
         }
     }
 
+    const themeCurrent = localStorage.getItem("currentTheme");
+    const [themeLight, setThemeLight] = useState<boolean>(themeCurrent === "light" ? true : false);
+    const SetTheme = (theme: string) => {
+        document.documentElement.className = theme;
+        setThemeLight(!themeLight);
+        localStorage.setItem("currentTheme", theme);
+    };
+
+    useEffect(() => { SetTheme(themeCurrent ?? "dark"); }, [])
+
     return (
         <>
             {openAdd && <ModalUser avatar={avatar === "" ? <span>RM</span> : <img src={avatar} alt="User" />} name="Rafael Mendes" email="faelmendesab12@gmail.com" onClosedClick={() => { setOpenAdd(false) }} />}
             <header className={style.header}>
                 <div className={style.logo}>
-                    <img src={logo} alt="Logo" onClick={() => navigate('/my-wallets')} />
+                    <img src={themeLight ? logo : logoLight} alt="Logo" onClick={() => navigate('/my-wallets')} />
                 </div>
                 <div className={style.notification}>
-                    <IconButton className={style.icon}>
-                        <NotificationsActive />
-                    </IconButton>
+                    <img src={themeLight ? sun : moon} alt="theme" onClick={() => SetTheme(themeLight ? 'light' : 'dark')} />
+                    <i className="bi bi-bell"></i>
                 </div>
                 <span className={style.saudacao}><p>{SaudacaoPorHorario("Rafael Mendes")}</p></span>
                 <span onClick={() => handleSelected(openAdd)} className={classNames({

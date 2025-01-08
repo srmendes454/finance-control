@@ -87,6 +87,7 @@ function Cards() {
                             purchaseDate={card.PaymentDate}
                             price={card.value}
                             status={card.statusFatura}
+                            route='/cards/transactions'
                         />
                     )
                 })}

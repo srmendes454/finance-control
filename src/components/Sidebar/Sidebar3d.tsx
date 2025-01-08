@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import style from './Sidebar3d.module.scss';
 import classNames from 'classnames';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -18,7 +18,7 @@ function Sidebar3d() {
             icon: "bi bi-wallet",
             route: "/wallet",
             iconSize: "",
-            iconColor: "",
+            iconColor: "#FEFEFE",
             titleTootip: "Carteiras"
         },
         {
@@ -27,7 +27,7 @@ function Sidebar3d() {
             icon: "bi bi-columns-gap",
             route: "/dasboard",
             iconSize: "",
-            iconColor: "",
+            iconColor: "#FEFEFE",
             titleTootip: "Dasboard"
         },
         {
@@ -36,7 +36,7 @@ function Sidebar3d() {
             icon: "bi bi-credit-card",
             route: "/cards",
             iconSize: "",
-            iconColor: "",
+            iconColor: "#FEFEFE",
             titleTootip: "Cartões"
         },
         {
@@ -54,7 +54,7 @@ function Sidebar3d() {
             icon: "bi bi-at",
             route: "/marked",
             iconSize: "2rem",
-            iconColor: "",
+            iconColor: "#FEFEFE",
             titleTootip: "Marcações"
         },
         {
@@ -63,7 +63,7 @@ function Sidebar3d() {
             icon: "bi bi-sliders",
             route: "/limits",
             iconSize: "1.5rem",
-            iconColor: "",
+            iconColor: "#FEFEFE",
             titleTootip: "Limites"
         }
     ]);

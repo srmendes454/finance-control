@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import style from './MyWallets.module.scss';
 import { FormInsertWallet } from './form-insert/FormInsertWallet';
 import { LayoutCardInfo } from '../../components/LayoutCardInfo/LayoutCardInfo';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import iconWallet from '../../assets/img/iconWallet.svg';
 import { TooltipSidebar } from '../../utils/Tootips/TootipSidebar';
 import { Zoom } from "@mui/material";
@@ -10,78 +10,16 @@ import { toast } from 'react-toastify';
 import { useMain } from '../../store/MainProvider';
 import { MenuToggle } from '../../components/MenuToggle/MenuToggle';
 import { FormEditWallet } from './form-edit/FormEditWallet';
-
+import { MaskReal } from '../../utils/Masks/MaskReal';
+import { WalletService } from '../../services/Wallet.service';
+import IWalletResponse from '../../models/WalletResponseModel';
 
 function MyWallets() {
+    const theme = localStorage.getItem("currentTheme");
     const [openAdd, setOpenAdd] = useState<boolean>(false);
     const [openEdit, setOpenEdit] = useState<boolean>(false);
+    const [walletResponse, setWalletResponse] = useState<IWalletResponse>();
     const { setIsGlobalLoading } = useMain();
-
-    const test = [
-        {
-            id: 1,
-            name: "God is very good!",
-            color: "#F39200",
-            PaymentDate: 12,
-            price: 9240,
-        },
-        {
-            id: 2,
-            name: "Testando",
-            color: "#1875FF",
-            PaymentDate: 12,
-            price: 10,
-        },
-        {
-            id: 3,
-            name: "Testando 1",
-            color: "#BD2323",
-            PaymentDate: 12,
-            price: -100,
-        },
-        {
-            id: 4,
-            name: "Testando 2",
-            color: "#6F766F",
-            PaymentDate: 12,
-            price: 7000,
-        },
-        {
-            id: 5,
-            name: "Testando 3",
-            color: "#5212A5",
-            PaymentDate: 12,
-            price: 15000,
-        },
-        {
-            id: 6,
-            name: "Meta",
-            color: "#FFF",
-            PaymentDate: 12,
-            price: 120000,
-        },
-        {
-            id: 7,
-            name: "Teste 10",
-            color: "#000",
-            PaymentDate: 12,
-            price: 8000000,
-        },
-        {
-            id: 8,
-            name: "Teste 2",
-            color: "#E31DDB",
-            PaymentDate: 12,
-            price: 75000000,
-        },
-        {
-            id: 9,
-            name: "Teste 1",
-            color: "#E74C3C",
-            PaymentDate: 12,
-            price: -150000000,
-        }
-    ];
 
     const navigate = useNavigate();
     const handleNavigate = (route: string, borderColor: string, name: string, value: number) => {
@@ -99,29 +37,58 @@ function MyWallets() {
             toast.success('Até breve!', {
                 position: toast.POSITION.BOTTOM_CENTER,
                 autoClose: 2500,
-                theme: "dark",
-                onClose: () => window.location.href = "/wallet"
+                theme: theme === "dark" ? "dark" : "light",
+                onClose: () => window.location.href = "/login"
             });
         }
         else {
             toast.warning('Erro interno, contate o administrador ou tente novamente em alguns minutos.', {
                 position: toast.POSITION.BOTTOM_CENTER,
                 autoClose: 5000,
-                theme: "dark"
+                theme: theme === "dark" ? "dark" : "light"
             });
         }
         setIsGlobalLoading(false);
     }
 
-    async function Delete() {
+    async function Delete(walletId: string) {
         setIsGlobalLoading(true);
-        toast.success('Registro Excluido com sucesso!', {
-            position: toast.POSITION.BOTTOM_CENTER,
-            autoClose: 2500,
-            theme: "dark"
-        });
+        const result = await WalletService.Delete(walletId);
+        if (result.data.success === true) {
+            GetAll()
+            toast.success(result.data.message, {
+                position: toast.POSITION.BOTTOM_CENTER,
+                autoClose: 2500,
+                theme: theme === "dark" ? "dark" : "light"
+            });
+        }
+        else {
+            toast.warning(result.data.message, {
+                position: toast.POSITION.BOTTOM_CENTER,
+                autoClose: 5000,
+                theme: theme === "dark" ? "dark" : "light"
+            });
+        }
         setIsGlobalLoading(false);
     }
+
+    const [wallets, setWallets] = useState([] as IWalletResponse[]);
+    async function GetAll() {
+        setIsGlobalLoading(true);
+        const result = await WalletService.GetAll();
+        if (result.data.success === true) {
+            setWallets(result.data.data);
+        } else {
+            toast.warning(result.data.message, {
+                position: toast.POSITION.BOTTOM_CENTER,
+                autoClose: 5000,
+                theme: theme === "dark" ? "dark" : "light"
+            });
+        }
+        setIsGlobalLoading(false);
+    }
+
+    useEffect(() => { GetAll() }, [])
 
     return (
         <>
@@ -130,7 +97,7 @@ function MyWallets() {
                     <i className="bi bi-box-arrow-right" onClick={() => Logoff()}></i>
                 </TooltipSidebar>
             </div>
-            <FormInsertWallet open={openAdd} onClose={(() => setOpenAdd(false))} />
+            <FormInsertWallet getAll={GetAll} open={openAdd} onClose={(() => setOpenAdd(false))} />
             <LayoutCardInfo
                 hideBreadcrumb={true}
                 onAddClick={() => {
@@ -139,7 +106,7 @@ function MyWallets() {
                 title="Minhas Carteiras"
                 functionAdd={true}
                 functionReload={true}
-                informations={test?.map((wallet, key) => {
+                informations={wallets?.map((wallet, key) => {
                     return (
                         <div className={style.container} key={key}>
                             <div className={style.card}>
@@ -156,18 +123,18 @@ function MyWallets() {
                                 <div className={style.card_content}>
                                     <div className={style.options}>
                                         <h2 className={style.name}>{wallet.name}</h2>
-                                        <FormEditWallet open={openEdit} onClose={(() => setOpenEdit(!openEdit))} />
-                                        <MenuToggle onEditClick={() => { setOpenEdit(!openEdit) }} onSave={Delete} backgroundColor={wallet.color} />
+                                        <MenuToggle onEditClick={() => { setOpenEdit(!openEdit); setWalletResponse(wallet) }} onSave={() => Delete(wallet.walletId)} backgroundColor={wallet.color} />
                                     </div>
-                                    <p className={style.description}>Recebo todo dia {wallet.PaymentDate} de cada mês</p>
+                                    <p className={style.description}></p>
 
-                                    <h1 className={style.price} style={{ color: wallet.price < 0 ? '#BD2323' : '#2C7333' }}>R$ {wallet.price.toFixed(2)}</h1>
+                                    <h1 className={style.price} style={{ color: wallet.price < 0 ? '#BD2323' : '#2C7333' }}>R$ {MaskReal(wallet.price, 2)}</h1>
                                 </div>
                             </div>
                         </div>
                     );
                 })}
             />
+            <FormEditWallet wallet={walletResponse!} open={openEdit} onClose={(() => setOpenEdit(!openEdit))} getAll={GetAll} />
         </>
     );
 }

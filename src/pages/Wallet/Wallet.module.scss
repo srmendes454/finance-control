@@ -1,7 +1,7 @@
 .balanceTotal {
     width: 100%;
     display: flex;
-    align-items: start;
+    align-items: flex-start;
     justify-content: center;
     flex-direction: column;
     padding-left: 2rem;
@@ -39,8 +39,7 @@
     min-width: 656px;
     height: 4rem;
     box-shadow: 5px 5px 20px 0px rgba(0, 0, 0, 0.36);   
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border-radius: 5px;
     border: 1px solid var(--background);   
     display: flex;
     align-items: center;

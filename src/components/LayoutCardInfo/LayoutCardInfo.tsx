@@ -22,11 +22,11 @@ function LayoutCardInfo(props: CardInfoProps) {
     const { breadcrumb, hideBreadcrumb, isSelect, title, select, informations, functionSearch, functionReload, functionEdit, functionAdd, onAddClick } = props;
 
     var listBread: IBreadcrumb[] = [
-      {
-        name: "Minhas Carteiras",
-        icon: "bi bi-house-fill",
-        route: "/my-wallets"
-      }
+        {
+            name: "Minhas Carteiras",
+            icon: "bi bi-house-fill",
+            route: "/my-wallets"
+        }
     ]
 
     listBread = listBread.concat(breadcrumb ?? [])
@@ -44,7 +44,7 @@ function LayoutCardInfo(props: CardInfoProps) {
                 <h1>{isSelect ? select : title}</h1>
                 <div className={style.options}>
                     {functionSearch ? <i className="bi bi-search"></i> : ""}
-                    {functionReload ? <i className="bi bi-arrow-clockwise"></i> : ""}
+                    {functionReload ? <i onClick={() => window.location.reload()} className="bi bi-arrow-clockwise"></i> : ""}
                     {functionEdit ? <i className='bi bi-pencil-square'></i> : ""}
                     {functionAdd ? <i onClick={onAddClick} className="bi bi-plus-circle"></i> : ""}
                 </div>

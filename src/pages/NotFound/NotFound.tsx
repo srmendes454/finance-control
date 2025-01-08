@@ -5,8 +5,10 @@ import foguete from '../../assets/img/rocket.svg';
 import mundo from '../../assets/img/earth.svg';
 import lua from '../../assets/img/moon.svg';
 import astronauta from '../../assets/img/astronaut.svg';
+import { useNavigate } from "react-router-dom";
 
-function NotFound() {
+function NotFound() {    
+    const navigate = useNavigate();
     return (
         <div className={style.bg_purple}>
             <div className={style.stars}>
@@ -16,10 +18,11 @@ function NotFound() {
                     </div>
                     <div className={style.navbarlinks}>
                         <ul className={style.nav}>
-                            <li className={style.itemNav}><a href="/welcome">Home</a></li>
-                            <li className={style.itemNav}><a href="*">Dashboard</a></li>
-                            <li className={style.itemNav}><a href="/wallet">Carteiras</a></li>
-                            <li className={style.itemNav}><a href="/marked">Marcações</a></li>
+                            <li className={style.itemNav}><p onClick={() => navigate("/wallet")}>Carteira</p></li>
+                            <li className={style.itemNav}><p onClick={() => navigate("*")}>Dashboard</p></li>
+                            <li className={style.itemNav}><p onClick={() => navigate("/bank-slip")}>Boletos</p></li>
+                            <li className={style.itemNav}><p onClick={() => navigate("/marked")}>Marcações</p></li>
+                            <li className={style.itemNav}><p onClick={() => navigate("/limits")}>Limites</p></li>
                         </ul>
                     </div>
                 </div>
@@ -27,7 +30,7 @@ function NotFound() {
                     <img className={style.image404} src={image404} alt="404" width="250px" />
                     <h5 className={style.subTitle}>Parece que está perdido</h5>
                     <h5 className={style.subTitle}>No espaço</h5>
-                    <a href="/welcome" className={style.btn_go_home}>HOME</a>
+                    <p onClick={() => navigate("/my-wallets")} className={style.btn_go_home}>HOME</p>
                 </div>
                 <div className={style.objects}>
                     <img className={style.object_rocket} src={foguete} alt="foguete" width="40px" />
