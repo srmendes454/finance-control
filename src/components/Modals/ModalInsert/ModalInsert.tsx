@@ -9,7 +9,6 @@ interface ModalInsertProps {
   open?: boolean;
   title?: string;
   icon?: string;
-  backgroundColor?: string;
   messageModal?: string;
   titleModal?: string;
   isDeletedModal?: boolean;
@@ -23,7 +22,6 @@ function ModalInsert(props: ModalInsertProps) {
     onClosedClick,
     title,
     icon,
-    backgroundColor,
     messageModal,
     titleModal,
     isDeletedModal,
@@ -35,17 +33,14 @@ function ModalInsert(props: ModalInsertProps) {
   return (
     <>
       <Modal open={open}>
-        <div
-          className={style.modal}
-          style={{ backgroundColor: backgroundColor || "#2D332D" }}
-        >
-          <div className={style.icon}>
-            <span>
-              <i className={icon}></i>
-            </span>
+        <div className={style.modal_container}>
+          <div className={style.modal_header}>
+            <i className={icon}></i>
             <h4>{title}</h4>
           </div>
-          <div className={style.form}>{children}</div>
+          <div className={style.form}>
+            {children}
+          </div>
           <div className={style.button}>
             <button
               className={style.cancel}

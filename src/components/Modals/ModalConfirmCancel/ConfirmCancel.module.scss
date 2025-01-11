@@ -2,7 +2,7 @@
     height: 200px;
     width: 500px;
 
-    background-color: #3C413C;
+    background-color: var(--background);
     border-radius: 10px;
     animation: fadeIn 0.3s ease-in-out forwards;
     box-shadow: 5px 5px 20px 0px rgba(0, 0, 0, 0.36);
@@ -29,14 +29,14 @@
         border-top-right-radius: 10px;
 
         h5 {
-            color: #fff;
+            color: #E5E5E5;
             margin: 0;
             font-size: 1.1rem;
             font-weight: 500;
         }
 
         i {
-            color: #fff;
+            color: #E5E5E5;
             font-size: 1rem;
             margin-left: 10px;
 
@@ -60,7 +60,7 @@
             margin-right: 10px;
             font-size: 1rem;
             font-weight: 400;
-            color: #fff;
+            color: var(--font);
         }
     }
 
@@ -80,8 +80,8 @@
             font-size: 14px;
             font-weight: 600;
             background-color: transparent;
-            color: #6F766F;
-            border: 2px solid #6F766F;
+            color: var(--secundary-font);
+            border: 2px solid var(--secundary-font);
             border-radius: 5px;
             cursor: pointer;
 
@@ -90,8 +90,8 @@
             }
 
             &:hover {
-                background-color: #6F766F;
-                color: #fff;
+                background-color: var(--secundary-font);
+                color: #E5E5E5;
                 animation: swing ease-in-out 0.5s 1 alternate;
             }
         }
@@ -102,8 +102,8 @@
             font-size: 14px;
             font-weight: 600;
             background-color: transparent;
-            color: #3E6943;
-            border: 2px solid #3E6943;
+            color: var(--primary);
+            border: 2px solid var(--primary);
             border-radius: 5px;
             margin-right: 10px;
             cursor: pointer;
@@ -113,8 +113,8 @@
             }
 
             &:hover {
-                background-color: #3E6943;
-                color: #fff;
+                background-color: var(--primary);
+                color: #E5E5E5;
                 animation: swing ease-in-out 0.5s 1 alternate;
             }
         }

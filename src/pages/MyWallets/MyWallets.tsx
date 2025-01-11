@@ -13,19 +13,20 @@ import { FormEditWallet } from './form-edit/FormEditWallet';
 import { MaskReal } from '../../utils/Masks/MaskReal';
 import { WalletService } from '../../services/Wallet.service';
 import IWalletResponse from '../../models/WalletResponseModel';
+import { Theme } from '../../utils/LocalStorage/Theme';
 
 function MyWallets() {
-    const theme = localStorage.getItem("currentTheme");
     const [openAdd, setOpenAdd] = useState<boolean>(false);
     const [openEdit, setOpenEdit] = useState<boolean>(false);
     const [walletResponse, setWalletResponse] = useState<IWalletResponse>();
     const { setIsGlobalLoading } = useMain();
 
     const navigate = useNavigate();
-    const handleNavigate = (route: string, borderColor: string, name: string, value: number) => {
-        localStorage.setItem('borderColor', borderColor ?? '#2C7333')
-        localStorage.setItem('name', name)
-        localStorage.setItem('value', value.toFixed(2))
+    const handleNavigate = (route: string, borderColor: string, name: string, value: number, walletId: string) => {
+        localStorage.setItem('borderColor', borderColor ?? '#2C7333');
+        localStorage.setItem('name', name);
+        localStorage.setItem('value', value.toFixed(2));
+        localStorage.setItem('currentWalletId', walletId);
         navigate(route);
     };
 
@@ -37,7 +38,7 @@ function MyWallets() {
             toast.success('Até breve!', {
                 position: toast.POSITION.BOTTOM_CENTER,
                 autoClose: 2500,
-                theme: theme === "dark" ? "dark" : "light",
+                theme: Theme() === "dark" ? "dark" : "light",
                 onClose: () => window.location.href = "/login"
             });
         }
@@ -45,7 +46,7 @@ function MyWallets() {
             toast.warning('Erro interno, contate o administrador ou tente novamente em alguns minutos.', {
                 position: toast.POSITION.BOTTOM_CENTER,
                 autoClose: 5000,
-                theme: theme === "dark" ? "dark" : "light"
+                theme: Theme() === "dark" ? "dark" : "light"
             });
         }
         setIsGlobalLoading(false);
@@ -59,14 +60,14 @@ function MyWallets() {
             toast.success(result.data.message, {
                 position: toast.POSITION.BOTTOM_CENTER,
                 autoClose: 2500,
-                theme: theme === "dark" ? "dark" : "light"
+                theme: Theme() === "dark" ? "dark" : "light"
             });
         }
         else {
             toast.warning(result.data.message, {
                 position: toast.POSITION.BOTTOM_CENTER,
                 autoClose: 5000,
-                theme: theme === "dark" ? "dark" : "light"
+                theme: Theme() === "dark" ? "dark" : "light"
             });
         }
         setIsGlobalLoading(false);
@@ -82,7 +83,7 @@ function MyWallets() {
             toast.warning(result.data.message, {
                 position: toast.POSITION.BOTTOM_CENTER,
                 autoClose: 5000,
-                theme: theme === "dark" ? "dark" : "light"
+                theme: Theme() === "dark" ? "dark" : "light"
             });
         }
         setIsGlobalLoading(false);
@@ -113,7 +114,7 @@ function MyWallets() {
                                 <div className={style.image_content}>
                                     <span className={style.overlay} style={{ backgroundColor: wallet.color ?? '#2C7333', '--overlay-color': wallet.color } as React.CSSProperties}></span>
 
-                                    <div className={style.card_image} onClick={() => handleNavigate('/wallet', wallet.color, wallet.name, wallet.price)}>
+                                    <div className={style.card_image} onClick={() => handleNavigate('/wallet', wallet.color, wallet.name, wallet.price, wallet.walletId)}>
                                         <span className={style.card_img} style={{ '--overlay-color': wallet.color === '#FFF' ? '#000' : wallet.color } as React.CSSProperties}>
                                             <img src={iconWallet} alt="image" />
                                         </span>

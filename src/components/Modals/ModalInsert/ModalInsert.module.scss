@@ -1,132 +1,253 @@
-.modal {
-    min-height: 500px;
-    width: 400px;
-    background-color: #2D332D;
-    border-radius: 10px;
-    animation: fadeIn 0.3s ease-in-out forwards;
+// .modal {
+//     min-height: 400px;
+//     max-height: 700px;
+//     width: 500px;
+//     background-color: var(--secundary-dark);
+//     border-radius: 1rem;
 
-    display: grid;
-    grid-template-columns: 5% 90% 5% repeat(3, 1fr);
-    grid-template-rows: 2% 35% 51% 10% 2%;
-    grid-template-areas:
-        "a c b"
-        "a title b"
-        "a form b"
-        "a button b"            
-        "a d b";
+//     display: grid;
+//     grid-template-columns: 3% 94% 3% repeat(3, 1fr);
+//     grid-template-rows: 1% 30% 53% 15% 1%;
+//     grid-template-areas:
+//         "a c b"
+//         "a title b"
+//         "a form b"
+//         "a button b"            
+//         "a d b";
 
-    .icon {
-        width: 100%;
-        height: 100%;
-        grid-area: title;
+//     .icon {
+//         width: 100%;
+//         height: 100%;
+//         grid-area: title;
+//         position: relative;
 
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-wrap: wrap;
+//         display: flex;
+//         align-items: center;
+//         justify-content: center;
+//         flex-wrap: wrap;
 
-        span {
-            width: 100px;
-            height: 100px;
-            border-radius: 100%;
+//         span {
+//             width: 100px;
+//             height: 100px;
+//             border-radius: 100%;
 
-            background-color: #232623;
+//             background-color: var(--primary-dark);
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+//             display: flex;
+//             align-items: center;
+//             justify-content: center;
 
-            i {
-                font-size: 2rem;
-                color: #2C7333;
+//             i {
+//                 font-size: 2rem;
+//                 color: var(--primary-detail);
 
-                &:hover {
-                    animation: swing ease-in-out 0.5s 1 alternate;
-                };
-            }
+//                 &:hover {
+//                     animation: swing ease-in-out 0.5s 1 alternate;
+//                 };
+//             }
+//         }
+
+//         h4 {
+//             width: 100%;
+//             margin: 0;
+//             font-size: 1.5rem;
+//             color: var(--font);
+//             font-weight: 400;
+//             text-align: center;
+//         }
+//     }
+
+//     .form {
+//         width: 100%;
+//         height: auto;
+//         grid-area: form;
+//         display: flex;
+//         align-items: center;
+//         justify-content: center;
+
+//         label {
+//             font-weight: 600;
+//             color: var(--primary);
+//             font-family: "Poppins", sans-serif;
+//         }
+
+//         input {
+//             color: var(--font);
+//             font-family: "Poppins", sans-serif;
+//         }
+//     }
+
+//     .button {
+//         width: 100%;
+//         height: 100%;
+//         grid-area: button;
+//         position: relative;
+
+//         display: flex;
+//         align-items: center;
+//         justify-content: center;
+//         gap: 10px;
+
+//         .cancel {
+//             height: 30px;
+//             width: 160px;
+//             font-size: 1rem;
+//             font-weight: 600;
+//             background-color: transparent;
+//             color: var(--background);
+//             border: 2px solid var(--background);
+//             border-radius: 6px;
+//             cursor: pointer;
+
+//             i {
+//                 font-size: 14px;
+//             }
+
+//             &:hover {
+//                 background-color: var(--background);
+//                 color: var(--font);
+//                 animation: swing ease-in-out 0.5s 1 alternate;
+//             }
+//         }
+
+//         .save {
+//             height: 30px;
+//             width: 160px;
+//             font-size: 1rem;
+//             font-weight: 600;
+//             background-color: transparent;
+//             color: var(--primary);
+//             border: 2px solid var(--primary);
+//             border-radius: 6px;
+//             cursor: pointer;
+
+//             i {
+//                 font-size: 14px;
+//             }
+
+//             &:hover {
+//                 background-color: var(--primary);
+//                 color: var(--font);
+//                 animation: swing ease-in-out 0.5s 1 alternate;
+//             }
+//         }
+//     }
+// }
+
+.modal_container {
+    background: var(--secundary-dark);
+    border-radius: 1rem;
+    max-width: 400px;
+    transition: transform 200ms ease-out;
+}
+
+// .modal_container .modal_header {
+//     position: relative;
+//     top: -20px;
+//     background: linear-gradient(45deg, #07460e, var(--primary-detail));
+//     padding: 1rem 0;
+//     border-radius: .5rem;
+//     text-align: center;
+//     font-size: 1.5rem;
+//     color: #E5E5E5;
+//     margin: 0 2.5rem;
+// }
+
+.modal_container .modal_header {
+    position: relative;
+    top: -64px;
+    left: 121px;
+    background: linear-gradient(45deg, #07460e, var(--primary-detail));
+    border-radius: 100%;
+    font-size: 3rem;
+    color: #E5E5E5;
+    height: 10rem;
+    width: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    i {
+        position: relative;
+        top: 35px;
+    }
+
+    h4 {
+        margin: 0;
+        font-size: 2rem;
+        color: var(--font);
+        font-weight: 400;
+        position: relative;
+        top: 4rem;
+        white-space: nowrap;
+    }
+}
+
+.form {
+    padding: 20px;
+    padding-top: 0;
+
+    label {
+        font-weight: 600;
+        color: var(--primary);
+        font-family: "Poppins", sans-serif;
+    }
+
+    input {
+        color: var(--font);
+        font-family: "Poppins", sans-serif;
+    }
+}
+
+.button {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 10px;
+    padding: 1rem 0 2rem 0;
+
+    .cancel {
+        height: 30px;
+        width: 160px;
+        font-size: 1rem;
+        font-weight: 600;
+        background-color: transparent;
+        color: var(--secundary-font);
+        border: 2px solid var(--secundary-font);
+        border-radius: 6px;
+        cursor: pointer;
+
+        i {
+            font-size: 14px;
         }
 
-        h4 {
-            width: 100%;
-            margin: 0;
-            font-size: 1.5rem;
-            color: #FFF;
-            font-weight: 400;
-            text-align: center;
+        &:hover {
+            background-color: var(--secundary-font);
+            color: var(--font);
+            animation: swing ease-in-out 0.5s 1 alternate;
         }
     }
 
-    .form {
-        width: 100%;
-        height: auto;
-        grid-area: form;
+    .save {
+        height: 30px;
+        width: 160px;
+        font-size: 1rem;
+        font-weight: 600;
+        background-color: transparent;
+        color: var(--primary);
+        border: 2px solid var(--primary);
+        border-radius: 6px;
+        cursor: pointer;
 
-        display: flex;
-
-        label {
-            font-weight: 600;
-            color: #3E6943;
-            font-family: "Poppins", sans-serif;
-        }
-    
-        input {
-            color: #fff;
-            font-family: "Poppins", sans-serif;
-        }
-    }
-
-    .button {
-        width: 100%;
-        height: 100%;
-        grid-area: button;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-
-        .cancel {
-            height: 30px;
-            width: 160px;
-            font-size: 1rem;
-            font-weight: 600;
-            background-color: #2D332D;
-            color: #3C413C;
-            border: 2px solid #3C413C;
-            border-radius: 6px;
-            cursor: pointer;
-
-            i {
-                font-size: 14px;
-            }
-
-            &:hover {
-                background-color: #3C413C;
-                color: #fff;
-                animation: swing ease-in-out 0.5s 1 alternate;
-            }
+        i {
+            font-size: 14px;
         }
 
-        .save {
-            height: 30px;
-            width: 160px;
-            font-size: 1rem;
-            font-weight: 600;
-            background-color: #2D332D;
-            color: #3E6943;
-            border: 2px solid #3E6943;
-            border-radius: 6px;
-            cursor: pointer;
-
-            i {
-                font-size: 14px;
-            }
-
-            &:hover {
-                background-color: #3E6943;
-                color: #fff;
-                animation: swing ease-in-out 0.5s 1 alternate;
-            }
+        &:hover {
+            background-color: var(--primary);
+            color: var(--font);
+            animation: swing ease-in-out 0.5s 1 alternate;
         }
     }
 }

@@ -1,11 +1,11 @@
 import { Tooltip, TooltipProps, styled, tooltipClasses } from '@mui/material';
+import { Theme } from '../LocalStorage/Theme';
 
-const currentTheme = localStorage.getItem("currentTheme");
 const TooltipSidebar = styled(({ className, ...props }: TooltipProps) => (
     <Tooltip {...props} classes={{ popper: className }} />
 ))(({ theme, ...props }) => ({
     [`& .${tooltipClasses.tooltip}`]: {
-        backgroundColor: currentTheme === "light" ? '#CDD4CE' : '#2D332D',
+        backgroundColor: Theme() === "light" ? '#CDD4CE' : '#2D332D',
         maxWidth: 300,
         height: "2rem",
         color: props.color,
