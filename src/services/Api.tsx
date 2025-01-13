@@ -5,7 +5,7 @@ const Axios = axios.create({
   timeout: 2000000,
   headers: {
     'X-Custom-Header': 'foobar',
-    Authorization: localStorage.getItem('token' || '')
+    Authorization: localStorage.getItem('token')
   },
 });
 

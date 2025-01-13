@@ -1,7 +1,7 @@
 import { ThemeProvider } from "@emotion/react"
 import { StyleMaterialUi } from "../../../utils/StyleMaterialUi/StyleMaterialUi"
 import { TextField, useTheme } from "@mui/material"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import style from './FormInsertCard.module.scss'
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -39,7 +39,7 @@ export const FormInsertCard = ({ open, onClose, reloadCards }: FormInsertCardPro
     const outerTheme = useTheme();
     const { setIsGlobalLoading } = useMain();
 
-    const { register, handleSubmit, formState: { errors }, setValue, getValues } = useForm<InsertCardFormData>({
+    const { register, handleSubmit, formState: { errors }, setValue, getValues, reset } = useForm<InsertCardFormData>({
         resolver: zodResolver(InsertCardFormSchema)
     })
 
@@ -117,6 +117,20 @@ export const FormInsertCard = ({ open, onClose, reloadCards }: FormInsertCardPro
         }
     ];
 
+    const [hiddenExpirationDay, setHiddenExpirationDay] = useState(false);
+    const toggleTextFieldVisibility = () => {
+        setHiddenExpirationDay(getValues('type') === "DEBIT" ? false : true);
+    };
+
+    const resetForm = () => {
+        setColors(colors.map(color => {
+            color.selected = false;
+            return color
+        }));
+        setHiddenExpirationDay(false);
+        reset();
+    };
+
     async function Insert(data: InsertCardFormData) {
         setIsGlobalLoading(true);
         const result = await CardService.Insert(data);
@@ -135,13 +149,9 @@ export const FormInsertCard = ({ open, onClose, reloadCards }: FormInsertCardPro
                 theme: Theme() === "dark" ? "dark" : "light",
             });
         }
+        resetForm();
         setIsGlobalLoading(false);
     }
-
-    const [hiddenExpirationDay, setHiddenExpirationDay] = useState(false);
-    const toggleTextFieldVisibility = () => {
-        setHiddenExpirationDay(getValues('type') === "DEBIT" ? false : true);
-    };
 
     return (
         <ModalInsert

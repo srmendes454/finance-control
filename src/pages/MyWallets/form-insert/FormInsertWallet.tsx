@@ -34,7 +34,7 @@ export const FormInsertWallet = ({ open, onClose, getAll }: FormInsertWalletProp
     const outerTheme = useTheme();
     const { setIsGlobalLoading } = useMain();
 
-    const { register, handleSubmit, formState: { errors }, setValue } = useForm<InsertWalletFormData>({
+    const { register, handleSubmit, formState: { errors }, setValue, reset } = useForm<InsertWalletFormData>({
         resolver: zodResolver(InsertWalletFormSchema)
     })
 
@@ -94,6 +94,14 @@ export const FormInsertWallet = ({ open, onClose, getAll }: FormInsertWalletProp
         setColors(updatedList);
     }
 
+    const resetForm = () => {
+        setColors(colors.map(color => {
+            color.selected = false;
+            return color
+        }));
+        reset();
+    };
+
     async function InsertWallet(data: InsertWalletFormData) {
         setIsGlobalLoading(true);
         const result = await WalletService.Insert(data);
@@ -112,6 +120,7 @@ export const FormInsertWallet = ({ open, onClose, getAll }: FormInsertWalletProp
                 theme: theme === "dark" ? "dark" : "light",
             });
         }
+        resetForm();
         setIsGlobalLoading(false);
     }
 

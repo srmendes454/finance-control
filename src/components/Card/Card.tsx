@@ -20,7 +20,6 @@ interface CardProps {
 
 function Card(Props: CardProps) {
     const { onExclude, onEditClick, title, typeCard, price, isDebit, purchaseDate, color, status, route } = Props;
-    const [openEdit, setOpenEdit] = useState<boolean>(false);
     const navigate = useNavigate();
 
     const colorWallet = localStorage.getItem('borderColor')

@@ -165,10 +165,10 @@ export const FormEditCard = ({ card, open, onClose, reloadCards }: FormEditCardP
         <ModalInsert
             open={open}
             onClosedClick={onClose}
-            title={"Cadastrar Cartão"}
+            title={"Editar Cartão"}
             icon="bi bi-credit-card"
             isDeletedModal={false}
-            titleModal="Cancelar Cadastro"
+            titleModal="Cancelar Edição"
             messageModal={message}
             onSave={handleSubmit(Update)}
         >
