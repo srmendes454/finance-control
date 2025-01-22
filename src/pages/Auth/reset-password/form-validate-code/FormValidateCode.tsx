@@ -21,7 +21,7 @@ function FormValidateCode() {
     const outerTheme = useTheme();
     const { setIsGlobalLoading } = useMain();
     const emailLogado = localStorage.getItem('email');
-    const maskEmail = MaskEmail(emailLogado!);
+    const maskEmail = MaskEmail(emailLogado! ?? "");
 
     const { register, handleSubmit, formState: { errors }, control, setValue } = useForm<ValidateCodeFormData>({
         resolver: zodResolver(ValidateCodeFormSchema)
@@ -57,33 +57,36 @@ function FormValidateCode() {
 
     useEffect(() => { setValue('code', Array.from({ length: 8 })) }, [])
     return (
-        <form className={style.formAuth} onSubmit={handleSubmit(ValidateCode)}>
-            <ThemeProvider theme={StyleInputOutlined(outerTheme)}>
-                <h3>Confirme o código enviado para
-                    <span> {maskEmail}</span>
-                </h3>
-                <div className={style.input}>
-                    {fields.map((field, index) => (
-                        <TextField className={style.inputAuth}
-                            key={index}
-                            type="text"
-                            variant='outlined'
-                            inputProps={{ maxLength: 1 }}
-                            {...register(`code.${index}`)}
-                        />
-                    ))}
+        <>
+            <h1>Validar Código</h1>
+            <form className={style.formAuth} onSubmit={handleSubmit(ValidateCode)}>
+                <ThemeProvider theme={StyleInputOutlined(outerTheme)}>
+                    <h3>Confirme o código enviado para
+                        <span> {maskEmail}</span>
+                    </h3>
+                    <div className={style.input}>
+                        {fields.map((field, index) => (
+                            <TextField className={style.inputAuth}
+                                key={index}
+                                type="text"
+                                variant='outlined'
+                                inputProps={{ maxLength: 1 }}
+                                {...register(`code.${index}`)}
+                            />
+                        ))}
+                    </div>
+                    {errors.code && <span className={style.validation}>{errors.code.message}</span>}
+                </ThemeProvider>
+                <div className={style.button}>
+                    <ButtonAuth
+                        type="submit"
+                        name="Validar"
+                        route="/login"
+                        title="Reenviar código"
+                    />
                 </div>
-                {errors.code && <span className={style.validation}>{errors.code.message}</span>}
-            </ThemeProvider>
-            <div className={style.button}>
-                <ButtonAuth
-                    type="submit"
-                    name="Validar"
-                    route="/login"
-                    title="Cancelar"
-                />
-            </div>
-        </form>
+            </form>
+        </>
     )
 }
 

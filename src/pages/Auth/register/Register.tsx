@@ -4,6 +4,6 @@ import style from "./Register.module.scss"
 
 export const Register = () => {
     return (
-        <CardAuth isLogin={false} form={<FormRegister />} />
+        <CardAuth form={<FormRegister />} />
     )
 }

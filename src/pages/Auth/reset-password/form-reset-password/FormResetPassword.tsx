@@ -59,61 +59,64 @@ export default function FormResetPassword() {
     }
 
     return (
-        <form className={style.formAuth} onSubmit={handleSubmit(ResetPassword)}>
-            <ThemeProvider theme={StyleMaterialUi(outerTheme)}>
-                <div className={style.input}>
-                    <TextField className={style.inputAuth}
-                        type={showNewPassword ? 'text' : 'password'}
-                        label="Nova senha"
-                        variant='standard'
-                        {...register('newPassword')}
-                        InputProps={{
-                            endAdornment: (
-                                <InputAdornment
-                                    position="end" >
-                                    <IconButton
-                                        onClick={handleClickShowNewPassword}
-                                        onMouseDown={handleMouseDownPassword}>
-                                        {showNewPassword ? <VisibilityOffOutlined /> : <VisibilityOutlined />}
-                                    </IconButton>
-                                </InputAdornment>
-                            ),
-                        }}
-                    />
+        <>
+            <h1>Nova Senha</h1>
+            <form className={style.formAuth} onSubmit={handleSubmit(ResetPassword)}>
+                <ThemeProvider theme={StyleMaterialUi(outerTheme)}>
+                    <div className={style.input}>
+                        <TextField className={style.inputAuth}
+                            type={showNewPassword ? 'text' : 'password'}
+                            label="Nova senha"
+                            variant='standard'
+                            {...register('newPassword')}
+                            InputProps={{
+                                endAdornment: (
+                                    <InputAdornment
+                                        position="end" >
+                                        <IconButton
+                                            onClick={handleClickShowNewPassword}
+                                            onMouseDown={handleMouseDownPassword}>
+                                            {showNewPassword ? <VisibilityOffOutlined /> : <VisibilityOutlined />}
+                                        </IconButton>
+                                    </InputAdornment>
+                                ),
+                            }}
+                        />
 
-                    {errors.newPassword && <span className={style.validation}>{errors.newPassword.message}</span>}
-                </div>
-                <div className={style.input}>
-                    <TextField className={style.inputAuth}
-                        type={showConfirmNewPassword ? 'text' : 'password'}
-                        label="Confirme a nova senha"
-                        variant='standard'
-                        {...register('confirmNewPassword')}
-                        InputProps={{
-                            endAdornment: (
-                                <InputAdornment
-                                    position="end" >
-                                    <IconButton
-                                        onClick={handleClickShowConfirmNewPassword}
-                                        onMouseDown={handleMouseDownPassword}>
-                                        {showConfirmNewPassword ? <VisibilityOffOutlined /> : <VisibilityOutlined />}
-                                    </IconButton>
-                                </InputAdornment>
-                            ),
-                        }}
-                    />
+                        {errors.newPassword && <span className={style.validation}>{errors.newPassword.message}</span>}
+                    </div>
+                    <div className={style.input}>
+                        <TextField className={style.inputAuth}
+                            type={showConfirmNewPassword ? 'text' : 'password'}
+                            label="Confirme a nova senha"
+                            variant='standard'
+                            {...register('confirmNewPassword')}
+                            InputProps={{
+                                endAdornment: (
+                                    <InputAdornment
+                                        position="end" >
+                                        <IconButton
+                                            onClick={handleClickShowConfirmNewPassword}
+                                            onMouseDown={handleMouseDownPassword}>
+                                            {showConfirmNewPassword ? <VisibilityOffOutlined /> : <VisibilityOutlined />}
+                                        </IconButton>
+                                    </InputAdornment>
+                                ),
+                            }}
+                        />
 
-                    {errors.confirmNewPassword && <span className={style.validation}>{errors.confirmNewPassword.message}</span>}
+                        {errors.confirmNewPassword && <span className={style.validation}>{errors.confirmNewPassword.message}</span>}
+                    </div>
+                </ThemeProvider>
+                <div className={style.button}>
+                    <ButtonAuth
+                        type="submit"
+                        name="Salvar"
+                        route="/login"
+                        title="Cancelar"
+                    />
                 </div>
-            </ThemeProvider>
-            <div className={style.button}>
-                <ButtonAuth
-                    type="submit"
-                    name="Salvar"
-                    route="/login"
-                    title="Cancelar"
-                />
-            </div>
-        </form>
+            </form>
+        </>
     )
 }

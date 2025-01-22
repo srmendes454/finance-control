@@ -54,47 +54,50 @@ export const FormLogin = () => {
     }
 
     return (
-        <form className={style.formAuth} onSubmit={handleSubmit(Login)}>
-            <ThemeProvider theme={StyleMaterialUi(outerTheme)}>
-                <div className={style.input}>
-                    <TextField className={style.inputAuth}
-                        type="text"
-                        label="Email"
-                        variant='standard'
-                        {...register('email')}
+        <>
+            <h1>Entrar</h1>
+            <form className={style.formAuth} onSubmit={handleSubmit(Login)}>
+                <ThemeProvider theme={StyleMaterialUi(outerTheme)}>
+                    <div className={style.input}>
+                        <TextField className={style.inputAuth}
+                            type="text"
+                            label="Email"
+                            variant='standard'
+                            {...register('email')}
+                        />
+                        {errors.email && <span className={style.validation}>{errors.email.message}</span>}
+                    </div>
+                    <div className={style.input}>
+                        <TextField className={style.inputAuth}
+                            type={showPassword ? 'text' : 'password'}
+                            label="Senha"
+                            variant='standard'
+                            {...register('password')}
+                            InputProps={{
+                                endAdornment: (
+                                    <InputAdornment
+                                        position="end" >
+                                        <IconButton
+                                            onClick={handleClickShowPassword}
+                                            onMouseDown={handleMouseDownPassword}>
+                                            {showPassword ? <VisibilityOffOutlined /> : <VisibilityOutlined />}
+                                        </IconButton>
+                                    </InputAdornment>
+                                ),
+                            }}
+                        />
+                        {errors.password && <span className={style.validation}>{errors.password.message}</span>}
+                    </div>
+                </ThemeProvider>
+                <div className={style.button}>
+                    <ButtonAuth
+                        type="submit"
+                        name="Entrar"
+                        route="/send-code-email"
+                        title="Esqueci minha senha"
                     />
-                    {errors.email && <span className={style.validation}>{errors.email.message}</span>}
                 </div>
-                <div className={style.input}>
-                    <TextField className={style.inputAuth}
-                        type={showPassword ? 'text' : 'password'}
-                        label="Senha"
-                        variant='standard'
-                        {...register('password')}
-                        InputProps={{
-                            endAdornment: (
-                                <InputAdornment
-                                    position="end" >
-                                    <IconButton
-                                        onClick={handleClickShowPassword}
-                                        onMouseDown={handleMouseDownPassword}>
-                                        {showPassword ? <VisibilityOffOutlined /> : <VisibilityOutlined />}
-                                    </IconButton>
-                                </InputAdornment>
-                            ),
-                        }}
-                    />
-                    {errors.password && <span className={style.validation}>{errors.password.message}</span>}
-                </div>
-            </ThemeProvider>
-            <div className={style.button}>
-                <ButtonAuth
-                    type="submit"
-                    name="Entrar"
-                    route="/send-code-email"
-                    title="Esqueci minha senha"
-                />
-            </div>
-        </form>
+            </form>
+        </>
     )
 }

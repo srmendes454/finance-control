@@ -1,5 +1,4 @@
 import { IconButton, InputAdornment, TextField, ThemeProvider, useTheme } from "@mui/material";
-import { useState } from "react";
 import style from './FormRegister.module.scss';
 import ButtonAuth from "../../../../components/ButtonAuth";
 import { VisibilityOffOutlined, VisibilityOutlined } from "@mui/icons-material";
@@ -23,8 +22,8 @@ const RegisterFormSchema = z.object({
     password: z.string().nonempty('A senha e obrigatória').min(6, 'A senha precisa de ter no minimo 6 caracteres'),
     confirmPassword: z.string().nonempty('Confirme a senha')
 }).refine((data) => data.password === data.confirmPassword, {
-  message: "As senhas precisam ser iguais",
-  path: ["confirmPassword"]
+    message: "As senhas precisam ser iguais",
+    path: ["confirmPassword"]
 });
 
 type RegisterFormData = z.infer<typeof RegisterFormSchema>
@@ -64,78 +63,81 @@ export default function FormRegister() {
     }
 
     return (
-        <form className={style.formAuth} onSubmit={handleSubmit(Register)}>
-            <ThemeProvider theme={StyleMaterialUi(outerTheme)}>
-                <div className={style.input}>
-                    <TextField className={style.inputAuth}
-                        type="text"
-                        label="Nome"
-                        variant='standard'
-                        {...register('name')}
+        <>
+            <h1>Inscrever-se</h1>
+            <form className={style.formAuth} onSubmit={handleSubmit(Register)}>
+                <ThemeProvider theme={StyleMaterialUi(outerTheme)}>
+                    <div className={style.input}>
+                        <TextField className={style.inputAuth}
+                            type="text"
+                            label="Nome"
+                            variant='standard'
+                            {...register('name')}
+                        />
+                        {errors.name && <span className={style.validation}>{errors.name.message}</span>}
+                    </div>
+                    <div className={style.input}>
+                        <TextField className={style.inputAuth}
+                            type="text"
+                            label="Email"
+                            variant='standard'
+                            {...register('email')}
+                        />
+                        {errors.email && <span className={style.validation}>{errors.email.message}</span>}
+                    </div>
+                    <div className={style.input}>
+                        <TextField className={style.inputAuth}
+                            type={showConfirmPassword ? 'text' : 'password'}
+                            label="Senha"
+                            variant='standard'
+                            {...register('password')}
+                            InputProps={{
+                                endAdornment: (
+                                    <InputAdornment
+                                        position="end" >
+                                        <IconButton
+                                            onClick={handleClickShowConfirmPassword}
+                                            onMouseDown={handleMouseDownPassword}>
+                                            {showConfirmPassword ? <VisibilityOffOutlined /> : <VisibilityOutlined />}
+                                        </IconButton>
+                                    </InputAdornment>
+                                ),
+                            }}
+                        />
+                        {errors.password && <span className={style.validation}>{errors.password.message}</span>}
+                    </div>
+                    <div className={style.input}>
+                        <TextField className={style.inputAuth}
+                            type={showPassword ? 'text' : 'password'}
+                            label="Confirme a senha"
+                            variant='standard'
+                            {...register('confirmPassword')}
+                            InputProps={{
+                                endAdornment: (
+                                    <InputAdornment
+                                        position="end" >
+                                        <IconButton
+                                            onClick={handleClickShowPassword}
+                                            onMouseDown={handleMouseDownPassword}>
+                                            {showPassword ? <VisibilityOffOutlined /> : <VisibilityOutlined />}
+                                        </IconButton>
+                                    </InputAdornment>
+                                ),
+                            }}
+                        />
+                        {errors.confirmPassword && <span className={style.validation}>{errors.confirmPassword.message}</span>}
+                    </div>
+                </ThemeProvider>
+                <div className={style.button}>
+                    <ButtonAuth
+                        type="submit"
+                        name="Inscrever-se"
+                        route="/login"
+                        title="Cancelar"
                     />
-                    {errors.name && <span className={style.validation}>{errors.name.message}</span>}
                 </div>
-                <div className={style.input}>
-                    <TextField className={style.inputAuth}
-                        type="text"
-                        label="Email"
-                        variant='standard'
-                        {...register('email')}
-                    />
-                    {errors.email && <span className={style.validation}>{errors.email.message}</span>}
-                </div>
-                <div className={style.input}>
-                    <TextField className={style.inputAuth}
-                        type={showConfirmPassword ? 'text' : 'password'}
-                        label="Senha"
-                        variant='standard'
-                        {...register('password')}
-                        InputProps={{
-                            endAdornment: (
-                                <InputAdornment
-                                    position="end" >
-                                    <IconButton
-                                        onClick={handleClickShowConfirmPassword}
-                                        onMouseDown={handleMouseDownPassword}>
-                                        {showConfirmPassword ? <VisibilityOffOutlined /> : <VisibilityOutlined />}
-                                    </IconButton>
-                                </InputAdornment>
-                            ),
-                        }}
-                    />
-                    {errors.password && <span className={style.validation}>{errors.password.message}</span>}
-                </div>
-                <div className={style.input}>
-                    <TextField className={style.inputAuth}
-                        type={showPassword ? 'text' : 'password'}
-                        label="Confirme a senha"
-                        variant='standard'
-                        {...register('confirmPassword')}
-                        InputProps={{
-                            endAdornment: (
-                                <InputAdornment
-                                    position="end" >
-                                    <IconButton
-                                        onClick={handleClickShowPassword}
-                                        onMouseDown={handleMouseDownPassword}>
-                                        {showPassword ? <VisibilityOffOutlined /> : <VisibilityOutlined />}
-                                    </IconButton>
-                                </InputAdornment>
-                            ),
-                        }}
-                    />
-                    {errors.confirmPassword && <span className={style.validation}>{errors.confirmPassword.message}</span>}
-                </div>
-            </ThemeProvider>
-            <div className={style.button}>
-                <ButtonAuth
-                    type="submit"
-                    name="Salvar"
-                    route="/login"
-                    title="Cancelar"
-                />
-            </div>
-        </form>
+            </form>
+        </>
     )
 
 }

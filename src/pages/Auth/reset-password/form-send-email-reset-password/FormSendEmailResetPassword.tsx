@@ -48,27 +48,30 @@ function FormSendEmailResetPassword() {
     }
 
     return (
-        <form className={style.formAuth} onSubmit={handleSubmit(SendCodeEmail)}>
-            <ThemeProvider theme={StyleMaterialUi(outerTheme)}>
-                <div className={style.input}>
-                    <TextField className={style.inputAuth}
-                        type="text"
-                        label="Email"
-                        variant='standard'
-                        {...register('email')}
+        <>
+            <h1>Recuperar Senha</h1>
+            <form className={style.formAuth} onSubmit={handleSubmit(SendCodeEmail)}>
+                <ThemeProvider theme={StyleMaterialUi(outerTheme)}>
+                    <div className={style.input}>
+                        <TextField className={style.inputAuth}
+                            type="text"
+                            label="Email"
+                            variant='standard'
+                            {...register('email')}
+                        />
+                        {errors.email && <span className={style.validation}>{errors.email.message}</span>}
+                    </div>
+                </ThemeProvider>
+                <div className={style.button}>
+                    <ButtonAuth
+                        type="submit"
+                        name="Enviar"
+                        route="/login"
+                        title="Cancelar"
                     />
-                    {errors.email && <span className={style.validation}>{errors.email.message}</span>}
                 </div>
-            </ThemeProvider>
-            <div className={style.button}>
-                <ButtonAuth
-                    type="submit"
-                    name="Enviar"
-                    route="/login"
-                    title="Cancelar"
-                />
-            </div>
-        </form>
+            </form>
+        </>
     )
 }
 

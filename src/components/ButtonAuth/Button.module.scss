@@ -1,44 +1,45 @@
 .buttonBackground {
   display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: auto;
 
   .resetPassword {
-    font-size: 15px;
-    color: #4e544e;
+    font-size: 1.1rem;
+    color: var(--secundary-font);
     float: left;
     width: 50%;
     height: 100%;
     font-weight: 500;
-    line-height: 34px;
     text-align: center;
-    text-decoration: none;
     margin: 2px;
     cursor: pointer;
 
     &:hover {
-      color: #3E6943;
+      transition: 0.3s;
+      color: var(--primary-detail);
       animation: swing ease-in-out 0.5s 1 alternate;
     }
   }
 
   .buttonAuth {
     font-family: "Poppins", sans-serif;
-    font-size: 20px;
+    font-size: 1.2rem;
     font-weight: 500;
-    color: #fff;
-    background: #3E6943;
+    color: var(--font);
+    background: var(--primary-detail);
     border: none;
-    height: auto;
+    height: 2.5rem;
     width: 50%;
-    border-radius: 5px;
+    border-radius: 2rem;
     float: right;
-    margin: 2.5px;
+    transition: 0.3s;
+    padding: 0px 2rem;
     cursor: pointer;
 
     &:hover {
-      background: #2C7333;
-      transition: 1s;
+      transform: scale(1.05);
     }
   }
 }

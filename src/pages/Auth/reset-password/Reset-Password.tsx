@@ -5,13 +5,13 @@ import { FormValidateCode } from "./form-validate-code/FormValidateCode";
 import style from "./Reset-Password.module.scss";
 
 export const ResetPassword = () => {
-  return <CardAuth isLogin={false} form={<FormResetPassword />} />;
+  return <CardAuth form={<FormResetPassword />} />;
 };
 
 export const SendEmailResetPassword = () => {
-  return <CardAuth isLogin={false} form={<FormSendEmailResetPassword />} />;
+  return <CardAuth form={<FormSendEmailResetPassword />} />;
 };
 
 export const ValidateCode = () => {
-  return <CardAuth isLogin={false} form={<FormValidateCode />} />;
+  return <CardAuth form={<FormValidateCode />} />;
 };
